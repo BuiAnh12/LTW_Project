@@ -1,0 +1,28 @@
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Compiled files
+bin/
+
+# Dependencies (e.g., libraries)
+InstitutionManagement/WebContent/WEB-INF/lib/*.jar
+
+# IDE-specific files
+.metadata/
+*.log
+*.tmp
+*.bak
+*.swp
+
+# System-specific files
+*.DS_Store
+Thumbs.db
+
+# Maven specific files
+target/
+
+# Gradle specific files
+build/
+.gradle/
