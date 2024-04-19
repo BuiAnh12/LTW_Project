@@ -9,4 +9,9 @@ public class HelloController {
 	public String sayHello() {
 		return "hello";
 	}
+	
+	@RequestMapping("schedue")
+	public String schedue() {
+		return "schedue";
+	}
 }
