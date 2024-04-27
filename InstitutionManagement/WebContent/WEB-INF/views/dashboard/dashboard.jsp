@@ -11,7 +11,7 @@
    	<!-- <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/WEB-INF/styles/styles.css"/>-->
    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style><%@include file="/WEB-INF/css/styles.css"%></style>
+    <style><%@include file="/WEB-INF/views/dashboard/style.css"%></style>
     
     <title>Admin Dashboard</title>
 </head>

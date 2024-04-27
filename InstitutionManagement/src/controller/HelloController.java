@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
-	@RequestMapping("hello")
+	@RequestMapping("dashboard")
 	public String sayHello() {
-		return "hello";
+		return "dashboard/dashboard";
 	}
 	
 	@RequestMapping("schedue")
 	public String schedue() {
-		return "schedue";
+		return "schedule/schedue";
 	}
 }
