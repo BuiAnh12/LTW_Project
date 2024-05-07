@@ -1,8 +1,8 @@
 :root {
-  --main-bg-color: #caabe3;
-  --main-text-color: #7b2ece;
-  --second-text-color: #a77ed2cb;
-  --second-bg-color: #e4dee9;
+  --main-bg-color: #f4f2f5;
+  --main-text-color: #090111;
+  --second-text-color: #77bbe9cb;
+  --second-bg-color: #fefcff;
 }
 
 .primary-text {
@@ -16,7 +16,6 @@
 .primary-bg {
   background-color: var(--main-bg-color);
 }
-
 .secondary-bg {
   background-color: var(--second-bg-color);
 }
@@ -29,11 +28,11 @@
   overflow-x: hidden;
   background-image: linear-gradient(
     to right,
-    #baf3d7,
-    #c2f5de,
-    #cbf7e4,
-    #d4f8ea,
-    #ddfaef
+    #e3f1eb,
+    #e7f1ed,
+    #f2faf7,
+    #dceee7,
+    #ebf3f0
   );
 }
 

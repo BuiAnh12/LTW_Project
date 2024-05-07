@@ -16,9 +16,20 @@ public class HomeController {
 	      return mav;
 	   }
 	  
-	   @RequestMapping(value = "/springmvc", method = RequestMethod.GET)
+	@RequestMapping(value = "/springmvc", method = RequestMethod.GET)
 	   public ModelAndView springMVCPage() {
 	      ModelAndView mav = new ModelAndView("springmvc");
+	      return mav;
+	   }
+	  
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+		public ModelAndView dashboardPage() {
+		    ModelAndView mav = new ModelAndView("dashboard/dashboard");
+		      return mav;
+		   }
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public ModelAndView indexPage() {
+	    ModelAndView mav = new ModelAndView("dashboard/dashboard");
 	      return mav;
 	   }
 }
