@@ -20,7 +20,7 @@
             <div class="list-group list-group-flush my-3">
                 <a href="index.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                     class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="schedue.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="schedule.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Schedue</a>
                 <a href="group.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-chart-line me-2"></i>Group</a>
@@ -28,10 +28,10 @@
                         class="fas fa-paperclip me-2"></i>Student</a>
                 <a href="course.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-shopping-cart me-2"></i>Course</a>
-                <a href="user.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-gift me-2"></i>User</a>
-                <a href="revenue.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-map-marker-alt me-2"></i>Revenue</a>
+                <a href="employees.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-gift me-2"></i>Employees</a>
+                <a href="venues.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-map-marker-alt me-2"></i>Venues</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-comment-dots me-2"></i>Extra</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
@@ -47,6 +47,10 @@
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
                     <h2 class="fs-2 m-0">Students</h2>
+                </div>
+                <div>
+                    <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
+                    <button class="btn-sm btn-success">Add</button>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -72,57 +76,82 @@
                 </div>
             </nav>
             <div class="container">
-                <!-- button area -->
-                <div class="row gx-2 gy-0">
-                    <div class="col-auto">
-                        <p class="p-2 fs-6 border bg-light">Add button</p>
-                        
-                    </div>
-                    <div class="col-auto">
-                        <p class="p-2 fs-6 border bg-light">Import button</p>
+        
+              
+                <!-- table content  -->
+                <div class="row my-2  "> 
+                    <div class="row my-2"  > 
+                        <div class="col-6 " style="text-align: left;">
+                            <span>Showing.......</span>
+                        </div>
+                        <div class="col-6 " style="text-align: right;" id="name">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Columns
+                                </button>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="#">Option 1</a>
+                                  <a class="dropdown-item" href="#">Option 2</a>
+                                  <a class="dropdown-item" href="#">Option 3</a>
+                                </div>
+                              </div>
+        
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Exports
+                                </button>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="#">Option 1</a>
+                                  <a class="dropdown-item" href="#">Option 2</a>
+                                  <a class="dropdown-item" href="#">Option 3</a>
+                                </div>
+                              </div> 
+        
+                              <button class="btn btn-outline-success">Clear Filter</button>
+                              <span>Records on Page</span>
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  20
+                                </button>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="#">Option 1</a>
+                                  <a class="dropdown-item" href="#">Option 2</a>
+                                  <a class="dropdown-item" href="#">Option 3</a>
+                                </div>
+                              </div> 
+                             </div>
+                        </div>
                     </div>
                     
-                </div>
-                <!-- table content  -->
-                <div class="row my-2 "> 
                     <!-- <h3 class="fs-4 mb-3">Schedue</h3> --> 
                     <div class="col">
                         <table class="table bg-white rounded shadow-sm  table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="50">#</th>
-                                    <th scope="col">Date & time</th>
-                                    <th scope="col">Next lesson</th>
-                                    <th scope="col">Course</th>
-                                    <th scope="col">Group title</th>
-                                    <th scope="col">No. Student</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col-1">Age </th>
+                                    <th scope="col">Group</th>
+                                    <th scope="col">Description</th>
                                     <th scope="col">Teacher</th>
-                                    <th scope="col">Location</th>
-                                    <th scope="col">Format</th>
+                                    <th scope="col">Course</th>
                                 </tr>
                                 <tr>
-                                    <th scope="col" width="50"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                    <th scope="col-1"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     <th scope="col"> <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td><small class="small-text">04.03.2024 15:00</small></td>
                                     <td><small class="small-text">Adding riddles and puzzles to the quest ENG GD M2L4</small></td>
                                     <td><small class="small-text">Game Development</small></td>
                                     <td><small class="small-text">NVH_GD65_MON_OFF 3:00 PM - 4:30 PMPreferred Language: ENG</small></td>
                                     <td><small class="small-text">4</small></td>
                                     <td><small class="small-text">Tom</small></td>
                                     <td><small class="small-text">Home</small></td>
-                                    <td><small class="small-text">Online</small></td>
                                 </tr>
                             </tbody>
                         </table>
