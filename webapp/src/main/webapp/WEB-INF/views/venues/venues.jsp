@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,17 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="../styles/styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
-    <style>
-        .small-text {
-            font-size: 80%; /* Adjust the percentage to your desired size */
-        }
-    </style>
-
-    <title>Schedue</title>
+    <style><%@include file="/WEB-INF/views/venues/style.css"%></style>
+    <title>Revenues</title>
 </head>
 
 <body>
@@ -29,7 +22,7 @@
             <div class="list-group list-group-flush my-3">
                 <a href="index.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                     class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="schedue.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                <a href="schedule.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-project-diagram me-2"></i>Schedue</a>
                 <a href="group.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-chart-line me-2"></i>Group</a>
@@ -37,10 +30,10 @@
                         class="fas fa-paperclip me-2"></i>Student</a>
                 <a href="course.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-shopping-cart me-2"></i>Course</a>
-                <a href="user.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-gift me-2"></i>User</a>
-                <a href="revenue.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-map-marker-alt me-2"></i>Revenue</a>
+                <a href="employees.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-gift me-2"></i>Employees</a>
+                <a href="venues.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                        class="fas fa-map-marker-alt me-2"></i>Venues</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-comment-dots me-2"></i>Extra</a>
                 <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
@@ -55,7 +48,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Schedue</h2>
+                    <h2 class="fs-2 m-0">Revenues</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -80,65 +73,74 @@
                     </ul>
                 </div>
             </nav>
+            
             <div class="container">
 
                 <div class="row gy-0">
-                    <div class="col">
-                        <ul class="nav justify-content-end">
-                        <li class="nav-item">
-                          <a class="nav-link active" href="#">Today</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">This week</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Next week</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link " href="#">All</a>
-                        </li>
-                    </div>
-                    
+                   
                    <!-- tableContent -->
                     <div class="row my-2 "> 
+                        <div class="row">
+                            <div class="col-9">
+                                <button class="btn-sm btn-white border-0"><b>Active users</b></button>
+                                <button class="btn-sm btn-white border-0">Deleteds users</button>
+                            </div>
+                      
+
+                          
+                        </div>
                         <!-- <h3 class="fs-4 mb-3">Schedue</h3> --> 
                         <div class="col">
+
+                            <div class="row py-2">
+                                <div class="col-9" style="text-align: left;">
+                                    <span>Showing....</span>
+                                </div>
+                                <div class="col-3" style="text-align: right;">
+                                    <span>Records on Page</span>
+                                    <div class="btn-group">
+                                      <button type="button" disabled class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        20
+                                      </button>
+                                      <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Option 1</a>
+                                        <a class="dropdown-item" href="#">Option 2</a>
+                                        <a class="dropdown-item" href="#">Option 3</a>
+                                      </div>
+                                    </div> 
+                                </div>
+                            </div>
+
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="50">#</th>
-                                        <th scope="col">Date & time</th>
-                                        <th scope="col">Next lesson</th>
-                                        <th scope="col">Course</th>
-                                        <th scope="col">Group title</th>
-                                        <th scope="col">No. Student</th>
-                                        <th scope="col">Teacher</th>
-                                        <th scope="col">Location</th>
-                                        <th scope="col">Format</th>
+                                       
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Number of computers</th>
+                                        <th scope="col">Contact person</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Group</th>
                                     </tr>
                                     <tr>
-                                        <th scope="col" width="50"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"> <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" disabled class="form-control bg-transparent border-0" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" disabled class="form-control bg-transparent border-0" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"> <input type="text" disabled class="form-control bg-transparent border-0" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" disabled class="form-control bg-transparent border-0" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="row">1</th>
+                                      
                                         <td><small class="small-text">04.03.2024 15:00</small></td>
                                         <td><small class="small-text">Adding riddles and puzzles to the quest ENG GD M2L4</small></td>
                                         <td><small class="small-text">Game Development</small></td>
                                         <td><small class="small-text">NVH_GD65_MON_OFF 3:00 PM - 4:30 PMPreferred Language: ENG</small></td>
                                         <td><small class="small-text">4</small></td>
                                         <td><small class="small-text">Tom</small></td>
-                                        <td><small class="small-text">Home</small></td>
-                                        <td><small class="small-text">Online</small></td>
+                                      
                                     </tr>
                                 </tbody>
                             </table>
@@ -165,4 +167,4 @@
     </script>
 </body>
 
-</html>
+</html>>
