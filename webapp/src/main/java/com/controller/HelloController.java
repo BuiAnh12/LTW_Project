@@ -11,8 +11,9 @@ public class HelloController {
 		return "dashboard/dashboard";
 	}
 	
-	@RequestMapping("schedue")
-	public String schedue() {
-		return "schedule/schedue";
-	}
+//	@RequestMapping("schedue")
+//	public String schedue() {
+//		return "schedule/schedue";
+//	}
 }
+ 
