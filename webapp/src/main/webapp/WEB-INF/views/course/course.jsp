@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -104,10 +105,8 @@
                                 <tr>
                                 
                                     <th scope="col">ID</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Lessons</th>
-                                    <th scope="col">Class</th>
-                                    <th scope="col">Language</th>
+                                    <th scope="col">Name Course</th>
+                                    <th scope="col">Description</th>
                                     <th scope="col">Status</th>
                                   
                                 </tr>
@@ -116,28 +115,24 @@
                                     <th scope="col"> <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     <th scope="col"><input type="text" class="form-control bg-transparent border-0"  placeholder="" aria-label="Username" aria-describedby="basic-addon1" disabled></th>
                                     <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><small class="small-text">04.03.2024 15:00</small></td>
-                                    <td><small class="small-text">Adding riddles and puzzles to the quest ENG GD M2L4</small></td>
-                                    <td><small class="small-text">Game Development</small></td>
-                                    <td><small class="small-text">4</small></td>
-                                    <td><small class="small-text">Active</small></td>
-                                </tr>
-                            </tbody>
+							    <c:forEach items="${courseList}" var="course">
+							        <tr>
+							            <td>${course.courseId}</td>
+							            <td>${course.courseName}</td>
+							            <td>${course.description}</td>
+							            <td>${course.status}</td>
+							        </tr>
+							    </c:forEach>
+							</tbody>
                         </table>
                     </div>
                 </div>
             </div>
             
         </div>
-    </div>
-    <!-- /#page-content-wrapper -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
