@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class StaticUtilMethods {
 
     @Autowired
-    private final Map<String, String> responseMessages;
+    private final Map<String, String> responseMessages = null;
 
     public ModelAndView customResponseModelView(
             @NonNull HttpServletRequest request,

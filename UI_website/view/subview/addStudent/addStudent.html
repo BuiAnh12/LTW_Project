@@ -354,44 +354,46 @@
             el.classList.toggle("toggled");
         };
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const radioButtons = document.querySelectorAll('input[name="selectRow"]');
+            const selectedClassTable = document.getElementById('selected-class-table');
+            const cancelSelectionBtn = document.getElementById('cancelSelectionBtn');
+    
+            radioButtons.forEach(button => {
+                button.addEventListener('change', function () {
+                    updateSelectedClassTable();
+                });
+            });
+    
+            cancelSelectionBtn.addEventListener('click', function () {
+                // Clear the content of the upper table
+                selectedClassTable.innerHTML = '';
+            });
+    
+            function updateSelectedClassTable() {
+                // Remove existing content from the upper table
+                selectedClassTable.innerHTML = '';
+    
+                // Get the selected radio button
+                const selectedButton = document.querySelector('input[name="selectRow"]:checked');
+    
+                // If a radio button is selected, clone the corresponding row and append it to the upper table
+                if (selectedButton) {
+                    const selectedRow = selectedButton.closest('tr').cloneNode(true);
+                    // Remove the checkbox and its parent td from the cloned row
+                    selectedRow.removeChild(selectedRow.querySelector('td'));
+                    selectedClassTable.appendChild(selectedRow);
+    
+                    // Check the corresponding radio button in the lower table
+                    selectedButton.checked = true;
+                }
+            }
+        });
+    </script>
 </body>
+
+
 
 </html>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const radioButtons = document.querySelectorAll('input[name="selectRow"]');
-        const selectedClassTable = document.getElementById('selected-class-table');
-        const cancelSelectionBtn = document.getElementById('cancelSelectionBtn');
-
-        radioButtons.forEach(button => {
-            button.addEventListener('change', function () {
-                updateSelectedClassTable();
-            });
-        });
-
-        cancelSelectionBtn.addEventListener('click', function () {
-            // Clear the content of the upper table
-            selectedClassTable.innerHTML = '';
-        });
-
-        function updateSelectedClassTable() {
-            // Remove existing content from the upper table
-            selectedClassTable.innerHTML = '';
-
-            // Get the selected radio button
-            const selectedButton = document.querySelector('input[name="selectRow"]:checked');
-
-            // If a radio button is selected, clone the corresponding row and append it to the upper table
-            if (selectedButton) {
-                const selectedRow = selectedButton.closest('tr').cloneNode(true);
-                // Remove the checkbox and its parent td from the cloned row
-                selectedRow.removeChild(selectedRow.querySelector('td'));
-                selectedClassTable.appendChild(selectedRow);
-
-                // Check the corresponding radio button in the lower table
-                selectedButton.checked = true;
-            }
-        }
-    });
-</script>
