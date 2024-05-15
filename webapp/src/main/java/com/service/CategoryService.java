@@ -8,16 +8,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.config.StaticUtilMethods;
 
-import lombok.RequiredArgsConstructor;
 import com.repository.CourseRepository;
+import com.repository.UserReponsitory;
+
+import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
 	@Autowired
-    private final StaticUtilMethods staticUtilMethods;
+	private final StaticUtilMethods staticUtilMethods;
 	@Autowired
 	private final CourseRepository courseRepository;
-
+	@Autowired
+	private final UserReponsitory userReponsitory;
+	
     public ModelAndView getScheduleListPage(HttpServletRequest request, Model model) {
         ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "Schedule/schedule");
         // modelAndView.addObject("scheduleList", )
@@ -27,7 +31,14 @@ public class CategoryService {
     public ModelAndView getCourseListPage(HttpServletRequest request, Model model) {
         ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "course/course");
         modelAndView.addObject("courseList", courseRepository.findAll());
+
         System.out.println(modelAndView);
         return modelAndView;
+    }
+    
+    public ModelAndView getUserListPage(HttpServletRequest request, Model model) {
+    	ModelAndView modelAndView =staticUtilMethods.customResponseModelView(request,model.asMap(),"user/user");
+    	modelAndView.addObject("userList",userReponsitory.findAll());
+    	return modelAndView;
     }
 }

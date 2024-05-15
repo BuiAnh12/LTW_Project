@@ -1,12 +1,13 @@
 package com.config;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;	
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class StaticUtilMethods {
-
-    @Autowired
-    private final Map<String, String> responseMessages;
+	private final Map<String, String> responseMessages;
 
     public ModelAndView customResponseModelView(
             @NonNull HttpServletRequest request,

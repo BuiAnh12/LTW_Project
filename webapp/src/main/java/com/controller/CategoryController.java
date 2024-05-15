@@ -16,8 +16,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping(value = "/category")
 public class CategoryController {
-	@Autowired 
-	private final CategoryService categoryService;
+	@Autowired
+	private final CategoryService categoryService ;
 
     @RequestMapping(value = "/schedule", method = RequestMethod.GET)
     public ModelAndView getSchedulePage(HttpServletRequest request, Model model) {
@@ -29,5 +29,10 @@ public class CategoryController {
     @RequestMapping(value = "/course", method = RequestMethod.GET)
     public ModelAndView getCoursePage(HttpServletRequest request, Model model) {	
         return categoryService.getCourseListPage(request, model);
+    }
+    
+    @RequestMapping(value = "/employees", method = RequestMethod.GET)
+    public ModelAndView getEmployeesPage(HttpServletRequest request , Model model) {
+    	return categoryService.getUserListPage(request, model);
     }
 }
