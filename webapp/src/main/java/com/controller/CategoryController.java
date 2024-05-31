@@ -21,7 +21,6 @@ public class CategoryController {
 
     @RequestMapping(value = "/schedule", method = RequestMethod.GET)
     public ModelAndView getSchedulePage(HttpServletRequest request, Model model) {
-
         ModelAndView mav = new ModelAndView("schedule/schedule");
         return mav;
     }

@@ -1,0 +1,279 @@
+:root {
+  --main-bg-color: #f4f2f5;
+  --main-text-color: #090111;
+  --second-text-color: #77bbe9cb;
+  --second-bg-color: #fefcff;
+}
+
+
+
+.custom-button {
+    display: inline-block;
+    width: calc(100% / 6); /* Tương đương với col-2 trong Bootstrap */
+    margin: 0.5rem 0.5rem; /* Tương đương với my-2 mx-2 trong Bootstrap */
+    padding: 0.25rem 0.5rem; /* Tương đương với btn-sm trong Bootstrap */
+    border-radius: 0.25rem; /* Tương đương với rounded trong Bootstrap */
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+    border: 1px solid transparent; /* Thêm để các thẻ <a> có border giống như nút */
+}
+
+.submit-button {
+    border: 1px solid #28a745; /* Tương đương với btn-outline-success trong Bootstrap */
+    background-color: transparent;
+}
+
+.submit-button:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+.delete-button {
+    border: 1px solid #dc3545; /* Tương đương với btn-outline-danger trong Bootstrap */
+    background-color: transparent;
+}
+
+.delete-button:hover {
+    background-color: #dc3545;
+    color: white;
+}
+.return-button {
+    border: 1px solid #ffc107; /* Tương đương với btn-outline-warning trong Bootstrap */
+    background-color: transparent;
+}
+
+.return-button:hover {
+    background-color: #ffc107;
+    color: white;
+}
+
+body {
+
+  line-height: 1.428571429;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.primary-text {
+  color: var(--main-text-color);
+}
+
+.second-text {
+  color: var(--second-text-color);
+}
+
+
+.primary-bg {
+  background-color: var(--main-bg-color);
+}
+
+.secondary-bg {
+  background-color: var(--second-bg-color);
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+#wrapper {
+  overflow-x: hidden;
+  background-image: linear-gradient(to right,
+      #e3f1eb,
+      #e7f1ed,
+      #f2faf7,
+      #dceee7,
+      #ebf3f0);
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 12rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.list-group-item {
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -12rem;
+  }
+}
+
+/* AddStudent */
+
+.detail_container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 0;
+  border-radius: 5px;
+}
+
+.floating-block {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  /* Match the container's border-radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.side-floating-block {
+  position: relative;
+  width: 100%;
+  /* Takes up 2/10 of the container width */
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  /* Add border-radius to create a curve */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-floating-block {
+  position:relative;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  /* Match the container's border-radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #007bff;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-add {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #24ae5b;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-danger {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #e01321;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+   cursor: pointer;
+}
+
+.btn-select {
+  padding: 5px 5px;
+  margin: 1px;
+  border: none;
+  background-color: #4043f5;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+   cursor: pointer;
+}
+
+/* Custom CSS for styling input fields and labels */
+.form-group {
+  margin-bottom: 5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+select[type="text"],input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Optional: Add styling for placeholder text */
+input[type="text"]::placeholder {
+  color: #999;
+}
+
+
+
+.wrapper {
+  padding: 10px;
+}
+
+label{
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 5px;
+  max-width: 100%;
+  font-size: 12px;
+}
+
+.h3, h3 {
+  font-size: 21px;
+}
+
+.lesson-row {
+    display: none;
+}

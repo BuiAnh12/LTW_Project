@@ -6,6 +6,9 @@
 
 <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -50,6 +53,11 @@
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
                     <h2 class="fs-2 m-0">Courses</h2>
+                </div>
+                
+                <div>
+                    <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
+                    <a href="/subpage/add-course" class="btn-sm btn-success">Add Course</a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -99,19 +107,18 @@
                                 </div> 
                             </div>
                         </div>
-
-                        <table class="table bg-white rounded shadow-sm  table-hover">
+					<form action="/manager/course-list-active-btn" method = "POST"> 
+					
+                        <table class="table">
                             <thead>
                                 <tr>
-                                
-                                    <th scope="col">ID</th>
                                     <th scope="col">Name Course</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Status</th>
                                   
                                 </tr>
                                 <tr>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+            
                                     <th scope="col"> <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     <th scope="col"><input type="text" class="form-control bg-transparent border-0"  placeholder="" aria-label="Username" aria-describedby="basic-addon1" disabled></th>
                                     <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
@@ -120,14 +127,14 @@
                             <tbody>
 							    <c:forEach items="${courseList}" var="course">
 							        <tr>
-							            <td>${course.courseId}</td>
-							            <td>${course.courseName}</td>
+							            <td><a href="/subpage/details-course?courseId=${course.courseId}">${course.courseName}</a></td>
 							            <td>${course.description}</td>
-							            <td>${course.status}</td>
+							            <td>${course.status}</td>							            
 							        </tr>
 							    </c:forEach>
 							</tbody>
                         </table>
+                    </form>
                     </div>
                 </div>
             </div>
