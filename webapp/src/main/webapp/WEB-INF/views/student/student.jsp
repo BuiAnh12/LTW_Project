@@ -276,7 +276,7 @@
                     <small class="small-text"> <a
                       href="${pageContext.request.contextPath}/student/detail/${student.id}"
                       style="text-decoration: none; color: rgb(25, 0, 255)"
-                      >${student.fistname}</a
+                      >${student.firstname}</a
                     ></small>
                   </td>
 	                <td><small class="small-text">${student.age}</small></td>

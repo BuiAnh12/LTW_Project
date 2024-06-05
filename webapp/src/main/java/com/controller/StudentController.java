@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.dto.StudentDTO;
 import com.entity.Student;
 import com.service.StudentService;
 
@@ -25,14 +27,14 @@ public class StudentController {
 	
 	@GetMapping("/student/insert")
 	public String getStudentPage(ModelMap model) {
-		Student student = new Student();
+		StudentDTO student = new StudentDTO();
 
         model.addAttribute("student", student);
 	    return "student/insert/insertStudent";
 	}
 	
 	@RequestMapping(value = "/student/insert", method = RequestMethod.POST)
-    public String saveStudent(@ModelAttribute("student") Student student, BindingResult result, ModelMap model) {
+    public String saveStudent(@ModelAttribute("student") StudentDTO student, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             System.out.println("Received error");
             for (ObjectError error : result.getAllErrors()) {
@@ -45,19 +47,19 @@ public class StudentController {
             }
             return "student/insert";
         }
-        studentService.saveStudent(student);
+        studentService.insertStudent(student);
 
         return "redirect:/student";
     }
 	@GetMapping("/student/detail/{id}")
     public String getStudentDetail(@PathVariable("id") Integer id, ModelMap model) {
-        Student student = studentService.getStudentById(id);
+        StudentDTO student = studentService.getStudentById(id);
         model.addAttribute("student", student);
         return "student/detail/detailStudent";
     }
 	
 	@PostMapping("/student/update")
-	public String updateStudent(@RequestParam("id") int id,@ModelAttribute("student") Student Updatestudent, ModelMap model) {
+	public String updateStudent(@RequestParam("id") int id,@ModelAttribute("student") StudentDTO Updatestudent, ModelMap model) {
 	    try {
 	        studentService.updateStudentById(id,Updatestudent);
 	    } catch (Exception e) {

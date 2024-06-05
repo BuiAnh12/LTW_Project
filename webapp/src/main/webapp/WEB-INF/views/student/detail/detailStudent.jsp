@@ -132,7 +132,7 @@
                                                                                                 for="first-name">First
                                                                                                 name*:</label>
                                                                                             <form:input
-                                                                                                path="fistname"
+                                                                                                path="firstname"
                                                                                                 id="first-name"
                                                                                                 class="form-control" />
                                                                                         </div>
@@ -141,7 +141,7 @@
                                                                                                 for="middle-name">Middle
                                                                                                 name:</label>
                                                                                             <form:input
-                                                                                                path="midlename"
+                                                                                                path="midelname"
                                                                                                 id="middle-name"
                                                                                                 class="form-control" />
                                                                                         </div>

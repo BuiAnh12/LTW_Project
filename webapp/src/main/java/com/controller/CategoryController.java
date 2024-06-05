@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dto.StudentDTO;
 import com.entity.Student;
 import com.service.StudentService;
 
@@ -40,7 +41,7 @@ public class CategoryController {
 	public String getStudentPage(ModelMap model) {
 
 	    // Retrieve the list of all students
-	    List<Student> students = studentService.listAll();
+	    List<StudentDTO> students = studentService.listAll();
 	    
 	    // Add students to the model
 	    model.addAttribute("students", students);

@@ -1,10 +1,12 @@
 package com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dto.StudentDTO;
 import com.entity.Student;
 import com.repository.StudentRepo;
 
@@ -16,27 +18,32 @@ public class StudentService {
     private StudentRepo studentRepository;
     
     @Transactional
-    public List<Student> listAll() {
-        return (List<Student>) studentRepository.findAll();
+    public List<StudentDTO> listAll() {
+        List<Student> entityList = studentRepository.findAll();
+        List<StudentDTO> dtoList = new ArrayList<>();
+        for (Student student : entityList) {
+            StudentDTO tmp = new StudentDTO();
+            dtoList.add(tmp.convert(student));
+        }
+        return dtoList;
+    }
+
+    
+    @Transactional
+    public void insertStudent(StudentDTO student) {
+    	Student result = new Student(); 
+    	result.convert(student);
+        studentRepository.save(result);
     }
     
     @Transactional
-    public void saveStudent(Student student) {
-        studentRepository.save(student);
-    }
-    
-    @Transactional
-    public Student getStudentById(Integer id) {
+    public StudentDTO getStudentById(Integer id) {
         Student student = studentRepository.findOne(id);
-        System.out.println("Find: " + student.toString());
-        return student;
+        StudentDTO result = new StudentDTO();
+//        System.out.println("Find: " + student.toString());
+        return result.convert(student);
     }
     
-    @Transactional
-    public void deleteStudent(Student student) {
-    	System.out.println("Delete: " + student.toString());
-        studentRepository.delete(student);
-    }
     
     @Transactional
     public void deleteStudentById(Integer id) {
@@ -45,10 +52,10 @@ public class StudentService {
     
     
     @Transactional
-    public void updateStudentById(Integer id, Student updatedStudent) {
-        Student existingStudent = getStudentById(id);
+    public void updateStudentById(Integer id, StudentDTO updatedStudent) {
+        Student existingStudent = studentRepository.findOne(id);
         if (existingStudent != null) {
-        	existingStudent.updateFrom(updatedStudent);
+        	existingStudent.convert(updatedStudent);
             studentRepository.save(existingStudent);
         }
     }

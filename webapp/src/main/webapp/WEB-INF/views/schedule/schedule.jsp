@@ -147,18 +147,18 @@
                                       
                                         <th scope="col">Date & times</th>
                                         <th scope="col">Next lesson</th>
-                                        <th scope="col">Group Title </th>
-                                        <th scope="col">Day</th>
-                                        <th scope="col">Leason Teacher</th>
+                                        <th scope="col">Course </th>
+                                        <th scope="col">Group Title</th>
+                                        <th scope="col">Lesson Teacher</th>
                                         <th scope="col">Format</th>
                                        
                                     </tr>
                                     <tr>
                                         <!-- <th scope="col" width="50"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th> -->
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"> <input type="date" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"><input type="text" class="form-control" placeholder="Format" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     </tr>

@@ -1,75 +1,33 @@
-package com.entity;
+package com.dto;
+import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 
-import com.dto.StudentDTO;
+import com.entity.Student;
 
-import lombok.*;
-import java.sql.Date;
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Entity
-@Table(name = "student")
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "lastname")
-    private String lastname;
-
-    @Column(name = "firstname")
-    private String firstname;
-    
-    @Column(name = "middlename")
-    private String middlename;
-    
-    @Column(name = "birthdate")
-    private String birthdate;
-    
-    @Column(name = "age")
-    private int age;
-    
-    @Column(name = "gender")
-    private String gender;
-
-    @Column(name = "parent_name")
+public class StudentDTO{
+	private int id;
+	private String lastname;
+	private String firstname;
+	private String midelname;
+	private String birthdate;
+	private int age;
+	private String gender;
     private String parentName;
-
-    @Column(name = "parent_tel")
     private String parentTel;
-
-    @Column(name = "email")
     private String email;
-    
-    @Column(name = "login")
     private String login;
-
-    @Column(name = "password")
     private String password;
-
-    @Column(name = "skype")
     private String skype;
-
-    @Column(name = "laptop_available")
     private boolean laptopAvailable;
-
-    @Column(name = "location")
     private String location;
-    
-    @Column(name = "additional_info")
     private String additionalInfo;
-    
-    
-    public Student convert(StudentDTO updatedStudent) {
-    	this.id = updatedStudent.getId();
+	
+	public StudentDTO convert(Student updatedStudent) {
+		this.id = updatedStudent.getId();
         this.lastname = updatedStudent.getLastname();
-        this.firstname = updatedStudent.getFirstname();
-        this.middlename = updatedStudent.getMidelname();
+        this.firstname = updatedStudent.getFistname();
+        this.midelname = updatedStudent.getMidlename();
         this.birthdate = updatedStudent.getBirthdate();
         this.age = updatedStudent.getAge();
         this.gender = updatedStudent.getGender();
@@ -84,133 +42,104 @@ public class Student {
         this.additionalInfo = updatedStudent.getAdditionalInfo();
         return this;
     }
-
+	
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getLastname() {
 		return lastname;
 	}
-
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
-	public String getFistname() {
+	public String getFirstname() {
 		return firstname;
 	}
-
-	public void setFistname(String firstname) {
+	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-
-	public String getMidlename() {
-		return middlename;
+	public String getMidelname() {
+		return midelname;
 	}
-
-	public void setMidlename(String middlename) {
-		this.middlename = middlename;
+	public void setMidelname(String midelname) {
+		this.midelname = midelname;
 	}
-
 	public String getBirthdate() {
 		return birthdate;
 	}
-
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
-
 	public int getAge() {
 		return age;
 	}
-
 	public void setAge(int age) {
 		this.age = age;
 	}
-
 	public String getGender() {
 		return gender;
 	}
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 	public String getParentName() {
 		return parentName;
 	}
-
 	public void setParentName(String parentName) {
 		this.parentName = parentName;
 	}
-
 	public String getParentTel() {
 		return parentTel;
 	}
-
 	public void setParentTel(String parentTel) {
 		this.parentTel = parentTel;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-    
 	public String getLogin() {
 		return login;
 	}
-
 	public void setLogin(String login) {
 		this.login = login;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getSkype() {
 		return skype;
 	}
-
 	public void setSkype(String skype) {
 		this.skype = skype;
 	}
-
 	public boolean isLaptopAvailable() {
 		return laptopAvailable;
 	}
-
 	public void setLaptopAvailable(boolean laptopAvailable) {
 		this.laptopAvailable = laptopAvailable;
 	}
-
 	public String getLocation() {
 		return location;
 	}
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
 	public String getAdditionalInfo() {
 		return additionalInfo;
 	}
-
 	public void setAdditionalInfo(String additionalInfo) {
 		this.additionalInfo = additionalInfo;
 	}
-    
+
+
+	
 }
