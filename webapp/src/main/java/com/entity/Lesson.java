@@ -8,12 +8,15 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "lesson")
+public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "role_name")
-    private String roleName;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
+
+    private String detail;
 }
