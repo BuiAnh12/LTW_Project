@@ -18,7 +18,7 @@ public class CategoryService {
 	@Autowired
 	private final CourseRepository courseRepository;
 
-
+	
     public ModelAndView getScheduleListPage(HttpServletRequest request, Model model) {
         ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "Schedule/schedule");
         // modelAndView.addObject("scheduleList", )

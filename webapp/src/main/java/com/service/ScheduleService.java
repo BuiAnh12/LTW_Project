@@ -16,7 +16,6 @@ import com.entity.Lesson;
 import com.entity.User;
 import com.repository.CourseScheduleRepo;
 import com.repository.GroupRepo;
-import com.repository.LessonRepo;
 import com.repository.UserRepo;
 
 @Service

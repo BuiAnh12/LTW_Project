@@ -39,6 +39,9 @@ public class CategoryController {
 	@Autowired
     private ScheduleService scheduleService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	
 	@GetMapping("/student")
 	public String getStudentPage(ModelMap model) {

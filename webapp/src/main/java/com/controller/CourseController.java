@@ -24,8 +24,9 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/manager")
 public class CourseController {
+	
+	
 	@Autowired
 	private final CourseService courseService;
 	
@@ -33,13 +34,14 @@ public class CourseController {
 //	private final Validator hibernateValidator;
 	
 	
-	@RequestMapping(value = "/add-course", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/add-course", method = RequestMethod.POST)
     public String addCourse(
         @ModelAttribute("courseObject") AddCourseDto courseObject,
         HttpServletRequest request,
         RedirectAttributes redirectAttributes
     ) {
 		final String redirectedUrl = "/category/course";
+		System.out.println("THIS SHIT RUNNING");
 //        Set<ConstraintViolation<AddCourseDto>> violations = hibernateValidator.validate(courseObject);
 //        if (!violations.isEmpty()) {
 //            redirectAttributes.addFlashAttribute("errorCode", violations.iterator().next().getMessage());
@@ -59,7 +61,7 @@ public class CourseController {
         return "redirect:" + redirectedUrl;
     }
 	
-	@RequestMapping(value = "/course-list-active-btn", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/course-list-active-btn", method = RequestMethod.POST)
 	public String deleteCourse(
 			HttpServletRequest request,
 			RedirectAttributes redirectAttributes
@@ -77,7 +79,7 @@ public class CourseController {
 		        return "redirect:" + redirectedUrl;
 			}
 	
-	@RequestMapping(value = "/update-course", method = RequestMethod.POST)
+	@RequestMapping(value = "/manager/update-course", method = RequestMethod.POST)
 	public String updateCourse(
 			@ModelAttribute("courseObject") UpdateCourseDto courseObject,
 			HttpServletRequest request,

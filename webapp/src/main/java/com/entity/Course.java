@@ -1,6 +1,7 @@
 package com.entity;
 import javax.persistence.*;
 import lombok.*;
+import lombok.Builder;
 
 @Data
 @Builder

@@ -13,43 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
     <style><%@include file="/WEB-INF/views/detailsCourse/style.css"%></style>
+    <base href="${pageContext.servletContext.contextPath}/">
     <title>Create Student</title>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-        <div class="bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold text-uppercase border-bottom">
-                <i class="fas fa-user-secret me-2"></i>CodeXpert
-            </div>
-            <div class="list-group list-group-flush my-3">
-                <a href="index.html"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="schedule.html"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-project-diagram me-2"></i>Schedule</a>
-                <a href="group.html"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-chart-line me-2"></i>Group</a>
-                <a href="student.html"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-paperclip me-2"></i>Student</a>
-                <a href="course.html"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-shopping-cart me-2"></i>Course</a>
-                <a href="employees.html"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-gift me-2"></i>Employees</a>
-                <a href="venues.html"
-                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-map-marker-alt me-2"></i>Venues</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                        class="fas fa-comment-dots me-2"></i>Extra</a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
-                        class="fas fa-power-off me-2"></i>Logout</a>
-            </div>
-        </div>
+        <%@include file="/WEB-INF/views/panel.jsp"%>
 
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
@@ -90,7 +60,7 @@
                             </div>
                             <!-- Form thêm khóa học và bài học -->
 							<form:form method="POST"
-								action="/manager/update-course?courseId=${courseObject.courseId}"
+								action="${pageContext.servletContext.contextPath}/manager/update-course?courseId=${courseObject.courseId}"
 								modelAttribute="courseObject">
 								<div class="row mb-3">
 									<div class="col-6">

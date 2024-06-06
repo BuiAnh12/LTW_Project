@@ -49,7 +49,7 @@ public class StudentController {
         }
         studentService.insertStudent(student);
 
-        return "redirect:/student";
+        return "redirect:/category/student";
     }
 	@GetMapping("/student/detail/{id}")
     public String getStudentDetail(@PathVariable("id") Long id, ModelMap model) {
@@ -67,7 +67,7 @@ public class StudentController {
 	        System.out.println("ERROR");
 	        return "student/detail/detailStudent"; 
 	    }
-	    return "redirect:/student";
+	    return "redirect:/category/student";
 	}
 	
 	@PostMapping("/student/delete")
@@ -78,6 +78,6 @@ public class StudentController {
 	        model.addAttribute("errorMessage", "Error deleting student: " + e.getMessage());
 	        return "student/detail/detailStudent"; 
 	    }
-	    return "redirect:/student";
+	    return "redirect:/category/student";
 	}
 }

@@ -40,7 +40,7 @@ public class ScheduleController {
         System.out.println("Course Name: " + searchForm.getCourseName());
         System.out.println("Group Title: " + searchForm.getGroupTitle());
         System.out.println("Teacher Name: " + searchForm.getTeacherName());
-
+        List<ScheduleDTO> courseSchedules = scheduleService.getAllSchedule();
         // Logic to handle the search based on the search form fields
 //        List<ScheduleDTO> courseSchedules = scheduleService.getSchedulesWithinDateRange(
 //                LocalDate.parse(searchForm.getStartDate()), 

@@ -1,7 +1,7 @@
 package com.dto;
 
 import lombok.*;
-
+import lombok.Builder;
 @Getter
 @Setter
 @NoArgsConstructor
