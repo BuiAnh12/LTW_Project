@@ -57,8 +57,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
+<<<<<<< HEAD
 			<attribute name="maven.pomderived" value="true"/>
 >>>>>>> hnyy
+=======
+>>>>>>> origin/hnyyy
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

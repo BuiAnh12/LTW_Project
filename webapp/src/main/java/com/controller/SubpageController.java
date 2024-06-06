@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+
 import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +44,6 @@ public class SubpageController {
             request.getSession().setAttribute("errorCode", "error_systemApplication_01");
             response.sendRedirect(redirectedUrl);
         }
-		
 		return null;	
 	}
 	

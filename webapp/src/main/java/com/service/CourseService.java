@@ -1,6 +1,13 @@
 package com.service;
+import com.dto.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 import com.repository.LessonRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +42,7 @@ public class CourseService {
 	            Lesson lesson = Lesson.builder()
 	                    .detail(lessonName)
 	                    .course(course)
+	                    .status(true)
 	                    .build();
 	            lessonRepository.save(lesson);
 	        }
@@ -54,25 +62,54 @@ public class CourseService {
 	}
 	
 	@Transactional(rollbackOn = {Exception.class})
-	public void updateCourse(AddCourseDto courseObject, HttpServletRequest request) {
-		final String courseId = request.getParameter("courseId");
-		Course course = courseRepository.findOne(Long.parseLong(courseId));
-		course.setCourseName(courseObject.getCourseName());
-		course.setDescription(courseObject.getDescription());
-		courseRepository.save(course);
-		System.out.println("here1");
-		lessonRepository.deleteAllLessonByCourseId(course.getCourseId());
-		System.out.println("here");
-		if (courseObject.getLessons() != null) {
-	        for (String lessonName : courseObject.getLessons()) {
-	            Lesson lesson = Lesson.builder()
-	                    .detail(lessonName)
-	                    .course(course)
-	                    .build();
-	            lessonRepository.save(lesson);
-	            System.out.println("here3");
+	public void updateCourse(UpdateCourseDto courseObject, HttpServletRequest request) {
+	    final String courseId = request.getParameter("courseId");
+	    Course course = courseRepository.findOne(Long.parseLong(courseId));
+	    course.setCourseName(courseObject.getCourseName());
+	    course.setDescription(courseObject.getDescription());
+	    courseRepository.save(course);
+
+	    List<LessonDto> existingLessons = lessonRepository.findAllLessonByCourseId(course.getCourseId());
+	    System.out.println(existingLessons);
+	    System.out.println("hehe"+courseObject.getLessons());
+	    List<LessonDto> incomingLessons = courseObject.getLessons();
+	    List<LessonDto> lessonsToAdd = new ArrayList<>();
+	    List<LessonDto> lessonsToDisable = new ArrayList<>(existingLessons);
+
+	    System.out.println("here69");
+	    for (LessonDto lesson : incomingLessons) {
+	        System.out.println("Lesson ID: " + lesson.getLessonId());
+	        System.out.println("Lesson Name: " + lesson.getDetail());
+	        // In ra các thông tin khác của bài học nếu cần
+	    }
+	    System.out.println("here96");
+	    for (LessonDto incomingLesson : incomingLessons) {
+	        if (incomingLesson.getLessonId() == null) {
+	            lessonsToAdd.add(incomingLesson);
+	        } else {
+	            lessonsToDisable.removeIf(existingLesson -> existingLesson.getLessonId().equals(incomingLesson.getLessonId()));
 	        }
-	        System.out.println("here4");
-	    }	
+	    }
+	    System.out.println("here2");
+	    for (LessonDto lesson : lessonsToAdd) {
+	        Lesson newLesson = Lesson.builder()
+	                .detail(lesson.getDetail())
+	                .course(course)
+	                .status(true)
+	                .build();
+	        lessonRepository.save(newLesson);
+	    }
+	    System.out.println("here3");
+
+	    for (LessonDto lessonToDisable : lessonsToDisable) {
+	        Lesson lessonToUpdate = lessonRepository.findOne(lessonToDisable.getLessonId());
+	        if (lessonToUpdate != null) {
+	            lessonToUpdate.setStatus(false);
+	            lessonRepository.save(lessonToUpdate);
+	        }
+	    }
+	    System.out.println("here4 ");
 	}
+
+
 }

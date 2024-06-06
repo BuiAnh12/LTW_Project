@@ -19,4 +19,7 @@ public class Lesson {
 
     @Column(name = "detail", nullable = true, columnDefinition = "TEXT")
     private String detail;
+    
+    @Column(name = "status", nullable = false, columnDefinition = "BIT DEFAULT 1")
+    private boolean status;
 }
