@@ -52,14 +52,14 @@ public class StudentController {
         return "redirect:/student";
     }
 	@GetMapping("/student/detail/{id}")
-    public String getStudentDetail(@PathVariable("id") Integer id, ModelMap model) {
+    public String getStudentDetail(@PathVariable("id") Long id, ModelMap model) {
         StudentDTO student = studentService.getStudentById(id);
         model.addAttribute("student", student);
         return "student/detail/detailStudent";
     }
 	
 	@PostMapping("/student/update")
-	public String updateStudent(@RequestParam("id") int id,@ModelAttribute("student") StudentDTO Updatestudent, ModelMap model) {
+	public String updateStudent(@RequestParam("id") Long id,@ModelAttribute("student") StudentDTO Updatestudent, ModelMap model) {
 	    try {
 	        studentService.updateStudentById(id,Updatestudent);
 	    } catch (Exception e) {
@@ -71,7 +71,7 @@ public class StudentController {
 	}
 	
 	@PostMapping("/student/delete")
-	public String deleteStudent(@RequestParam("id") int id, ModelMap model) {
+	public String deleteStudent(@RequestParam("id") Long id, ModelMap model) {
 	    try {
 	        studentService.deleteStudentById(id);
 	    } catch (Exception e) {

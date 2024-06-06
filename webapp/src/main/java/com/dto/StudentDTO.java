@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import com.entity.Student;
 
 public class StudentDTO{
-	private int id;
+	private Long id;
 	private String lastname;
 	private String firstname;
 	private String midelname;
@@ -43,10 +43,10 @@ public class StudentDTO{
         return this;
     }
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getLastname() {

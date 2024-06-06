@@ -1,19 +1,13 @@
 package com.entity;
-
-import java.time.LocalDate;
 import javax.persistence.*;
-import lombok.*;
+import java.util.Date;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name = "`group`")
+@Table(name = "`Group`")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
@@ -22,20 +16,23 @@ public class Group {
     @ManyToOne
     @JoinColumn(name = "main_teacher_id")
     private User mainTeacher;
-
+    
     @Column(name = "start_date")
-    private LocalDate startDate;
-
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    
     @Column(name = "end_date")
-    private LocalDate endDate;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
 
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
     private User supervisor;
-
+    
     @Column(name = "group_detail")
     private String groupDetail;
+    
+    private Boolean format;
 
-    @Column(name = "fotmat")
-    private boolean format;
+    // Getters and Setters
 }

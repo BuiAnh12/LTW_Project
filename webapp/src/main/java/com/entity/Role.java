@@ -2,18 +2,19 @@ package com.entity;
 
 import javax.persistence.*;
 import lombok.*;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "role")
+@Table(name = "Role")
+
 public class Role {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "role_name")
-    private String roleName;
+    private String rolename;
+
 }

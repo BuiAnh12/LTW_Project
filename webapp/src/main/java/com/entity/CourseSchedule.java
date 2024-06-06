@@ -1,33 +1,79 @@
 package com.entity;
-
-import java.time.LocalDate;
 import javax.persistence.*;
-import lombok.*;
+import java.util.Date;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "course_schedule")
-@IdClass(CourseScheduleId.class)
 public class CourseSchedule {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
-    @Column(name = "occur_date")
-    private LocalDate occurDate;
+    @Temporal(TemporalType.DATE)
+    private Date occurDate;
 
-    private boolean status;
+    private Boolean status;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private User teacher;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+	public Lesson getLesson() {
+		return lesson;
+	}
+
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
+	}
+
+	public Date getOccurDate() {
+		return occurDate;
+	}
+
+	public void setOccurDate(Date occurDate) {
+		this.occurDate = occurDate;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public User getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(User teacher) {
+		this.teacher = teacher;
+	}
+
+    
+    
 }

@@ -2,21 +2,21 @@ package com.entity;
 
 import javax.persistence.*;
 import lombok.*;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "lesson")
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "lesson_id")
+    private Long lessonId;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", referencedColumnName = "course_id", nullable = false)
     private Course course;
 
+    @Column(name = "detail", nullable = true, columnDefinition = "TEXT")
     private String detail;
 }

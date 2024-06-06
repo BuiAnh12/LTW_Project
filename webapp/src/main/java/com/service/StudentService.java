@@ -37,7 +37,7 @@ public class StudentService {
     }
     
     @Transactional
-    public StudentDTO getStudentById(Integer id) {
+    public StudentDTO getStudentById(Long id) {
         Student student = studentRepository.findOne(id);
         StudentDTO result = new StudentDTO();
 //        System.out.println("Find: " + student.toString());
@@ -46,13 +46,13 @@ public class StudentService {
     
     
     @Transactional
-    public void deleteStudentById(Integer id) {
+    public void deleteStudentById(Long id) {
         studentRepository.delete(id);
     }
     
     
     @Transactional
-    public void updateStudentById(Integer id, StudentDTO updatedStudent) {
+    public void updateStudentById(Long id, StudentDTO updatedStudent) {
         Student existingStudent = studentRepository.findOne(id);
         if (existingStudent != null) {
         	existingStudent.convert(updatedStudent);
