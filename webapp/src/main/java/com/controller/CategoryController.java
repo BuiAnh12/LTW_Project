@@ -25,6 +25,19 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class CategoryController {
+	@Autowired 
+	private final CategoryService categoryService;
+
+    @RequestMapping(value = "/schedule", method = RequestMethod.GET)
+    public ModelAndView getSchedulePage(HttpServletRequest request, Model model) {
+        ModelAndView mav = new ModelAndView("schedule/schedule");
+        return mav;
+    }
+    
+    @RequestMapping(value = "/course", method = RequestMethod.GET)
+    public ModelAndView getCoursePage(HttpServletRequest request, Model model) {	
+        return categoryService.getCourseListPage(request, model);
+    }
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 	
 	@Autowired

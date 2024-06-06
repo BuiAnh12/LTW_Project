@@ -32,7 +32,6 @@ public class CategoryService {
         ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "course/course");
         modelAndView.addObject("courseList", courseRepository.findAll());
 
-        System.out.println(modelAndView);
         return modelAndView;
     }
     

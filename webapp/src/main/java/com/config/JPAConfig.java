@@ -61,10 +61,14 @@ public class JPAConfig {
 //		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 //		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 		properties.setProperty("hibernate.hbm2ddl.auto", "none");
+<<<<<<< HEAD
 =======
 		properties.setProperty("hibernate.hbm2ddl.auto", "create");
 //		properties.setProperty("hibernate.hbm2ddl.auto", "none");
 >>>>>>> tom
+=======
+		//properties.setProperty("hibernate.hbm2ddl.auto", "update");
+>>>>>>> hnyy
 		return properties;
 	}
 }
