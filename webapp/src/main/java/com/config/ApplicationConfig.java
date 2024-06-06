@@ -19,7 +19,7 @@ public class ApplicationConfig {
 	    messagePairs.put("succeed_delete_01", "Xoá thành công!"); 
 	    messagePairs.put("succeed_update_01", "Sửa đổi thành công!");
 	
-	    //--Error messages. 
+	    //--Error messages.  
 	    messagePairs.put("error_systemApplication_01", "Something wrong with application!");
 	
 	    messagePairs.put("error_entity_01", "Không tìm thấy ID của đối tượng, vui lòng không sửa đổi phần mềm!"); 

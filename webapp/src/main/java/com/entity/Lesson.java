@@ -19,32 +19,7 @@ public class Lesson {
 
     @Column(name = "detail", nullable = true, columnDefinition = "TEXT")
     private String detail;
-
-	public Long getLessonId() {
-		return lessonId;
-	}
-
-	public void setLessonId(Long lessonId) {
-		this.lessonId = lessonId;
-	}
-
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-
-	public String getDetail() {
-		return detail;
-	}
-
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
     
-    //Getter and setter
-    
-    
+    @Column(name = "status", nullable = false, columnDefinition = "BIT DEFAULT 1")
+    private boolean status;
 }

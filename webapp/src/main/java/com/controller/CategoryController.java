@@ -3,6 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 
+
 import java.sql.Date;
 import java.util.List;
 
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import com.service.CategoryService;
+
+import lombok.RequiredArgsConstructor;
 
 import com.dto.ScheduleDTO;
 import com.dto.StudentDTO;
@@ -23,6 +27,9 @@ import com.service.ScheduleService;
 import com.service.StudentService;
 
 @Controller
+
+@RequiredArgsConstructor
+@RequestMapping(value = "/category")
 public class CategoryController {
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 	
@@ -51,5 +58,10 @@ public class CategoryController {
         mav.addObject("schedules", courseSchedules);
         mav.addObject("searchForm", new SearchForm());
         return mav;
+    }
+    
+    @RequestMapping(value = "/course", method = RequestMethod.GET)
+    public ModelAndView getCoursePage(HttpServletRequest request, Model model) {	
+        return categoryService.getCourseListPage(request, model);
     }
 }

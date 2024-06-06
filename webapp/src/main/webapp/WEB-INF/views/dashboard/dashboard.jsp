@@ -28,7 +28,7 @@
                         class="fas fa-chart-line me-2"></i>Group</a>
                 <a href="student.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-paperclip me-2"></i>Student</a>
-                <a href="course.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="category/course.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-shopping-cart me-2"></i>Course</a>
                 <a href="employees.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fas fa-gift me-2"></i>Employees</a>
