@@ -89,131 +89,180 @@
                                 <Span class=" text-center fw-bold" style="font-size: large;">COURSE</Span>
                             </div>
                             <!-- Form thêm khóa học và bài học -->
-			<form:form method="POST" action="/manager/update-course?courseId=${courseObject.courseId}" modelAttribute="courseObject">
-			    <div class="row mb-3">
-			        <div class="col-6">
-			            <span class="fw-bold">Name</span>
-			            <input name="courseName" type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1" value="${courseObject.courseName}"required>
-			        </div>
-			        <div class="col-6">
-			            <span class="fw-bold">Description</span>
-			            <input name="description" type="text" class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1" value="${courseObject.description}"required>
-			        </div>
-			    </div>
-			
-			    <div class="container mt-5">
-			        <h2>Thêm bài học</h2>
-			        <div class="mb-3">
-			            <label for="lessonName" class="form-label">Tên bài học</label>
-			            <input type="text" class="form-control" id="lessonName">
-			        </div>
-			        <button type="button" class="btn-sm btn-outline-primary fw-bold" id="addLessonBtn">Tạo</button>
-			
-			        <h2 class="mt-5">Danh sách bài học</h2>
-			        <table class="table table-bordered" id="lessonsTable">
-			            <thead>
-			                <tr>
-			                    <th>Tên bài học</th>
-			                    <th>Hành động</th>
-			                </tr>
-			            </thead>
-			            <tbody>
-			            	 <c:forEach var="lesson" items="${courseObject.lessons}">
-							    <tr class="lesson-row">
-							        <td>${lesson}</td>
-							        <td>
-							            <button type="button" class="btn btn-sm btn-danger" onclick="removeLesson(this)">Xóa</button>
-							        </td>
-							    </tr>
-							</c:forEach>
-			            </tbody>
-			        </table>	
-			    </div>
-			
-			    <div class="row mx-2 justify-content-center">
-			        <button type="submit" class="custom-button submit-button">Submit</button>
-			        <button type="button" class="custom-button delete-button" onclick="handleDelete()">Delete</button>			
-					<a href="/category/course" class="custom-button return-button">Return</a>
+							<form:form method="POST"
+								action="/manager/update-course?courseId=${courseObject.courseId}"
+								modelAttribute="courseObject">
+								<div class="row mb-3">
+									<div class="col-6">
+										<span class="fw-bold">Name</span> <input name="courseName"
+											type="text" class="form-control" placeholder="Name"
+											aria-label="Username" aria-describedby="basic-addon1"
+											value="${courseObject.courseName}" required>
+									</div>
+									<div class="col-6">
+										<span class="fw-bold">Description</span> <input
+											name="description" type="text" class="form-control"
+											placeholder="Description" aria-label="Username"
+											aria-describedby="basic-addon1"
+											value="${courseObject.description}" required>
+									</div>
+								</div>
 
-			        
-			    </div>
-			    <!-- Input ẩn để lưu danh sách bài học -->
-			    <div id="lessonsHiddenInputs">
-			    	
-			    </div>
-			</form:form>
+								<div class="container mt-5">
+									<h2>Thêm bài học</h2>
+									<div class="mb-3">
+										<label for="lessonName" class="form-label">Tên bài học</label>
+										<input type="text" class="form-control" id="lessonName">
+									</div>
+									<button type="button"
+										class="btn-sm btn-outline-primary fw-bold" id="addLessonBtn">Tạo</button>
 
+									<h2 class="mt-5">Danh sách bài học</h2>
+									<table class="table table-bordered" id="lessonsTable">
+										<thead>
+								            <tr>
+								                <th>Tên bài học</th>
+								                <th class="hidden-column">Lesson ID</th>
+								                <th class="hidden-column">Status</th>
+								                <th>Hành động</th>
+								            </tr>
+								        </thead>
+										<tbody>
+											<!-- Table rows will be populated by JavaScript -->
+											
+									            <c:forEach var="lesson" items="${courseObject.lessons}">
+												    <c:if test="${lesson.status == 'true'}">
+												        <tr class="lesson-row">
+												            <td>${lesson.detail}</td>
+												            <td class="hidden-column">${lesson.lessonId}</td>
+												            <td class="hidden-column">${lesson.status}</td>
+												            <td>
+												                <button type="button" class="btn btn-sm btn-danger">Xóa</button>
+												            </td>
+												        </tr>
+												    </c:if>
+												</c:forEach>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-//JavaScript
-document.addEventListener("DOMContentLoaded", function () {
-    const addLessonBtn = document.getElementById('addLessonBtn');
-    const lessonsTable = document.getElementById('lessonsTable').getElementsByTagName('tbody')[0];
-    const lessonsHiddenInputs = document.getElementById('lessonsHiddenInputs');
+					
+										</tbody>
+									</table>
+								</div>
 
-    function addLesson(lessonName) {
-        const newRow = lessonsTable.insertRow();
-        const cellName = newRow.insertCell(0);
-        const cellAction = newRow.insertCell(1);
-        cellName.textContent = lessonName;
+								<div class="row mx-2 justify-content-center">
+									<button type="submit" class="custom-button submit-button">Submit</button>
+									<button type="button" class="custom-button delete-button"
+										onclick="handleDelete()">Delete</button>
+									<a href="/category/course" class="custom-button return-button">Return</a>
+								</div>
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Xóa';
-        deleteButton.className = 'btn btn-sm btn-danger';
-        deleteButton.onclick = function () {
-            // Tìm hàng chứa nút "Xóa" được nhấp vào
-            const row = this.parentNode.parentNode;
-            // Xóa hàng khỏi bảng
-            lessonsTable.removeChild(row);
-            // Xóa dữ liệu tương ứng từ danh sách ẩn
-            const lessonInput = document.querySelector('input[value="' + lessonName + '"]');
-            if (lessonInput) {
-                lessonsHiddenInputs.removeChild(lessonInput);
-            }
-        };
-        cellAction.appendChild(deleteButton);
-
-        // Tạo input ẩn để gửi dữ liệu bài học
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'lessons';
-        hiddenInput.value = lessonName;
-        lessonsHiddenInputs.appendChild(hiddenInput);
-    }
-
-    // Thêm các bài học đã có sẵn
-    const existingLessons = document.querySelectorAll('#lessonsTable tbody tr td:first-child');
-    existingLessons.forEach(function (lesson) {
-        addLesson(lesson.textContent.trim());
-    });
-
-    // Xử lý sự kiện khi người dùng nhấn nút "Tạo"
-    addLessonBtn.addEventListener('click', function () {
-        const lessonName = document.getElementById('lessonName').value;
-
-        if (lessonName.trim() === "") {
-            alert("Tên bài học không được để trống");
-            return;
-        }
-
-        addLesson(lessonName);
-        document.getElementById('lessonName').value = "";
-    });
-});
+								<!-- Input ẩn để lưu danh sách bài học -->
+								<div name= "lessons" id="lessonsHiddenInputs">
+									<!-- Hidden inputs will be populated by JavaScript -->
+								</div>
+							</form:form>
 
 
+							<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+							<script>
+						        document.addEventListener("DOMContentLoaded", function () {
+						            const addLessonBtn = document.getElementById('addLessonBtn');
+						            const lessonsTable = document.getElementById('lessonsTable').getElementsByTagName('tbody')[0];
+						            const lessonsHiddenInputs = document.getElementById('lessonsHiddenInputs');
+						            function updateHiddenInputs() {
+									    const rows = lessonsTable.rows;
+									    lessonsHiddenInputs.innerHTML = ''; // Clear existing hidden inputs to avoid duplicates
+									
+									    for (let i = 0; i < rows.length; i++) {
+									        (function(i) {
+									            const detail = rows[i].cells[0].textContent.trim();
+									            const lessonId = rows[i].cells[1].textContent.trim();
+									            const status = rows[i].cells[2].textContent.trim();
 
-</script>
+									            // Tạo các input ẩn để gửi dữ liệu bài học
+									            const hiddenInputDetail = document.createElement('input');
+									            hiddenInputDetail.type = 'hidden';
+									            hiddenInputDetail.name = 'lessons[' + i + '].detail'; // Thay đổi ở đây
+									            hiddenInputDetail.value = detail;
+									            lessonsHiddenInputs.appendChild(hiddenInputDetail);
+
+									            const hiddenInputId = document.createElement('input');
+									            hiddenInputId.type = 'hidden';
+									            hiddenInputId.name = 'lessons[' + i + '].lessonId'; // Thay đổi ở đây
+									            hiddenInputId.value = lessonId;
+									            lessonsHiddenInputs.appendChild(hiddenInputId);
+
+									            const hiddenInputStatus = document.createElement('input');
+									            hiddenInputStatus.type = 'hidden';
+									            hiddenInputStatus.name = 'lessons[' + i + '].status'; // Thay đổi ở đây
+									            hiddenInputStatus.value = status;
+									            lessonsHiddenInputs.appendChild(hiddenInputStatus);
+									        })(i);
+									    }
+
+									}
+
+						
+						            function addLesson(detail, lessonId = '', status = 'true') {
+						                const newRow = lessonsTable.insertRow();
+						                newRow.setAttribute('data-lesson-id', lessonId);
+						                newRow.setAttribute('data-status', status);
+						
+						                const cellDetail = newRow.insertCell(0);
+						                const cellLessonId = newRow.insertCell(1);
+						                const cellStatus = newRow.insertCell(2);
+						                const cellAction = newRow.insertCell(3);
+						
+						                cellDetail.textContent = detail;
+						                cellLessonId.textContent = lessonId;
+						                cellLessonId.classList.add('hidden-column');
+						                cellStatus.textContent = status;
+						                cellStatus.classList.add('hidden-column');
+						
+						                const deleteButton = document.createElement('button');
+						                deleteButton.textContent = 'Xóa';
+						                deleteButton.className = 'btn btn-sm btn-danger';
+						                deleteButton.onclick = function () {
+						                    const row = this.parentNode.parentNode;
+						                    lessonsTable.removeChild(row);
+						                    updateHiddenInputs();
+						                };
+						                cellAction.appendChild(deleteButton);
+						
+						                updateHiddenInputs(); // Update hidden inputs after adding new lesson
+						            }
+						
+						            const existingLessons = document.querySelectorAll('#lessonsTable tbody tr');
+						            existingLessons.forEach(function (row) {
+						                const detail = row.querySelector('td:nth-child(1)').textContent.trim();
+						                const lessonId = row.querySelector('td:nth-child(2)').textContent.trim();
+						                const status = row.querySelector('td:nth-child(3)').textContent.trim();
+						                addLesson(detail, lessonId, status);
+						                row.remove(); // Remove the original row to avoid duplication
+						            });
+						
+						            addLessonBtn.addEventListener('click', function () {
+						                const lessonName = document.getElementById('lessonName').value;
+						
+						                if (lessonName.trim() === "") {
+						                    alert("Tên bài học không được để trống");
+						                    return;
+						                }
+						
+						                addLesson(lessonName);
+						                document.getElementById('lessonName').value = "";
+						            });
+						        });
+						    </script>
 
 
-	<script>
+							<script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
 
         toggleButton.onclick = function () {
             el.classList.toggle("toggled");
         };
+        
     </script>
    <script>
     function handleDelete() {
@@ -241,4 +290,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
-

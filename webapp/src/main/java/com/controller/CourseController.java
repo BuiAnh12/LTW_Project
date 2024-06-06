@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.util.NoSuchElementException;
+import com.dto.*;
+
 //import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,12 +79,12 @@ public class CourseController {
 	
 	@RequestMapping(value = "/update-course", method = RequestMethod.POST)
 	public String updateCourse(
-			@ModelAttribute("courseObject") AddCourseDto courseObject,
+			@ModelAttribute("courseObject") UpdateCourseDto courseObject,
 			HttpServletRequest request,
 			RedirectAttributes redirectAttributes	
 			) {
 			final String redirectedUrl = "/category/course";
-			System.out.println(courseObject.getCourseName());
+			System.out.println("here0"+ courseObject.getLessons());
 	      try {
 	          courseService.updateCourse(courseObject,request);
 	          redirectAttributes.addFlashAttribute("succeedCode", "succeed_add_01");

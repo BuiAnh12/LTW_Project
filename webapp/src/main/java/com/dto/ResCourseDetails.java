@@ -1,6 +1,5 @@
 package com.dto;
 import java.util.List;
-
 import lombok.*;
 @Getter
 @Setter
@@ -11,5 +10,5 @@ public class ResCourseDetails {
 	private Long courseId;
 	private String courseName;
 	private String description;
-	private List<String> lessons;
+	private List<LessonDto> lessons;
 }
