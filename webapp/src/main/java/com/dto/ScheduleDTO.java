@@ -2,10 +2,11 @@ package com.dto;
 
 
 public class ScheduleDTO {
-    private String occurDate;
-    private int lessonId;
+    private Long id;
+	private String occurDate;
+    private Long lessonId;
     private String nextLesson;
-    private int courseId;
+    private Long courseId;
     private String courseName;
     private int groupId;
     private String groupTitle;
@@ -19,9 +20,10 @@ public class ScheduleDTO {
 		super();
 	}
 	
-	public ScheduleDTO(String occurDate, int lessonId, String nextLesson, int courseId, String courseName,
+	public ScheduleDTO(Long id, String occurDate, Long lessonId, String nextLesson, Long courseId, String courseName,
 			int groupId, String groupTitle, int teacherId, String teacherName, String format) {
 		super();
+		this.id = id;
 		this.occurDate = occurDate;
 		this.lessonId = lessonId;
 		this.nextLesson = nextLesson;
@@ -33,16 +35,27 @@ public class ScheduleDTO {
 		this.teacherName = teacherName;
 		this.format = format;
 	}
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getOccurDate() {
 		return occurDate;
 	}
 	public void setOccurDate(String occurDate) {
 		this.occurDate = occurDate;
 	}
-	public int getLessonId() {
+	public Long getLessonId() {
 		return lessonId;
 	}
-	public void setLessonId(int lessonId) {
+	public void setLessonId(Long lessonId) {
 		this.lessonId = lessonId;
 	}
 	public String getNextLesson() {
@@ -51,10 +64,10 @@ public class ScheduleDTO {
 	public void setNextLesson(String nextLesson) {
 		this.nextLesson = nextLesson;
 	}
-	public int getCourseId() {
+	public Long getCourseId() {
 		return courseId;
 	}
-	public void setCourseId(int courseId) {
+	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
 	}
 	public String getCourseName() {
@@ -87,7 +100,7 @@ public class ScheduleDTO {
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
 	}
-	public String isFormat() {
+	public String getFormat() {
 		return format;
 	}
 	public void setFormat(String format) {

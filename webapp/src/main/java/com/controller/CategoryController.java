@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dto.ScheduleDTO;
 import com.dto.StudentDTO;
 import com.entity.Student;
+import com.model.SearchForm;
+import com.service.ScheduleService;
 import com.service.StudentService;
 
 @Controller
@@ -26,25 +29,27 @@ public class CategoryController {
 	@Autowired
     private StudentService studentService = new StudentService();
 	
-//	@GetMapping("/student")
-//    public String getStudentPage(ModelMap model) {
-//        List<Student> students = studentService.listAll();
-//        logger.info("Retrieved {} students", students.size()); // Log the number of students retrieved
-//        logger.debug("Students: {}", students); // Log the list of students (debug level)
-//        
-////        ModelAndView view = new ModelAndView("");
-//        model.addAttribute("students", students);
-//        return "student/student";
-//    }
+	@Autowired
+    private ScheduleService scheduleService;
+	
 	
 	@GetMapping("/student")
 	public String getStudentPage(ModelMap model) {
 
 	    // Retrieve the list of all students
 	    List<StudentDTO> students = studentService.listAll();
-	    
 	    // Add students to the model
 	    model.addAttribute("students", students);
 	    return "student/student";
 	}
+	
+
+    @GetMapping("/schedule")
+    public ModelAndView getSchedule() {
+        List<ScheduleDTO> courseSchedules = scheduleService.getAllSchedule();
+        ModelAndView mav = new ModelAndView("schedule/schedule");
+        mav.addObject("schedules", courseSchedules);
+        mav.addObject("searchForm", new SearchForm());
+        return mav;
+    }
 }
