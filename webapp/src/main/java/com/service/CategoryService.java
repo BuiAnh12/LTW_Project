@@ -1,4 +1,4 @@
-package com.service;
+package com.service; 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ public class CategoryService {
     private final StaticUtilMethods staticUtilMethods;
 	@Autowired
 	private final CourseRepository courseRepository;
+
 
     public ModelAndView getScheduleListPage(HttpServletRequest request, Model model) {
         ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "Schedule/schedule");

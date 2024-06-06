@@ -91,4 +91,33 @@
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -12rem;
   }
+  
+  .block-format {
+  padding-left: 5px;  /* Adjust the value as needed */
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.select2-container--default .select2-selection--single {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 38px; /* Adjust height as needed */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 38px; /* Adjust height as needed */
+  color: #495057;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 38px; /* Adjust height as needed */
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #007bff;
+  color: white;
+}
 }
