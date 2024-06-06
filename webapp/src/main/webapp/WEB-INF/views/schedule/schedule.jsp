@@ -1,9 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+	<meta charset="UTF-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style><%@include file="/WEB-INF/views/student/style.css"%></style>
+    <base href="${pageContext.servletContext.contextPath}/">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -147,18 +165,18 @@
                                       
                                         <th scope="col">Date & times</th>
                                         <th scope="col">Next lesson</th>
-                                        <th scope="col">Group Title </th>
-                                        <th scope="col">Day</th>
-                                        <th scope="col">Leason Teacher</th>
+                                        <th scope="col">Course </th>
+                                        <th scope="col">Group Title</th>
+                                        <th scope="col">Lesson Teacher</th>
                                         <th scope="col">Format</th>
                                        
                                     </tr>
                                     <tr>
                                         <!-- <th scope="col" width="50"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th> -->
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"> <input type="date" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
+                                        <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
                                         <th scope="col"><input type="text" class="form-control" placeholder="Format" aria-label="Username" aria-describedby="basic-addon1"></th>
                                     </tr>
@@ -172,9 +190,20 @@
                                         <td><small class="small-text">NVH_GD65_MON_OFF 3:00 PM - 4:30 PMPreferred Language: ENG</small></td>
                                         <td><small class="small-text">4</small></td>
 
-                                        <td><small class="btn-sm btn-primary" aria-disabled="true">Offfline</small></td>
+                                        <td><small class="btn-sm btn-primary" aria-disabled="true">Offline</small></td>
                                       
                                     </tr>
+									<c:forEach var="schedule" items="${schedules}">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>${schedule.id}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

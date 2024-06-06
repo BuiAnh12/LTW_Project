@@ -5,6 +5,12 @@
   --second-bg-color: #fefcff;
 }
 
+body {
+
+  line-height: 1.428571429;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
 .primary-text {
   color: var(--main-text-color);
 }
@@ -17,6 +23,7 @@
 .primary-bg {
   background-color: var(--main-bg-color);
 }
+
 .secondary-bg {
   background-color: var(--second-bg-color);
 }
@@ -27,14 +34,12 @@
 
 #wrapper {
   overflow-x: hidden;
-  background-image: linear-gradient(
-    to right,
-    #e3f1eb,
-    #e7f1ed,
-    #f2faf7,
-    #dceee7,
-    #ebf3f0
-  );
+  background-image: linear-gradient(to right,
+      #e3f1eb,
+      #e7f1ed,
+      #f2faf7,
+      #dceee7,
+      #ebf3f0);
 }
 
 #sidebar-wrapper {
@@ -99,31 +104,29 @@
 .detail_container {
   position: relative;
   width: 100%;
-  height: 0;
-  padding-top: 25%; /* 8:2 aspect ratio (8/2 * 100%) */
-  overflow: hidden; /* Ensure content doesn't overflow */
-  border-radius: 5px; /* Add border-radius to create a curve */
+  height: auto;
+  padding-top: 0;
+  border-radius: 5px;
 }
 
 .floating-block {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 79%;
-  height: 100%;
+  position: relative;
+  width: 100%;
+  height: auto;
   background-color: white;
-  border-radius: 5px; /* Match the container's border-radius */
+  border-radius: 5px;
+  /* Match the container's border-radius */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .side-floating-block {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20%; /* Takes up 2/10 of the container width */
-  height: 100%;
+  position: relative;
+  width: 100%;
+  /* Takes up 2/10 of the container width */
+  height: auto;
   background-color: white;
-  border-radius: 5px; /* Add border-radius to create a curve */
+  border-radius: 5px;
+  /* Add border-radius to create a curve */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -131,11 +134,23 @@
   align-items: center;
 }
 
+.full-floating-block {
+  position:relative;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  /* Match the container's border-radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
 .btn {
   padding: 10px 20px;
   margin: 5px;
   border: none;
   background-color: #007bff;
+  /* Example button color */
   color: white;
   border-radius: 5px;
   cursor: pointer;
@@ -145,10 +160,72 @@
   padding: 10px 20px;
   margin: 5px;
   border: none;
-  background-color: #24ae5b; /* Example button color */
+  background-color: #24ae5b;
+  /* Example button color */
   color: white;
   border-radius: 5px;
   cursor: pointer;
 }
 
+.btn-danger {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #e01321;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+   cursor: pointer;
+}
 
+.btn-select {
+  padding: 5px 5px;
+  margin: 1px;
+  border: none;
+  background-color: #4043f5;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+   cursor: pointer;
+}
+
+/* Custom CSS for styling input fields and labels */
+.form-group {
+  margin-bottom: 5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+select[type="text"],input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Optional: Add styling for placeholder text */
+input[type="text"]::placeholder {
+  color: #999;
+}
+
+
+
+.wrapper {
+  padding: 10px;
+}
+
+label{
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 5px;
+  max-width: 100%;
+  font-size: 12px;
+}
+
+.h3, h3 {
+  font-size: 21px;
+}
