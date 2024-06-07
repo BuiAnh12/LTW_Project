@@ -12,7 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
-    <style><%@include file="/WEB-INF/views/detailsCourse/style.css"%></style>
+    <style><%@include file="/WEB-INF/views/course/detailsCourse/style.css"%></style>
     <base href="${pageContext.servletContext.contextPath}/">
     <title>Create Student</title>
 </head>
@@ -122,7 +122,7 @@
 									<button type="submit" class="custom-button submit-button">Submit</button>
 									<button type="button" class="custom-button delete-button"
 										onclick="handleDelete()">Delete</button>
-									<a href="/category/course" class="custom-button return-button">Return</a>
+									<a href="category/course" class="custom-button return-button">Return</a>
 								</div>
 
 								<!-- Input ẩn để lưu danh sách bài học -->
@@ -240,7 +240,7 @@
         if (confirmation) {
             // Tạo một yêu cầu POST
             var courseId = "${courseObject.courseId}";
-            var url = "/manager/course-list-active-btn";
+            var url = "manager/course-list-active-btn";
             var params = "courseId=" + courseId;
             
             var xhr = new XMLHttpRequest();
@@ -249,7 +249,7 @@
             
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    window.location.href = "/category/course";
+                    window.location.href = "category/course";
                 }
             };
             

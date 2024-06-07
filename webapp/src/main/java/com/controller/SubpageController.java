@@ -19,7 +19,7 @@ import com.service.SubpageService;
 import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/subpage")
+@RequestMapping(value = "subpage")
 public class SubpageController {
 	@Autowired
 	private final SubpageService subpageService;

@@ -56,6 +56,7 @@ public class CategoryController {
 
     @GetMapping("/schedule")
     public ModelAndView getSchedule() {
+    	System.out.println("This main shit running");
         List<ScheduleDTO> courseSchedules = scheduleService.getAllSchedule();
         ModelAndView mav = new ModelAndView("schedule/schedule");
         mav.addObject("schedules", courseSchedules);

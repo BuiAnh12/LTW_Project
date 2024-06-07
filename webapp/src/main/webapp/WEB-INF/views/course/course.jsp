@@ -105,7 +105,7 @@
                             <tbody>
 							    <c:forEach items="${courseList}" var="course">
 							        <tr>
-							            <td><a href="/subpage/details-course?courseId=${course.courseId}">${course.courseName}</a></td>
+							            <td><a href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${course.courseId}">${course.courseName}</a></td>
 							            <td>${course.description}</td>
 							            <td>${course.status}</td>							            
 							        </tr>

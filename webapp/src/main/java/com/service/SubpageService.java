@@ -32,7 +32,7 @@ public class SubpageService {
 	@Autowired
 	private final LessonRepository lessonRepository;
 	public ModelAndView getAddCoursePage(HttpServletRequest request, Model model) {
-		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "addCourse/addCourse");
+		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "/course/addCourse/addCourse");
 		AddCourseDto courseObject = (AddCourseDto) model.asMap().get("courseObject");
 		if(courseObject != null)
 			modelAndView.addObject(courseObject);
@@ -41,7 +41,7 @@ public class SubpageService {
 	 
 	public ModelAndView getDetailsPage(HttpServletRequest request) {
 	    final String courseIdStr = request.getParameter("courseId");
-	    ModelAndView modelAndView = new ModelAndView("detailsCourse/detailsCourse");
+	    ModelAndView modelAndView = new ModelAndView("/course/detailsCourse/detailsCourse");
 
 	    if (courseIdStr == null) {
 	        throw new IllegalArgumentException("courseId is null");

@@ -47,6 +47,7 @@
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
+        <div>
         <%@include file="/WEB-INF/views/panel.jsp"%>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -182,7 +183,7 @@
             function cb(start, end) {
                 $('#reportrange span').html(start.format('DD-MM-YY') + ' - ' + end.format('DD-MM-YY'));
                 $.ajax({
-                    url: '/getScheduleByDateRange',
+                    url: '${pageContext.servletContext.contextPath}/schedule/search.htm',
                     type: 'GET',
                     data: {
                         startDate: start.format('YYYY-MM-DD'),
@@ -206,14 +207,6 @@
 
             cb(start, end);
 
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#format-select').select2({
-                minimumResultsForSearch: Infinity, // Hides the search box
-                width: '100%' // Adjust width as needed
-            });
         });
     </script>
     
