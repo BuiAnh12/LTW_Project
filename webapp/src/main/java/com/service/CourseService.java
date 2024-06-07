@@ -71,8 +71,21 @@ public class CourseService {
 
 	    List<LessonDto> existingLessons = lessonRepository.findAllLessonByCourseId(course.getCourseId());
 	    System.out.println(existingLessons);
-	    System.out.println("hehe"+courseObject.getLessons());
+	    System.out.println("hehe" + courseObject.getLessons());
 	    List<LessonDto> incomingLessons = courseObject.getLessons();
+
+	    if (incomingLessons == null) {
+	        // Set status false for all existing lessons if incomingLessons is null
+	        for (LessonDto existingLesson : existingLessons) {
+	            Lesson lessonToUpdate = lessonRepository.findOne(existingLesson.getLessonId());
+	            if (lessonToUpdate != null) {
+	                lessonToUpdate.setStatus(false);
+	                lessonRepository.save(lessonToUpdate);
+	            }
+	        }
+	        return; // Exit the method if incomingLessons is null
+	    }
+
 	    List<LessonDto> lessonsToAdd = new ArrayList<>();
 	    List<LessonDto> lessonsToDisable = new ArrayList<>(existingLessons);
 
@@ -80,7 +93,6 @@ public class CourseService {
 	    for (LessonDto lesson : incomingLessons) {
 	        System.out.println("Lesson ID: " + lesson.getLessonId());
 	        System.out.println("Lesson Name: " + lesson.getDetail());
-	        // In ra các thông tin khác của bài học nếu cần
 	    }
 	    System.out.println("here96");
 	    for (LessonDto incomingLesson : incomingLessons) {
@@ -110,6 +122,7 @@ public class CourseService {
 	    }
 	    System.out.println("here4 ");
 	}
+
 
 
 }

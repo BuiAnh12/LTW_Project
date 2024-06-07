@@ -21,9 +21,9 @@ public class test {
         LocalDate endDate = LocalDate.of(2022, 12, 31);
 
         // Invoke the repository method to find CourseSchedules within the date range
-        List<CourseSchedule> courseSchedules = courseScheduleRepo.findByOccurDateBetween(startDate, endDate);
+        //List<CourseSchedule> courseSchedules = courseScheduleRepo.findByOccurDateBetween(startDate, endDate);
 
-        System.out.print(courseSchedules);
+        //System.out.print(courseSchedules);
 
         // Optionally, add additional assertions based on your expectations
     }
