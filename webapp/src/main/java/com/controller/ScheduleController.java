@@ -2,8 +2,11 @@ package com.controller;
 
 import com.model.SearchForm;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dto.ScheduleDTO;
 import com.entity.CourseSchedule;
@@ -28,29 +32,7 @@ import lombok.Data;
 @Data
 @Controller
 public class ScheduleController {
-    @Autowired
-    private ScheduleService scheduleService;
-
-    @GetMapping("/schedule/search")
-    public ModelAndView getScheduleBySearch(@ModelAttribute("searchForm") SearchForm searchForm) {
-        // Log the search form fields
-        System.out.println("Start Date: " + searchForm.getStartDate());
-        System.out.println("End Date: " + searchForm.getEndDate());
-        System.out.println("Next Lesson: " + searchForm.getNextLesson());
-        System.out.println("Course Name: " + searchForm.getCourseName());
-        System.out.println("Group Title: " + searchForm.getGroupTitle());
-        System.out.println("Teacher Name: " + searchForm.getTeacherName());
-        List<ScheduleDTO> courseSchedules = scheduleService.getAllSchedule();
-        // Logic to handle the search based on the search form fields
-//        List<ScheduleDTO> courseSchedules = scheduleService.getSchedulesWithinDateRange(
-//                LocalDate.parse(searchForm.getStartDate()), 
-//                LocalDate.parse(searchForm.getEndDate())
-//        );
-
-        ModelAndView mav = new ModelAndView("schedule/schedule");
-        mav.addObject("schedules", courseSchedules);
-        return mav;
-    }
+    
 
     
    

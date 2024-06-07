@@ -1,6 +1,9 @@
 package com.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -40,13 +43,47 @@ public class ScheduleService {
 		return output;
 	}
 
-    public List<ScheduleDTO> getSchedulesWithinDateRange(LocalDate startDate, LocalDate endDate) {
-    	List<CourseSchedule> courseSchedules = courseScheduleRepo.findByOccurDateBetween(startDate, endDate);
-    	List<ScheduleDTO> result = courseSchedules.stream()
-                .map(this::convert)
-                .collect(Collectors.toList());
-        return result;
-    }
+	public List<ScheduleDTO> getSchedulesWithinDateRange(Date startDate, Date endDate, String nextLesson, String courseName,
+        String groupTitle, String teacherName, String format) {
+		List<CourseSchedule> courseSchedules = courseScheduleRepo.findByOccurDateBetween(startDate, endDate);
+		List<ScheduleDTO> result = courseSchedules.stream()
+		.map(this::convert)
+		.collect(Collectors.toList());
+		System.out.println("THIS SHIT GOT RELOADED");
+		
+		List<ScheduleDTO> filteredResult = new ArrayList<>();
+		
+		for (ScheduleDTO filterDto : result) {
+			if (!isNullOrEmpty(nextLesson) && !filterDto.getNextLesson().toLowerCase().contains(nextLesson.toLowerCase())) {
+				System.out.println("Trigger1");
+				continue;
+			}
+			if (!isNullOrEmpty(courseName) && !filterDto.getCourseName().toLowerCase().contains(courseName.toLowerCase())) {
+				System.out.println("Trigger2");
+				continue;
+			}
+			if (!isNullOrEmpty(groupTitle) && !filterDto.getGroupTitle().toLowerCase().contains(groupTitle.toLowerCase())) {
+				System.out.println("Trigger3");
+				continue;
+			}
+			if (!isNullOrEmpty(teacherName) && !filterDto.getTeacherName().toLowerCase().contains(teacherName.toLowerCase())) {
+				System.out.println("Trigger4");
+				continue;
+			}
+			if (!isNullOrEmpty(format) && !filterDto.getFormat().toLowerCase().contains(format.toLowerCase())) {
+				System.out.println("Trigger5");
+				continue;
+			}
+			filteredResult.add(filterDto);
+		}
+		
+		return filteredResult;
+	}
+
+	private boolean isNullOrEmpty(String str) {
+		return str == null || str.isEmpty();
+	}
+
     
     public List<ScheduleDTO> getAllSchedule() {
         List<CourseSchedule> courseSchedules = courseScheduleRepo.getAll();

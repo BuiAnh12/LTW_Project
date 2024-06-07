@@ -84,13 +84,6 @@
                 </div>
             </nav>
             <div class="container">
-                <form:form action="/webapp/schedule/search.htm" method="get" modelAttribute="searchForm">
-					    <div class="row col-1">
-					        <div class="btn-group">
-					           
-					            <button type="submit" class="btn btn-outline-success">Search</button>
-					        </div> 
-					    </div>
 					
 
                    <!-- tableContent -->
@@ -115,32 +108,21 @@
                                                 aria-label="date" aria-describedby="basic-addon1"> -->
                                             <div id="reportrange"
                                                 class="form-control d-flex align-items-center no-wrap small-text"
-                                                aria-label="date" th:field="*{occurDate}"
+                                                aria-label="date"  path="OccurDate"
                                                 style="cursor: pointer; padding: 5px; border: 1px solid #ccc;"
                                                 aria-describedby="basic-addon1">
                                                 <span></span>
                                             </div>
                                         </th>
-                                        <th scope="col"><input type="text" th:field="*{nextLesson}" class="form-control" placeholder="" aria-label="nextLesson" aria-describedby="basic-addon1"/></th>
-                                        <th scope="col"><input type="text" th:field="*{courseName}" class="form-control" placeholder="" aria-label="courseName" aria-describedby="basic-addon1"/></th>
-                                        <th scope="col"><input type="text" th:field="*{groupTitle}" class="form-control" placeholder="" aria-label="groupTitle" aria-describedby="basic-addon1"/></th>
-                                        <th scope="col"><input type="text" th:field="*{teacherName}" class="form-control" placeholder="" aria-label="teacherName" aria-describedby="basic-addon1"/></th>
-                                        <th scope="col"><input type="text" th:field="*{format}" class="form-control" placeholder="Format" aria-label="format" aria-describedby="basic-addon1"/></th>
+                                        <th scope="col"><input type="text" id="nextLesson" class="form-control" placeholder="" aria-label="nextLesson" aria-describedby="basic-addon1"/></th>
+										<th scope="col"><input type="text" id="courseName"  class="form-control" placeholder="" aria-label="courseName" aria-describedby="basic-addon1"/></th>
+										<th scope="col"><input type="text" id="groupTitle"  class="form-control" placeholder="" aria-label="groupTitle" aria-describedby="basic-addon1"/></th>
+										<th scope="col"><input type="text" id="teacherName"  class="form-control" placeholder="" aria-label="teacherName" aria-describedby="basic-addon1"/></th>
+										<th scope="col"><input type="text" id="format" class="form-control" placeholder="Format" aria-label="format" aria-describedby="basic-addon1"/></th>
+
                                     </tr>
                                 </thead>
-                                </form:form>
-                                <tbody>
-                                    <tr>
-                                        <!-- <th scope="row">1</th> -->
-                                        <td><small class="small-text">04.03.2024 15:00</small></td>
-                                        <td><small class="small-text">Adding riddles and puzzles to the quest ENG GD M2L4</small></td>
-                                        <td><small class="small-text">Game Development</small></td>
-                                        <td><small class="small-text">NVH_GD65_MON_OFF 3:00 PM - 4:30 PMPreferred Language: ENG</small></td>
-                                        <td><small class="small-text">Tom</small></td>
-
-                                        <td><small class="btn-sm btn-primary" aria-disabled="true">Offline</small></td>
-                                      
-                                    </tr>
+                                <tbody id="scheduleTable">
 									<c:forEach var="schedule" items="${schedules}">
                                     <tr>
                                         <th><small class="small-text">${schedule.occurDate}</small></th>
@@ -175,40 +157,85 @@
         };
     </script>
     <script type="text/javascript">
-        $(function () {
+	    $(function () {
+	        // Initialize the start and end dates
+	        const initialStartDate = moment()
+	        const initialEndDate = moment();
+	        
+	        // Define the constants for startDate and endDate
+	        let startDate = initialStartDate;
+	        let endDate = initialEndDate;
+			function search(){
+				$.ajax({
+	                url: '${pageContext.servletContext.contextPath}/category/schedule.htm',
+	                type: 'GET',
+	                data: {
+	                    startDate: startDate.format('YYYY-MM-DD'),
+	                    endDate: endDate.format('YYYY-MM-DD'),
+	                    nextLesson: $('#nextLesson').val(),
+	                    courseName: $('#courseName').val(),
+	                    groupTitle: $('#groupTitle').val(),
+	                    teacherName: $('#teacherName').val(),
+	                    format: $('#format').val()
+	                },
+	                success: function(response) {
+	                	$('#scheduleTable').html(response);
+	                },
+	                error: function(xhr, status, error) {
+	                    // Handle any errors
+	                    console.log('Error:', error);
+	                }
+	            });
+			}
+	        
+	        function inital_cb(start, end) {
+	            // Update the constants with the new selected dates
+	            startDate = start;
+	            endDate = end;
+	
+	            // Update the date range display
+	            $('#reportrange span').html(start.format('DD-MM-YY') + ' - ' + end.format('DD-MM-YY'));
 
-            var start = moment().subtract(29, 'days');
-            var end = moment();
+	            
+	        }
+	        
+	        function cb(start, end) {
+	            // Update the constants with the new selected dates
+	            startDate = start;
+	            endDate = end;
+	
+	            // Update the date range display
+	            $('#reportrange span').html(start.format('DD-MM-YY') + ' - ' + end.format('DD-MM-YY'));
+	            search();
+	            // Make the AJAX request with the selected dates and other form values
+	            
+	        }
+	
+	        // Initialize the date range picker with the initial dates and callback function
+	        $('#reportrange').daterangepicker({
+	            startDate: initialStartDate,
+	            endDate: initialEndDate,
+	            ranges: {
+	               'Today': [moment(), moment()],
+	               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+	               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+	               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+	               'This Month': [moment().startOf('month'), moment().endOf('month')],
+	               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+	            }
+	        }, cb);
+	
+	        // Call the callback function to set the initial state
+	        inital_cb(initialStartDate, initialEndDate);
+	        
+	        $('#nextLesson, #courseName, #groupTitle, #teacherName, #format').keypress(function(event) {
+	            if (event.which === 13) { // Enter key pressed
+	            	search();
+	            }
+	        });
+	    });
+	</script>
 
-            function cb(start, end) {
-                $('#reportrange span').html(start.format('DD-MM-YY') + ' - ' + end.format('DD-MM-YY'));
-                $.ajax({
-                    url: '${pageContext.servletContext.contextPath}/schedule/search.htm',
-                    type: 'GET',
-                    data: {
-                        startDate: start.format('YYYY-MM-DD'),
-                        endDate: end.format('YYYY-MM-DD')
-                    }
-                });
-            }
-
-            $('#reportrange').daterangepicker({
-                startDate: start,
-                endDate: end,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            }, cb);
-
-            cb(start, end);
-
-        });
-    </script>
     
 </body>
 

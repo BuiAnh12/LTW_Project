@@ -1,5 +1,6 @@
 package com.model;
 
+
 public class SearchForm {
     private String startDate;
     private String endDate;
@@ -7,14 +8,25 @@ public class SearchForm {
     private String courseName;
     private String groupTitle;
     private String teacherName;
+    private String format;
 
     // Getters and setters for all fields
+    
+    
 
     public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
