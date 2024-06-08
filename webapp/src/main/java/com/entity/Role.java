@@ -1,20 +1,29 @@
 package com.entity;
 
+	import java.util.List;
+
 import javax.persistence.*;
 import lombok.*;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "Role")
-
 public class Role {
-	@Id
+    
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "role_name")
-    private String rolename;
+    @Column(name = "name")
+    private String name;
 
+    @Column(name = "code")
+    private String code;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<Account> accounts ;
 }

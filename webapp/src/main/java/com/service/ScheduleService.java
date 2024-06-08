@@ -38,7 +38,7 @@ public class ScheduleService {
 		output.setLessonId(input.getLesson().getLessonId());
 		output.setNextLesson(input.getLesson().getDetail());
 		output.setOccurDate(input.getOccurDate().toString());
-		output.setTeacherId(input.getTeacher().getId());
+		//output.setTeacherId(input.getTeacher().getId());
 		output.setTeacherName(input.getTeacher().getName());
 		return output;
 	}
