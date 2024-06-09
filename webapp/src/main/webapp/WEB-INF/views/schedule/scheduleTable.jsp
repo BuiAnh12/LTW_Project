@@ -11,7 +11,7 @@
   <tr>
       <th><small class="small-text">${schedule.occurDate}</small></th>
       <td><small class="small-text"><a href="lesson/lesson/${schedule.lessonId}.htm">${schedule.nextLesson}</small></td>
-      <td><small class="small-text"><a href="course/course/${schedule.courseId}.htm">${schedule.courseName}</small></td>
+      <td><small class="small-text"><a href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${schedule.courseId}">${schedule.courseName}</small></td>
       <td><small class="small-text"><a href="group/group/${schedule.groupId}.htm">${schedule.groupTitle}</small></td>
       <td><small class="small-text"><a href="teacher/teacher/${schedule.teacherId}.htm">${schedule.teacherName}</small></td>
       <td><small class="small-text">${schedule.format}</small></td>
