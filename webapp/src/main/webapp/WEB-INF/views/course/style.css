@@ -44,7 +44,18 @@
     bottom: 2px;
     border-color: rgba(0, 0, 0, 0.1);
 }
+.table-footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
 
+.interact-page-btn a, .index-btn a {
+	color: #ff8000;
+	margin: 0 5px;
+	text-decoration: none;
+}
 
 /* Định dạng cho cột input */
 .table th input[type="text"],
