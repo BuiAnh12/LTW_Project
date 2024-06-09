@@ -17,7 +17,6 @@ public class Registration {
     private Student student;
 
     private Boolean status;
-
     // Getters and Setters
 }
 

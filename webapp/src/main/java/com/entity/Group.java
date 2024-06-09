@@ -1,7 +1,20 @@
 package com.entity;
 import javax.persistence.*;
-import java.util.Date;
 
+import com.dto.LessonDto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Date;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "`Group`")
 public class Group {
@@ -28,76 +41,12 @@ public class Group {
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
     private User supervisor;
-    
-    @Column(name = "group_detail")
-    private String groupDetail;
-    
+   
     private Boolean format;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-
-	public User getMainTeacher() {
-		return mainTeacher;
-	}
-
-	public void setMainTeacher(User mainTeacher) {
-		this.mainTeacher = mainTeacher;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
-	public User getSupervisor() {
-		return supervisor;
-	}
-
-	public void setSupervisor(User supervisor) {
-		this.supervisor = supervisor;
-	}
-
-	public String getGroupDetail() {
-		return groupDetail;
-	}
-
-	public void setGroupDetail(String groupDetail) {
-		this.groupDetail = groupDetail;
-	}
-
-	public Boolean getFormat() {
-		return format;
-	}
-
-	public void setFormat(Boolean format) {
-		this.format = format;
-	}
-
-    // Getters and Setters
     
+    @Column(name = "status", nullable = false, columnDefinition = "BIT DEFAULT 1")
+    private boolean status;
+    
+    @Column(name = "title")
+    private String title; 
 }
