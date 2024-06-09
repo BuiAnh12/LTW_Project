@@ -1,24 +1,23 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style><%@include file="/WEB-INF/views/employees/style.css"%></style>
     <base href="${pageContext.servletContext.contextPath}/">
-    <title>Employees</title>
+    <style><%@include file="/WEB-INF/views/course/style.css"%></style>
+    <title>User</title>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <%@include file="/WEB-INF/views/panel.jsp"%>
-        </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -27,7 +26,12 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Courses</h2>
+                    <h2 class="fs-2 m-0">Users</h2>
+                </div>
+
+                <div>
+                    <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
+                    <a href="${pageContext.servletContext.contextPath}/subpage/addUser" ><button class="btn-sm btn-success">Add</button></a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -88,7 +92,7 @@
                                     <th scope="col">Phone</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Role</th>
-                                    <th scope="col">Offices</th>
+                                    <th scope="col">Account Username</th>
                                    
                                 </tr>
                                 <tr>
@@ -101,14 +105,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><small class="small-text">Adding riddles and puzzles to the quest ENG GD M2L4</small></td>
-                                    <td><small class="small-text">Game Development</small></td>
-                                    <td><small class="small-text">NVH_GD65_MON_OFF 3:00 PM - 4:30 PMPreferred Language: ENG</small></td>
-                                    <td><small class="small-text">4</small></td>
-                                    <td><small class="small-text">Tom</small></td>
-                                </tr>
+                      			<!--Insert data  -->
+                                                  
+                                   <c:forEach items="${userList}" var="user">
+							        <tr>
+							            <td>${user.userId}</td>
+							            <td><a href="${pageContext.servletContext.contextPath}/subpage/userdetail?userid=${user.userId}">${user.userName}</a></td>
+							            <td>${user.userPhone}</td>
+							            <td>${user.userEmail}</td>			            
+							            <td>${user.userRole}</td>
+							            <td>${user.accountUserName}</td>       						            
+							        </tr>
+							    </c:forEach>
+                                
                             </tbody>
                         </table>
                     </div>

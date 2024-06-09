@@ -1,0 +1,153 @@
+:root {
+  --main-bg-color: #f4f2f5;
+  --main-text-color: #090111;
+  --second-text-color: #77bbe9cb;
+  --second-bg-color: #fefcff;
+}
+
+.primary-text {
+  color: var(--main-text-color);
+}
+
+.second-text {
+  color: var(--second-text-color);
+}
+
+
+.primary-bg {
+  background-color: var(--main-bg-color);
+}
+.secondary-bg {
+  background-color: var(--second-bg-color);
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+#wrapper {
+  overflow-x: hidden;
+  background-image: linear-gradient(
+    to right,
+    #e3f1eb,
+    #e7f1ed,
+    #f2faf7,
+    #dceee7,
+    #ebf3f0
+  );
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 12rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.list-group-item {
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -12rem;
+  }
+}
+
+/* AddStudent */
+
+.detail_container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 25%; /* 8:2 aspect ratio (8/2 * 100%) */
+  overflow: hidden; /* Ensure content doesn't overflow */
+  border-radius: 5px; /* Add border-radius to create a curve */
+}
+
+.floating-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 79%;
+  height: 100%;
+  background-color: white;
+  border-radius: 5px; /* Match the container's border-radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.side-floating-block {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%; /* Takes up 2/10 of the container width */
+  height: 100%;
+  background-color: white;
+  border-radius: 5px; /* Add border-radius to create a curve */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-add {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #24ae5b; /* Example button color */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+

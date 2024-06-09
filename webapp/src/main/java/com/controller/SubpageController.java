@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +22,8 @@ import lombok.RequiredArgsConstructor;
 public class SubpageController {
 	@Autowired
 	private final SubpageService subpageService;
+	
+	/* COURSE */
 	@RequestMapping(value = "/add-course", method = RequestMethod.GET)
 	public ModelAndView getAddCoursePageAndView(HttpServletRequest request, Model model) {
 		return subpageService.getAddCoursePage(request, model);
@@ -45,6 +46,28 @@ public class SubpageController {
             response.sendRedirect(redirectedUrl);
         }
 		return null;	
+	}
+	
+	/* USER */
+	@RequestMapping(value = "/addUser",method =RequestMethod.GET)
+	public ModelAndView getAddUserPageandView(HttpServletRequest request,Model model) {
+		return subpageService.getAddUserPage(request, model);
+	}
+	
+	@RequestMapping(value = "userdetail" , method = RequestMethod.GET)
+	public ModelAndView getuserDetailPage(HttpServletRequest request, HttpServletResponse response)throws IOException{
+		final String redirectedUrl="/category/user";
+		 try {
+	        	ModelAndView modelAndView = subpageService.getUserDetailPage(request);
+				return modelAndView;
+			} catch (NullPointerException ignored) {
+	            response.sendRedirect(redirectedUrl);
+	        } catch (NoSuchElementException ignored) {
+	            request.getSession().setAttribute("errorCode", "error_entity_01");
+	        } catch (Exception ignored) {
+	            request.getSession().setAttribute("errorCode", "error_systemApplication_01");
+	        }
+			return null;		
 	}
 	
 }

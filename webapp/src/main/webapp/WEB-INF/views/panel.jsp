@@ -12,8 +12,8 @@
                 class="fas fa-paperclip me-2"></i>Student</a>
         <a href="category/course.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                 class="fas fa-shopping-cart me-2"></i>Course</a>
-        <a href="employees.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                class="fas fa-gift me-2"></i>Employees</a>
+        <a href="category/user.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                class="fas fa-gift me-2"></i>Users</a>
         <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                 class="fas fa-power-off me-2"></i>Logout</a>
     </div>

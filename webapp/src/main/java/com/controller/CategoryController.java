@@ -37,7 +37,6 @@ import com.service.ScheduleService;
 import com.service.StudentService;
 
 @Controller
-
 @RequiredArgsConstructor
 @RequestMapping(value = "/category")
 public class CategoryController {
@@ -119,4 +118,10 @@ public class CategoryController {
     public ModelAndView getCoursePage(HttpServletRequest request, Model model) {	
         return categoryService.getCourseListPage(request, model);
     }
+    
+    @RequestMapping(value ="/user", method =RequestMethod.GET)
+    public ModelAndView getUserPage(HttpServletRequest request, Model model) {
+    	return categoryService.getUserListPage(request, model);
+    }
+    
 }
