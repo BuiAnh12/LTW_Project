@@ -95,7 +95,7 @@
                                 <div class="container">
                                     <div class="detail_container">
                                         <div class="col">
-                                            <form:form action="/webapp/student/insert.htm" method="post"
+                                            <form:form id="studentForm" action="/webapp/student/insert.htm" method="post"
                                                 modelAttribute="student">
                                                 <div class="row">
                                                     <div class="col-9">
@@ -112,20 +112,20 @@
                                                                                     <!-- First Row in First Column -->
                                                                                     <div class="row">
                                                                                         <div class="col-md-6">
-                                                                                            <label for="last-name">Last
-                                                                                                name:</label>
-                                                                                            <form:input
-                                                                                                path="lastname"
-                                                                                                id="last-name"
-                                                                                                class="form-control" />
-                                                                                        </div>
-                                                                                        <div class="col-md-3">
-                                                                                            <label
-                                                                                                for="first-name">First
+                                                                                            <label for="first-name">First
                                                                                                 name*:</label>
                                                                                             <form:input
                                                                                                 path="firstname"
                                                                                                 id="first-name"
+                                                                                                class="form-control" />
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <label
+                                                                                                for="first-name">Last
+                                                                                                name:</label>
+                                                                                            <form:input
+                                                                                                path="lastname"
+                                                                                                id="last-name"
                                                                                                 class="form-control" />
                                                                                         </div>
                                                                                         <div class="col-md-3">
@@ -469,7 +469,6 @@
                         </div>
                         <!-- /#page-content-wrapper -->
                         </div>
-
                         <script
                             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
                         <script>
@@ -517,6 +516,52 @@
                                 }
                             });
                         </script>
+                        <script>
+						    document.getElementById('dob').addEventListener('change', function() {
+						        var dob = new Date(this.value);
+						        var today = new Date();
+						        var age = today.getFullYear() - dob.getFullYear();
+						        var m = today.getMonth() - dob.getMonth();
+						        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+						            age--;
+						        }
+						        document.getElementById('age').value = age;
+						    });
+						
+						    document.getElementById('studentForm').addEventListener('keydown', function(event) {
+						        if (event.key === 'Enter' && event.target.nodeName === 'INPUT') {
+						            event.preventDefault();
+						        }
+						    });
+						
+						    document.getElementById('studentForm').addEventListener('submit', function(event) {
+						        var firstName = document.getElementById('first-name').value;
+						        var age = document.getElementById('age').value;
+						
+						        if (!firstName || !age) {
+						            event.preventDefault();
+						            alert('First name and age fields must be filled.');
+						        }
+						    });
+						</script>
+                        <script>
+						    document.getElementById('dob').addEventListener('change', function() {
+						        var dob = new Date(this.value);
+						        var today = new Date();
+						        var age = today.getFullYear() - dob.getFullYear();
+						        var m = today.getMonth() - dob.getMonth();
+						        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+						            age--;
+						        }
+						        document.getElementById('age').value = age;
+						    });
+						
+						    document.getElementById('studentForm').addEventListener('keydown', function(event) {
+						        if (event.key === 'Enter' && event.target.nodeName === 'INPUT') {
+						            event.preventDefault();
+						        }
+						    });
+						</script>
                     </body>
 
                     </html>

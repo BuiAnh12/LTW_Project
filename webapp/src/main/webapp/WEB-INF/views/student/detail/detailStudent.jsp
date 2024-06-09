@@ -98,13 +98,8 @@
                                 <div class="container">
                                     <div class="detail_container">
                                         <div class="col">
-                                            <form:form action="/webapp/student/update?id=${student.id}" method="post"
+                                            <form:form id="studentForm" action="/webapp/student/update?id=${student.id}" method="post"
                                                 modelAttribute="student">
-                                                <form:input
-                                                type="id"
-                                                 path="id"
-                                                 id="last-name"
-                                               class="form-control"/>
                                                 <div class="row">
                                                     <div class="col-9">
                                                         <div class="floating-block main-info">
@@ -120,20 +115,20 @@
                                                                                     <!-- First Row in First Column -->
                                                                                     <div class="row">
                                                                                         <div class="col-md-6">
-                                                                                            <label for="last-name">Last
-                                                                                                name:</label>
-                                                                                            <form:input
-                                                                                                path="lastname"
-                                                                                                id="last-name"
-                                                                                                class="form-control"/>
-                                                                                        </div>
-                                                                                        <div class="col-md-3">
-                                                                                            <label
-                                                                                                for="first-name">First
+                                                                                            <label for="last-name">First
                                                                                                 name*:</label>
                                                                                             <form:input
                                                                                                 path="firstname"
                                                                                                 id="first-name"
+                                                                                                class="form-control"/>
+                                                                                        </div>
+                                                                                        <div class="col-md-3">
+                                                                                            <label
+                                                                                                for="first-name">Last
+                                                                                                name:</label>
+                                                                                            <form:input
+                                                                                                path="lastname"
+                                                                                                id="last-name"
                                                                                                 class="form-control" />
                                                                                         </div>
                                                                                         <div class="col-md-3">
@@ -542,6 +537,24 @@
                                 }
                             });
                         </script>
+	                        <script>
+						    document.getElementById('dob').addEventListener('change', function() {
+						        var dob = new Date(this.value);
+						        var today = new Date();
+						        var age = today.getFullYear() - dob.getFullYear();
+						        var m = today.getMonth() - dob.getMonth();
+						        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+						            age--;
+						        }
+						        document.getElementById('age').value = age;
+						    });
+						
+						    document.getElementById('studentForm').addEventListener('keydown', function(event) {
+						        if (event.key === 'Enter' && event.target.nodeName === 'INPUT') {
+						            event.preventDefault();
+						        }
+						    });
+						</script>
                     </body>
 
                     </html>

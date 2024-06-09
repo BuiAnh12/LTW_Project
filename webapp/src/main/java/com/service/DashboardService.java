@@ -1,5 +1,6 @@
 package com.service; 
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -73,6 +74,16 @@ public class DashboardService {
         Date endDate = calendar.getTime();
         List<Group> result = groupRepo.recentGroup(currentDate,endDate);
         return result;
+	}
+	
+	public List<Integer> getNoStudent(List<Group> groups){
+		List<Integer> result = new ArrayList<>();
+		for (Group group : groups) {
+			Integer tmp = Integer.valueOf(groupRepo.getNoStudent(group.getId()));
+			result.add(tmp);
+		}
+		return result;
+		
 	}
 	
 }

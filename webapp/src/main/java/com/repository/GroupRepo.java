@@ -20,4 +20,7 @@ public interface  GroupRepo extends JpaRepository<Group, Integer> {
 	
 	@Query("select gr from Group gr where gr.startDate between ?1 and ?2")
 	List<Group> recentGroup(Date start, Date end);
+	
+	@Query("select count(r) from Registration r where r.group.id = ?1")
+	String getNoStudent(int groupId);
 }

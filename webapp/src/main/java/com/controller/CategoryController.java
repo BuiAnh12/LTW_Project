@@ -40,6 +40,8 @@ import com.model.StudentTable;
 import com.service.ScheduleService;
 import com.service.StudentService;
 
+import javassist.expr.NewArray;
+
 @Controller
 
 @RequiredArgsConstructor
@@ -64,9 +66,11 @@ public class CategoryController {
 	public ModelAndView dashboardPage() {
 		DashboardModel model = dashboardService.getModel();
 		List<Group> recentGroup = dashboardService.getGroup();
+		List<Integer> numberOfstudent = dashboardService.getNoStudent(recentGroup);
 	    ModelAndView mav = new ModelAndView("dashboard/dashboard");
 	    mav.addObject("infoModel",model);
 	    mav.addObject("recentGroup", recentGroup);
+	    mav.addObject("student_no", numberOfstudent);
 	    return mav;
 	}
 	

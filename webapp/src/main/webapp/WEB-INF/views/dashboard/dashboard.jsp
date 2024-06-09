@@ -243,17 +243,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="student_no" items="${student_no}">
                                     <c:forEach var="group" items="${recentGroup}">
 									  <tr>
 									      
 									      <td>${group.groupDetail}</td>
                                            <td>${group.course.courseName}</td>
                                            <td>${group.mainTeacher.name}</td>
-                                           <td>?</td>
+                                           <td>${student_no}</td>
                                            <td>${group.startDate}</td>
                                            <td>${group.endDate}</td>
-                                           <td>${group.format}</td>
+                                           <td>
+										  <c:choose>
+										    <c:when test="${group.format}">
+										      Online
+										    </c:when>
+										    <c:otherwise>
+										      Offline
+										    </c:otherwise>
+										  </c:choose>
+										</td>
 									  </tr>
+									</c:forEach>
 									</c:forEach>
 
 

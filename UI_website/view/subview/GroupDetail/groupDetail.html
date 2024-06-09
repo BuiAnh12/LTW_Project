@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+
+
+    <title>Group Details</title>
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold text-uppercase border-bottom">
+                <i class="fas fa-user-secret me-2"></i>CodeXpert
+            </div>
+            <div class="list-group list-group-flush my-3">
+                <a href="index.html"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+                <a href="schedule.html"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-project-diagram me-2"></i>Schedue</a>
+                <a href="group.html"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-chart-line me-2"></i>Group</a>
+                <a href="student.html"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-paperclip me-2"></i>Student</a>
+                <a href="course.html"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-shopping-cart me-2"></i>Course</a>
+                <a href="employees.html"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-gift me-2"></i>Employees</a>
+                <a href="venues.html"
+                    class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-map-marker-alt me-2"></i>Venues</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                        class="fas fa-comment-dots me-2"></i>Extra</a>
+                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                        class="fas fa-power-off me-2"></i>Logout</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <!-- Top nav Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Group Details</h2>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>John Doe
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container">
+                <div class="detail_container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="full-floating-block">
+                                <div class="wrapper">
+                                    <div class="col">
+                                        <div class="divider" style="height: 20px;"></div>
+                                        <div class="col">
+                                            <div class="row selected_class">
+                                                <div class="col-12">
+                                                    <div class="row form-container">
+                                                        <div class="col-12 form-group">
+                                                            <input type="text" id="title" class="form-control"
+                                                                value="NVH_GD65_MON_OFF">
+                                                        </div>
+                                                        <div class="col-12 form-group">
+                                                            <input type="text" id="note" class="form-control"
+                                                                value="2:00 - 3:30">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-container">
+                                                <div class="col-md-4 form-group">
+                                                    <label for="start-date">Start Date:</label>
+                                                    <input type="date" id="start-date" class="form-control"
+                                                        value="2023-12-12">
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="main-teacher">Main Teacher:</label>
+                                                    <select id="main-teacher" class="form-control">
+                                                        <option value="" selected disabled>Select Main Teacher</option>
+                                                        <option value="teacher1" selected>Teacher 1</option>
+                                                        <option value="teacher2">Teacher 2</option>
+                                                        <option value="teacher3">Teacher 3</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="course">Course:</label>
+                                                    <select id="course" class="form-control">
+                                                        <option value="" selected disabled>Select Course</option>
+                                                        <option value="course1" selected>Course 1</option>
+                                                        <option value="course2">Course 2</option>
+                                                        <option value="course3">Course 3</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="end-date">End Date:</label>
+                                                    <input type="date" id="end-date" class="form-control"
+                                                        value="2023-12-12">
+                                                </div>
+
+                                                <div class="col-md-4 form-group">
+                                                    <label for="supervisor">Supervisor:</label>
+                                                    <select id="supervisor" class="form-control">
+                                                        <option value="" selected disabled>Select Supervisor</option>
+                                                        <option value="supervisor1" selected>Supervisor 1</option>
+                                                        <option value="supervisor2">Supervisor 2</option>
+                                                        <option value="supervisor3">Supervisor 3</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label for="supervisor"></label>
+                                                    <div class="row">
+                                                        <div class="col-6"></div>
+                                                        <div class="col-3">
+                                                            <input type="button" class="btn-delete" value="Delete">
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <input type="button" class="btn-update" value="Update">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider" style="height: 20px;"></div>
+                    <div class="d-flex justify-content-end">
+                        <input type="button" class="btn-add" style="background-color: rgb(0, 148, 227);"
+                            value="Add Student" onclick="openModal()">
+                    </div>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close" onclick="closeModal()">&times;</span>
+                            <div class="modal-main-content">
+                                <h2>Select a Student</h2>
+                                <div class="divider" style="height: 20px;"></div>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-primary" onclick="submitSelection()">Submit</button>
+                                </div>
+                                <table class="table bg-white rounded shadow-sm table-hover">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">First Name</th>
+                                            <th scope="col-1">Age</th>
+                                            <th scope="col-1"></th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">
+                                                <input type="text" class="form-control" placeholder=""
+                                                    aria-label="first-name" aria-describedby="basic-addon1"
+                                                    style="height: 30px;" />
+                                            </th>
+                                            <th scope="col">
+                                                <input type="text" class="form-control" placeholder="" aria-label="age"
+                                                    aria-describedby="basic-addon1" style="height: 30px;" />
+                                            </th>
+                                            <th scope="col">
+                                                <!-- Leave this empty as it's just the header for the selection column -->
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-link="link_to_redirect">
+
+                                            <td>
+                                                <a href="#" style="text-decoration: none; color: rgb(25, 0, 255)">Tom
+                                                    Bui</a>
+                                            </td>
+                                            <td>10</td>
+                                            <td class="text-center"> <!-- Selection column with checkbox -->
+                                                <input type="checkbox" class="center-checkbox">
+                                            </td>
+                                        </tr>
+                                        <tr data-link="link_to_redirect">
+
+                                            <td>
+                                                <a href="#" style="text-decoration: none; color: rgb(25, 0, 255)">Tom
+                                                    Bui</a>
+                                            </td>
+                                            <td>10</td>
+                                            <td class="text-center"> <!-- Selection column with checkbox -->
+                                                <input type="checkbox" class="center-checkbox">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="full-floating-block">
+                                <div class="wrapper">
+                                    <div class="col">
+                                        <div class="divider" style="height: 20px;"></div>
+                                        <div class="col">
+                                            <table class="table bg-white rounded table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Last Name, First Name</th>
+                                                        <th scope="col">Age</th>
+                                                        <th scope="col">Username</th>
+                                                        <th scope="col">Password</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-link="link_to_redirect">
+                                                        <td class="align-middle">
+                                                            <small><a href="#"
+                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Tom
+                                                                    Bui</a></small>
+                                                        </td>
+                                                        <td class="align-middle"><small>10</small></td>
+                                                        <td class="align-middle"><small>Username</small></td>
+                                                        <td class="align-middle">
+                                                            <div class="input-group" style="align-items: center;">
+                                                                <input type="password"
+                                                                    class="form-control password-field"
+                                                                    style="height: 30px; margin-right: 5px;"
+                                                                    aria-label="Password" disabled value="default">
+                                                                <div class="input-group-append">
+                                                                    <button class="btn toggle-password"
+                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
+                                                                        type="button">
+                                                                        <i class="far fa-eye"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="input-group-append">
+                                                                    <button class="btn-danger delete-btn"
+                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
+                                                                        type="button">
+                                                                        <i class="far fa-trash-alt"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-link="link_to_redirect">
+                                                        <td class="align-middle">
+                                                            <small><a href="#"
+                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Nicky
+                                                                    Tran</a></small>
+                                                        </td>
+                                                        <td class="align-middle"><small>10</small></td>
+                                                        <td class="align-middle"><small>Username</small></td>
+                                                        <td class="align-middle">
+                                                            <div class="input-group" style="align-items: center;">
+                                                                <input type="password"
+                                                                    class="form-control password-field"
+                                                                    style="height: 30px; margin-right: 5px;"
+                                                                    aria-label="Password" disabled value="default">
+                                                                <div class="input-group-append">
+                                                                    <button class="btn toggle-password"
+                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
+                                                                        type="button">
+                                                                        <i class="far fa-eye"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="input-group-append">
+                                                                    <button class="btn-danger delete-btn"
+                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
+                                                                        type="button">
+                                                                        <i class="far fa-trash-alt"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider" style="height: 50px;"></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="full-floating-block">
+                                <div class="wrapper">
+                                    <div class="row selected_menu">
+                                        <div class="divider" style="height: 20px;"></div>
+                                        <div class="col">
+                                            <table class="table bg-white rounded table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Lesson Name</th>
+                                                        <th scope="col">Date</th>
+                                                        <th scope="col">Teacher</th>
+                                                        <th scope="col">Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr data-link="link_to_redirect">
+                                                        <td class="align-middle">
+                                                            <small><a href="#"
+                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Lesson
+                                                                    1</a></small>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <input type="date" value="2023-12-12">
+                                                        </td>
+                                                        <td class="align-middle"><small>John Doe</small></td>
+                                                        <td class="align-middle">
+                                                            <div class="form-group">
+                                                                <select class="form-control-sm" id="status1"
+                                                                    onchange="updateBackgroundColor('status1')">
+                                                                    <option value="open"
+                                                                        style="background-color: rgb(84, 190, 84); color: white;">
+                                                                        Open</option>
+                                                                    <option value="closed"
+                                                                        style="background-color: rgb(193, 85, 85); color: white;">
+                                                                        Closed</option>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr data-link="link_to_redirect">
+                                                        <td class="align-middle">
+                                                            <small><a href="#"
+                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Lesson
+                                                                    2</a></small>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <input type="date" value="2023-12-12">
+                                                        </td>
+                                                        <td class="align-middle"><small>Jane Smith</small></td>
+                                                        <td class="align-middle">
+                                                            <div class="form-group">
+                                                                <select class="form-control-sm" id="status2"
+                                                                    onchange="updateBackgroundColor('status2')">
+                                                                    <option value="open"
+                                                                        style="background-color: rgb(84, 190, 84); color: white;">
+                                                                        Open</option>
+                                                                    <option value="closed"
+                                                                        style="background-color: rgb(193, 85, 85); color: white;">
+                                                                        Closed</option>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+    <script>
+        function updateBackgroundColor(selectId) {
+            var select = document.getElementById(selectId);
+            var selectedOption = select.options[select.selectedIndex];
+            select.style.backgroundColor = selectedOption.style.backgroundColor;
+            select.style.color = selectedOption.style.color;
+        }
+
+        // Initialize background color on page load
+        updateBackgroundColor('status1');
+        updateBackgroundColor('status2');
+    </script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.querySelector(".btn-add");
+
+        // When the user clicks the button, open the modal
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+    </script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateBackgroundColor(selectId) {
+            var select = document.getElementById(selectId);
+            var selectedOption = select.options[select.selectedIndex];
+            select.style.backgroundColor = selectedOption.style.backgroundColor;
+            select.style.color = selectedOption.style.color;
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.toggle-password').on('click', function () {
+                var passwordField = $(this).closest('.input-group').find('.password-field');
+                var type = passwordField.attr('type');
+                if (type === 'password') {
+                    passwordField.attr('type', 'text');
+                } else {
+                    passwordField.attr('type', 'password');
+                }
+            });
+        });
+    </script>
+    <script>
+        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+        var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+            return new bootstrap.Dropdown(dropdownToggleEl)
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const radioButtons = document.querySelectorAll('input[name="selectRow"]');
+        const selectedClassTable = document.getElementById('selected-class-table');
+        const cancelSelectionBtn = document.getElementById('cancelSelectionBtn');
+
+        radioButtons.forEach(button => {
+            button.addEventListener('change', function () {
+                updateSelectedClassTable();
+            });
+        });
+
+        cancelSelectionBtn.addEventListener('click', function () {
+            // Clear the content of the upper table
+            selectedClassTable.innerHTML = '';
+        });
+
+        function updateSelectedClassTable() {
+            // Remove existing content from the upper table
+            selectedClassTable.innerHTML = '';
+
+            // Get the selected radio button
+            const selectedButton = document.querySelector('input[name="selectRow"]:checked');
+
+            // If a radio button is selected, clone the corresponding row and append it to the upper table
+            if (selectedButton) {
+                const selectedRow = selectedButton.closest('tr').cloneNode(true);
+                // Remove the checkbox and its parent td from the cloned row
+                selectedRow.removeChild(selectedRow.querySelector('td'));
+                selectedClassTable.appendChild(selectedRow);
+
+                // Check the corresponding radio button in the lower table
+                selectedButton.checked = true;
+            }
+        }
+    });
+</script>
