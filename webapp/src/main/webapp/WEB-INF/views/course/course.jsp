@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-DI/U+B20M5d4fD2UG+P8BGO35nqYjT9tlxG6t2vIY2CH6azYH2i4MIZhf4oAVvrj" crossorigin="anonymous">
     <style><%@include file="/WEB-INF/views/course/style.css"%></style>
     <base href="${pageContext.servletContext.contextPath}/">
     <title>Courses</title>
@@ -85,50 +86,89 @@
                                 </div> 
                             </div>
                         </div>
-					<form action="/manager/course-list-active-btn" method = "POST"> 
-					
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name Course</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Status</th>
-                                  
-                                </tr>
-                                <tr>
-            
-                                    <th scope="col"> <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                    <th scope="col"><input type="text" class="form-control bg-transparent border-0"  placeholder="" aria-label="Username" aria-describedby="basic-addon1" disabled></th>
-                                    <th scope="col"><input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-							    <c:forEach items="${courseList}" var="course">
-							        <tr>
-							            <td><a href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${course.courseId}">${course.courseName}</a></td>
-							            <td>${course.description}</td>
-							            <td>${course.status}</td>							            
-							        </tr>
-							    </c:forEach>
-							</tbody>
-                        </table>
-                    </form>
-                    </div>
+						<form action="/manager/course-list-active-btn" method="POST">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Name Course</th>
+										<th scope="col">Description</th>
+										<th scope="col">Status</th>
+									</tr>
+									<tr>
+										<th scope="col"><input type="text" class="form-control"
+											placeholder="" aria-label="Username"
+											aria-describedby="basic-addon1"></th>
+										<th scope="col"><input type="text"
+											class="form-control bg-transparent border-0" placeholder=""
+											aria-label="Username" aria-describedby="basic-addon1"
+											disabled></th>
+										<th scope="col"><input type="text" class="form-control"
+											placeholder="" aria-label="Username"
+											aria-describedby="basic-addon1"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${courseList}" var="course">
+										<tr>
+											<td><a
+												href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${course.courseId}">
+													${course.courseName} </a></td>
+											<td>${course.description}</td>
+											<td>${course.status}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+
+							<div class="table-footer">
+								<c:set var="prefixUrl"
+									value="${pageContext.servletContext.contextPath}/category/course?page="
+									scope="page" />
+								<div
+									class="d-flex justify-content-center align-items-center w-100">
+									<span class="interact-page-btn"> <a
+										href="${prefixUrl}${(currentPage == 1) ? currentPage : (currentPage - 1)}">
+											<i class="fa-solid fa-angle-left"></i>
+									</a>
+									</span>
+									<div id="pages-content" class="d-flex">
+										<c:if test="${currentPage > 1}">
+											<span class="index-btn"> <a
+												href="${prefixUrl}${currentPage - 1}">${currentPage - 1}</a>
+											</span>
+										</c:if>
+										<span class="index-btn"> <a
+											href="${prefixUrl}${currentPage}">${currentPage}</a>
+										</span>
+										<c:if test="${currentPage < totalPages}">
+											<span class="index-btn"> <a
+												href="${prefixUrl}${currentPage + 1}">${currentPage + 1}</a>
+											</span>
+										</c:if>
+									</div>
+									<span class="interact-page-btn"> <a
+										href="${prefixUrl}${(currentPage == totalPages) ? currentPage : (currentPage + 1)}">
+											<i class="fa-solid fa-angle-right"></i>
+									</a>
+									</span>
+								</div>
+							</div>
+						</form>
+
+					</div>
                 </div>
             </div>
             
         </div>
     </div>
+	<script>
+		var el = document.getElementById("wrapper");
+		var toggleButton = document.getElementById("menu-toggle");
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        var el = document.getElementById("wrapper");
-        var toggleButton = document.getElementById("menu-toggle");
-
-        toggleButton.onclick = function () {
-            el.classList.toggle("toggled");
-        };
-    </script>
+		toggleButton.onclick = function() {
+			el.classList.toggle("toggled");
+		};
+	</script>
 </body>
 
 </html>
