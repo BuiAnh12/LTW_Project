@@ -2,6 +2,10 @@
 <%@ page import = "com.utils.securityUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +23,7 @@
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
+        <div>
         <%@include file="/WEB-INF/views/panel.jsp"%>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -54,143 +59,227 @@
                     </ul>
                 </div>
             </nav>
-
-            <div class="container-fluid px-4">
+			<div class="container-fluid px-4">
                 <div class="row g-3 my-2">
-                    <div class="col-md-3 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">720</h3>
-                                <p class="fs-6">ACTIVE STUDENTS</p>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                            <div class="row">
+                                <p class="fs-6">ACTIVE STUDENT</p>
+                                <div class="col-6">
+
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <h3 class="fs-1">${infoModel.onlineStudent + infoModel.offlineStudent}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        ${infoModel.onlineStudent} Online
+                                    </div>
+                                    <div class="row">
+                                        ${infoModel.offlineStudent} Offline
+                                    </div>
+                                </div>
+
                             </div>
-                            <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">4920</h3>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                            <div class="row">
                                 <p class="fs-6">ACTIVE GROUP</p>
+                                <div class="col-6">
+
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <h3 class="fs-1">${infoModel.onlineGroup + infoModel.offlineGroup}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        ${infoModel.onlineGroup} Online
+                                    </div>
+                                    <div class="row">
+                                        ${infoModel.offlineGroup} Offline
+                                    </div>
+                                </div>
+
                             </div>
-                            <i
-                                class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                            <div class="row">
+                                <p class="fs-6">ACTIVE COURSE</p>
+                                <div class="col-6">
+
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <h3 class="fs-1">${infoModel.activeCourse}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                            <div class="row">
+                                <p class="fs-6">ACTIVE TEACHER</p>
+                                <div class="col-6">
+
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <h3 class="fs-1">${infoModel.userNumber}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                            <div class="row">
+                                <p class="fs-6">ACTIVE USER</p>
+                                <div class="col-6">
+
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <h3 class="fs-1">${infoModel.teacherNumber}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">3899</h3>
-                                <p class="fs-6">STUDENT PER GROUP</p>
-                            </div>
-                            <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
-                        </div>
-                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                            <div class="row">
+                                <p class="fs-6">STUDENTS PER GROUP, AVG.</p>
+                                <div class="col-6">
 
-                    <div class="col-md-3 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                            <div>
-                                <h3 class="fs-2">%25</h3>
-                                <p class="fs-6">INCREASE</p>
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <h3 class="fs-1">${infoModel.studentPerGroup}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row">
+                                        ${infoModel.studentPerOnl} Online
+                                    </div>
+                                    <div class="row">
+                                        ${infoModel.studentPerOff} Offline
+                                    </div>
+                                </div>
+
                             </div>
-                            <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+
                         </div>
                     </div>
                 </div>
+                <div class="spliter" style="height: 30px;"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12" style="padding: 10px;">
+                                <h3 class="fs-4 mb-3"> Recent Registration Group</h3>
+                                <table class="table bg-white rounded shadow-sm  table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="col-3">Title</th>
+                                            <th scope="col" class="col-3">Course</th>
+                                            <th scope="col" class="col-2">Teacher</th>
+                                            <th scope="col" class="col-1">Student</th>
+                                            <th scope="col" class="col-1">Start Date</th>
+                                            <th scope="col" class="col-1">End Date</th>
+                                            <th scope="col" class="col-1">Format</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="student_no" items="${student_no}">
+                                    <c:forEach var="group" items="${recentGroup}">
+									  <tr>
+									      
+									      <td>${group.groupDetail}</td>
+                                           <td>${group.course.courseName}</td>
+                                           <td>${group.mainTeacher.name}</td>
+                                           <td>${student_no}</td>
+                                           <td>${group.startDate}</td>
+                                           <td>${group.endDate}</td>
+                                           <td>
+										  <c:choose>
+										    <c:when test="${group.format}">
+										      Online
+										    </c:when>
+										    <c:otherwise>
+										      Offline
+										    </c:otherwise>
+										  </c:choose>
+										</td>
+									  </tr>
+									</c:forEach>
+									</c:forEach>
 
-                <div class="row my-5">
-                    <h3 class="fs-4 mb-3">Recent Orders</h3>
-                    <div class="col">
-                        <table class="table bg-white rounded shadow-sm  table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col" width="50">#</th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Television</td>
-                                    <td>Jonny</td>
-                                    <td>$1200</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Laptop</td>
-                                    <td>Kenny</td>
-                                    <td>$750</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Cell Phone</td>
-                                    <td>Jenny</td>
-                                    <td>$600</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Fridge</td>
-                                    <td>Killy</td>
-                                    <td>$300</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Books</td>
-                                    <td>Filly</td>
-                                    <td>$120</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">6</th>
-                                    <td>Gold</td>
-                                    <td>Bumbo</td>
-                                    <td>$1800</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">7</th>
-                                    <td>Pen</td>
-                                    <td>Bilbo</td>
-                                    <td>$75</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">8</th>
-                                    <td>Notebook</td>
-                                    <td>Frodo</td>
-                                    <td>$36</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">9</th>
-                                    <td>Dress</td>
-                                    <td>Kimo</td>
-                                    <td>$255</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">10</th>
-                                    <td>Paint</td>
-                                    <td>Zico</td>
-                                    <td>$434</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">11</th>
-                                    <td>Carpet</td>
-                                    <td>Jeco</td>
-                                    <td>$1236</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">12</th>
-                                    <td>Food</td>
-                                    <td>Haso</td>
-                                    <td>$422</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
+			
     </div>
     <!-- /#page-content-wrapper -->
     </div>

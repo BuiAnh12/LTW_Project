@@ -26,15 +26,21 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.service.CategoryService;
+import com.service.DashboardService;
 
 import lombok.RequiredArgsConstructor;
 
 import com.dto.ScheduleDTO;
 import com.dto.StudentDTO;
+import com.entity.Group;
 import com.entity.Student;
+import com.model.DashboardModel;
 import com.model.SearchForm;
+import com.model.StudentTable;
 import com.service.ScheduleService;
 import com.service.StudentService;
+
+import javassist.expr.NewArray;
 
 @Controller
 
@@ -52,16 +58,44 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private DashboardService dashboardService;
+	
+	
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public ModelAndView dashboardPage() {
+		DashboardModel model = dashboardService.getModel();
+		List<Group> recentGroup = dashboardService.getGroup();
+		List<Integer> numberOfstudent = dashboardService.getNoStudent(recentGroup);
+	    ModelAndView mav = new ModelAndView("dashboard/dashboard");
+	    mav.addObject("infoModel",model);
+	    mav.addObject("recentGroup", recentGroup);
+	    mav.addObject("student_no", numberOfstudent);
+	    return mav;
+	}
 	
 	@GetMapping("/student")
-	public String getStudentPage(ModelMap model) {
-		
-	    // Retrieve the list of all students
-	    List<StudentDTO> students = studentService.listAll();
-	    // Add students to the model
-	    model.addAttribute("students", students);
-	    return "student/student";
-	}
+	public ModelAndView getStudentPage( @RequestParam(required = false) String firstName,
+			@RequestParam(required = false) String age,
+			@RequestParam(required = false) String groupTitle,
+			@RequestParam(required = false) String description,
+			@RequestParam(required = false) String teacherName,
+			@RequestParam(required = false) String courseName) {
+		List<StudentTable> studentsList = null;
+		if (firstName == null && age == null && groupTitle == null 
+				&& description == null && teacherName == null && courseName == null) {
+			studentsList = studentService.getStudentTables(null, null, null, null, null, null);
+			ModelAndView mav = new ModelAndView("student/student");
+	        mav.addObject("students", studentsList);
+	        return mav;
+		}
+		else {
+			studentsList = studentService.getStudentTables(firstName, age, groupTitle, description, teacherName, courseName);
+			ModelAndView mav = new ModelAndView("student/StudentTable");
+	        mav.addObject("students", studentsList);
+	        return mav;
+		}
+	} 
 	
     
 
