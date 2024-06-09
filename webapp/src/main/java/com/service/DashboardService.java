@@ -39,13 +39,20 @@ public class DashboardService {
 	
 	public DashboardModel getModel() {
 		
-		long onlineStudent = studentRepo.numberOnlStudent();
-		long offlineStudent = studentRepo.numberOffStudent();
+//		long onlineStudent = studentRepo.numberOnlStudent();
+//		long offlineStudent = studentRepo.numberOffStudent();
+//		
+//		long onlineGroup = groupRepo.numberOnlGroup();
+//		long offlineGroup = groupRepo.numberOffGroup();
+//		
+//		long activeCourse = courseRepo.getActiveCourse();
+		long onlineStudent = 2;
+		long offlineStudent = 2;
 		
-		long onlineGroup = groupRepo.numberOnlGroup();
-		long offlineGroup = groupRepo.numberOffGroup();
+		long onlineGroup = 2;
+		long offlineGroup = 2;
 		
-		long activeCourse = courseRepo.getActiveCourse();
+		long activeCourse = 2;
 		
 		long userNumber = 12;
 		long teacherNumber = 24;

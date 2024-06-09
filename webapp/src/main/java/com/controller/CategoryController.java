@@ -146,7 +146,10 @@ public class CategoryController {
         mav.addObject("schedules", courseSchedules);
         return mav;
     }
-    
+    @RequestMapping(value = "/group-detail", method = RequestMethod.GET)
+    public ModelAndView getGroupDetail() {	
+        return new ModelAndView("group/GroupDetail/groupDetail");
+    }
     
     
     @RequestMapping(value = "/course", method = RequestMethod.GET)

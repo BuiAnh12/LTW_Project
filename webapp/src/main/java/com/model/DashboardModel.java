@@ -36,7 +36,17 @@ public class DashboardModel {
         this.userNumber = userNumber;
         this.teacherNumber = teacherNumber;
         this.studentPerGroup = (onlineStudent + offlineStudent) / (onlineGroup + offlineGroup);
-        this.studentPerOff = offlineStudent / offlineGroup;
-        this.studentPerOnl = onlineStudent / onlineGroup;
+        if (offlineGroup != 0) {
+        	this.studentPerOff = offlineStudent / offlineGroup;
+        }
+        else {
+        	this.studentPerOff = 0;
+		}
+        if (onlineGroup != 0) {
+        	this.studentPerOnl = onlineStudent / onlineGroup;
+        }
+        else {
+        	this.studentPerOnl = 0;
+		}
     }
 }

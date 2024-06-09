@@ -1,0 +1,365 @@
+:root {
+  --main-bg-color: #f4f2f5;
+  --main-text-color: #090111;
+  --second-text-color: #77bbe9cb;
+  --second-bg-color: #fefcff;
+}
+
+body {
+
+  line-height: 1.428571429;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.primary-text {
+  color: var(--main-text-color);
+}
+
+.second-text {
+  color: var(--second-text-color);
+}
+
+
+.primary-bg {
+  background-color: var(--main-bg-color);
+}
+
+.secondary-bg {
+  background-color: var(--second-bg-color);
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+#wrapper {
+  overflow-x: hidden;
+  background-image: linear-gradient(to right,
+      #e3f1eb,
+      #e7f1ed,
+      #f2faf7,
+      #dceee7,
+      #ebf3f0);
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 12rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.list-group-item {
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -12rem;
+  }
+}
+
+/* AddStudent */
+
+.detail_container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-top: 0;
+  border-radius: 5px;
+}
+
+.floating-block {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  /* Match the container's border-radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.side-floating-block {
+  position: relative;
+  width: 100%;
+  /* Takes up 2/10 of the container width */
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  /* Add border-radius to create a curve */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-floating-block {
+  position:relative;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  border-radius: 5px;
+  /* Match the container's border-radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #007bff;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-add {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #24ae5b;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-danger {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #e01321;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+   cursor: pointer;
+}
+
+.btn-select {
+  padding: 5px 5px;
+  margin: 1px;
+  border: none;
+  background-color: #4043f5;
+  /* Example button color */
+  color: white;
+  border-radius: 5px;
+   cursor: pointer;
+}
+
+/* Custom CSS for styling input fields and labels */
+.form-group {
+  margin-bottom: 5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+
+
+/* Optional: Add styling for placeholder text */
+input[type="text"]::placeholder {
+  color: #999;
+}
+
+
+
+.wrapper {
+  padding: 10px;
+}
+
+label{
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 5px;
+  max-width: 100%;
+  font-size: 12px;
+}
+
+.h3, h3 {
+  font-size: 21px;
+}
+
+
+
+.selected_class .row {
+  margin-bottom: 10px;
+}
+
+.form-control {
+  border: 1px solid transparent; /* Initial border set to transparent */
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.form-control:hover,
+.form-control:focus {
+  border-color: #000000; /* Change to your desired border color */
+  outline: none; /* Remove the default focus outline */
+}
+
+#title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#note {
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.btn-delete {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #d9534f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete::before {
+  content: '\f1f8'; /* Font Awesome trash icon unicode */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  margin-right: 10px;
+}
+
+.btn-delete:hover {
+  background-color: #c9302c;
+}
+
+.btn-update {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #0ba042;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container-button {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+
+.small-text {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.password-field {
+  font-size: 12px;
+  padding: 0.375rem 0.75rem;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  position: relative; /* Add this line */
+}
+
+.close {
+  color: #aaa;
+  font-size: 32px; /* Increase the font size */
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 10px; /* Adjust top position */
+  right: 10px; /* Adjust right position */
+  padding-right: 20px;
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  font-size: 40px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000; /* Change color on hover/focus */
+  text-decoration: none; /* Remove underline */
+  outline: none; /* Remove outline */
+}
+
+.center-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.text-center {
+  text-align: center;
+  vertical-align: middle;
+}
