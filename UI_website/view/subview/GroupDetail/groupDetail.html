@@ -146,15 +146,26 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4 form-group">
+                                                    <label for="supervisor">Status:</label>
+                                                    <select id="supervisor" class="form-control">
+                                                        <option value="" selected disabled>Status</option>
+                                                        <option value="supervisor2" selected>Incomming</option>
+                                                        <option value="supervisor1">Started</option>
+                                                        <option value="supervisor2">Done</option>
+
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 form-group">
                                                     <label for="supervisor"></label>
                                                     <div class="row">
-                                                        <div class="col-6"></div>
                                                         <div class="col-3">
                                                             <input type="button" class="btn-delete" value="Delete">
                                                         </div>
                                                         <div class="col-3">
                                                             <input type="button" class="btn-update" value="Update">
                                                         </div>
+                                                        <div class="col-6"></div>
                                                     </div>
                                                 </div>
 
@@ -381,7 +392,7 @@
                                                         <td class="align-middle"><small>Jane Smith</small></td>
                                                         <td class="align-middle">
                                                             <div class="form-group">
-                                                                <select class="form-control-sm" id="status2"
+                                                                <select class="form-control-sm" id="2"
                                                                     onchange="updateBackgroundColor('status2')">
                                                                     <option value="open"
                                                                         style="background-color: rgb(84, 190, 84); color: white;">
@@ -418,6 +429,7 @@
             var selectedOption = select.options[select.selectedIndex];
             select.style.backgroundColor = selectedOption.style.backgroundColor;
             select.style.color = selectedOption.style.color;
+            //Gọi controller
         }
 
         // Initialize background color on page load
