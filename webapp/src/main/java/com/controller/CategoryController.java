@@ -107,7 +107,14 @@ public class CategoryController {
 		    mav.addObject("totalPages", studentsList.getTotalPages());
 		    mav.addObject("totalItems", studentsList.getTotalElements());
 		    mav.addObject("pageSize", studentsList.getSize());
-
+		    
+		    mav.addObject("sName", firstName);
+		    mav.addObject("sAge", age);
+		    mav.addObject("sTitle", groupTitle);
+		    mav.addObject("sDesc", description);
+		    mav.addObject("sTeacher", teacherName);
+		    mav.addObject("sCourse", courseName);
+		    
 		    return mav;
 	    }
 
@@ -117,7 +124,8 @@ public class CategoryController {
     
 
     @GetMapping("/schedule")
-    public ModelAndView getScheduleBySearch( @RequestParam(required = false) String startDate, 
+    public ModelAndView getScheduleBySearch( HttpServletRequest request, Model model,
+    		@RequestParam(required = false) String startDate, 
             @RequestParam(required = false) String endDate,
             @RequestParam(required = false) String nextLesson,
             @RequestParam(required = false) String courseName,
@@ -133,13 +141,19 @@ public class CategoryController {
         System.out.println("Group Title: " + groupTitle);
         System.out.println("Teacher Name: " + teacherName);
         System.out.println("Format: " + format);
-        List<ScheduleDTO> courseSchedules = null;
+        Page<ScheduleDTO> courseSchedules = null;
+        Pageable pageable = staticUtilMethods.createPageable(request);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         if (startDate == null && endDate == null) {
         	Date todayDate = new Date();
-        	courseSchedules = scheduleService.getSchedulesWithinDateRange(todayDate, todayDate,nextLesson,courseName,groupTitle,teacherName,format);
+        	courseSchedules = scheduleService.getSchedulesWithinDateRange(todayDate, todayDate,nextLesson,courseName,groupTitle,teacherName,format, pageable);
             ModelAndView mav = new ModelAndView("schedule/schedule");
-            mav.addObject("schedules", courseSchedules);
+//            mav.addObject("schedules", courseSchedules);
+            mav.addObject("schedules", courseSchedules.getContent());
+		    mav.addObject("currentPage", courseSchedules.getNumber() + 1);
+		    mav.addObject("totalPages", courseSchedules.getTotalPages());
+		    mav.addObject("totalItems", courseSchedules.getTotalElements());
+		    mav.addObject("pageSize", courseSchedules.getSize());
             return mav;
 		}
         try {
@@ -152,7 +166,7 @@ public class CategoryController {
             Date endDateConverted = Date.from(localEndDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
             // Fetch the schedules within the date range
-            courseSchedules = scheduleService.getSchedulesWithinDateRange(startDateConverted, endDateConverted,nextLesson,courseName,groupTitle,teacherName,format);
+            courseSchedules = scheduleService.getSchedulesWithinDateRange(startDateConverted, endDateConverted,nextLesson,courseName,groupTitle,teacherName,format,pageable);
         } catch (DateTimeParseException e) {
             System.out.println("Invalid date format: " + e.getMessage());
             // Handle the error appropriately, e.g., add an error message to the model
@@ -160,7 +174,18 @@ public class CategoryController {
      // Add the results and search form to the redirect attributes
         System.out.println("=========== END OF SEARCHING ===========");
         ModelAndView mav = new ModelAndView("schedule/scheduleTable");
-        mav.addObject("schedules", courseSchedules);
+//        mav.addObject("schedules", courseSchedules);
+        mav.addObject("schedules", courseSchedules.getContent());
+	    mav.addObject("currentPage", courseSchedules.getNumber() + 1);
+	    mav.addObject("totalPages", courseSchedules.getTotalPages());
+	    mav.addObject("totalItems", courseSchedules.getTotalElements());
+	    mav.addObject("pageSize", courseSchedules.getSize());
+	    
+	    mav.addObject("sLesson",nextLesson);
+	    mav.addObject("sCourse",courseName);
+	    mav.addObject("sTitle",groupTitle);
+	    mav.addObject("sTeacher",teacherName);
+	    mav.addObject("sStatus",format);
         return mav;
     }
     

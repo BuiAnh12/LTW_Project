@@ -9,6 +9,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dto.ScheduleDTO;
@@ -17,6 +20,7 @@ import com.entity.CourseSchedule;
 import com.entity.Group;
 import com.entity.Lesson;
 import com.entity.User;
+import com.model.StudentTable;
 import com.repository.CourseScheduleRepo;
 import com.repository.GroupRepo;
 import com.repository.UserRepo;
@@ -28,23 +32,23 @@ public class ScheduleService {
     private CourseScheduleRepo courseScheduleRepo;
 	
 	public ScheduleDTO convert(CourseSchedule input) {
-		ScheduleDTO output = new ScheduleDTO();
-		output.setId(input.getId());
-		output.setCourseId(input.getGroup().getCourse().getCourseId());
-		output.setCourseName(input.getGroup().getCourse().getCourseName());
-		output.setFormat(input.getGroup().getFormat() ? "Online" : "Offline");
-		output.setGroupId(input.getGroup().getId());
-		output.setGroupTitle(input.getGroup().getGroupDetail());
-		output.setLessonId(input.getLesson().getLessonId());
-		output.setNextLesson(input.getLesson().getDetail());
-		output.setOccurDate(input.getOccurDate().toString());
-//		output.setTeacherId(input.getTeacher().getId());
-		output.setTeacherName(input.getTeacher().getName());
-		return output;
+		return ScheduleDTO.builder()
+				.id(input.getId())
+				.nextLesson(input.getLesson().getDetail())
+				.courseId(input.getGroup().getCourse().getCourseId())
+				.courseName(input.getGroup().getCourse().getCourseName())
+				.format(input.getGroup().getFormat() ? "Online" : "Offline")
+				.groupId(input.getGroup().getId())
+				.groupTitle(input.getGroup().getTitle())
+				.groupDetail(input.getGroup().getGroupDetail())
+				.occurDate(input.getOccurDate().toString())
+				.teacherId(input.getTeacher().getId())
+				.teacherName(input.getTeacher().getName())
+				.build();
 	}
 
-	public List<ScheduleDTO> getSchedulesWithinDateRange(Date startDate, Date endDate, String nextLesson, String courseName,
-        String groupTitle, String teacherName, String format) {
+	public Page<ScheduleDTO> getSchedulesWithinDateRange(Date startDate, Date endDate, String nextLesson, String courseName,
+        String groupTitle, String teacherName, String format, Pageable pageable ) {
 		List<CourseSchedule> courseSchedules = courseScheduleRepo.findByOccurDateBetween(startDate, endDate);
 		List<ScheduleDTO> result = courseSchedules.stream()
 		.map(this::convert)
@@ -62,7 +66,7 @@ public class ScheduleService {
 				System.out.println("Trigger2");
 				continue;
 			}
-			if (!isNullOrEmpty(groupTitle) && !filterDto.getGroupTitle().toLowerCase().contains(groupTitle.toLowerCase())) {
+			if (!isNullOrEmpty(groupTitle) && !filterDto.getGroupTitle().toLowerCase().contains(groupTitle.toLowerCase())) {	
 				System.out.println("Trigger3");
 				continue;
 			}
@@ -76,8 +80,11 @@ public class ScheduleService {
 			}
 			filteredResult.add(filterDto);
 		}
+		int start = (int) pageable.getOffset();
+		int end = Math.min((start + pageable.getPageSize()), filteredResult.size());
+		List<ScheduleDTO> pagedResult = filteredResult.subList(start, end);
 		
-		return filteredResult;
+		return new PageImpl<>(pagedResult, pageable, filteredResult.size());
 	}
 
 	private boolean isNullOrEmpty(String str) {

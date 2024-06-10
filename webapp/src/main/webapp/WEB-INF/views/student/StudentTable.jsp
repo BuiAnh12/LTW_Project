@@ -17,22 +17,22 @@
                             </tr>
                             <tr>
                                 <th scope="col">
-                                    <input type="text" id="firstName" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
+                                    <input type="text" value="${sName}" id="firstName" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
                                 </th>
                                 <th scope="col">
-                                    <input type="text" id="age" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
+                                    <input type="text" value="${sAge}" id="age" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
                                 </th>
                                 <th scope="col">
-                                    <input type="text" id="groupTitle" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
+                                    <input type="text" value="${sTitle}" id="groupTitle" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
                                 </th>
                                 <th scope="col">
-                                    <input type="text" id="description" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
+                                    <input type="text" value="${sDesc}" id="description" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
+                                </th>
+                                <th scope="col"> 
+                                    <input type="text" value="${sTeacher}" id="teacherName" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
                                 </th>
                                 <th scope="col">
-                                    <input type="text" id="teacherName" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
-                                </th>
-                                <th scope="col">
-                                    <input type="text" id="courseName" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
+                                    <input type="text" value="${sCourse}" id="courseName" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" />
                                 </th>
                             </tr>
                         </thead>
