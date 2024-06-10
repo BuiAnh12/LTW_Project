@@ -17,6 +17,7 @@ import com.repository.CourseRepository;
 import com.repository.GroupRepo;
 import com.repository.LessonRepository;
 import com.repository.RegistrationRepository;
+import com.repository.StudentRepo;
 import com.repository.UserRepo;
 
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,14 @@ import lombok.experimental.var;
 
 import com.entity.Course;
 import com.entity.Group;
+import com.entity.Student;
 import com.entity.User;
 import com.dto.ResCourseDetails;
 import com.dto.ResGroupDetailDto;
 import com.dto.ResGroupDto;
+import com.dto.courseScheduleDTO;
 import com.dto.studentRegistrationDto;
-
+import com.entity.Registration;
 @Service
 @RequiredArgsConstructor
 public class SubpageService {
@@ -45,6 +48,10 @@ public class SubpageService {
 	private final UserRepo userRepo;
 	@Autowired
 	private final RegistrationRepository registrationRepository;
+	@Autowired
+	private final StudentRepo studentRepo;
+	@Autowired
+	private final GroupService groupService;
 	
 	public ModelAndView getAddCoursePage(HttpServletRequest request, Model model) {
 		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "/course/addCourse/addCourse");
@@ -52,6 +59,10 @@ public class SubpageService {
 		if(courseObject != null)
 			modelAndView.addObject(courseObject);
 		return modelAndView;
+	}
+	
+	public void addStudentToCourse(Long studentId, Long groupId) {
+		registrationRepository.addStudentInGroup(groupId, studentId);
 	}
 	 
 	public ModelAndView getDetailsPage(HttpServletRequest request) {
@@ -103,7 +114,9 @@ public class SubpageService {
     	List<Course> courseList = courseRepository.findAll();
     	Course course = courseRepository.findOne(group.getCourse().getCourseId());
     	List<studentRegistrationDto> studenList = registrationRepository.findAllByGroupId(groupId);
-    	List<LessonDto> lessonList = lessonRepository.findAllLessonByCourseId(course.getCourseId());
+//    	List<LessonDto> lessonList = lessonRepository.findAllLessonByCourseId(course.getCourseId());
+    	List<Student> studentForAdding = studentRepo.findAll();
+    	List<courseScheduleDTO> csList = groupService.getCSList(groupId);
     	ResGroupDetailDto groupDto = ResGroupDetailDto.builder()
         		.title(group.getTitle())
         		.teacher(teacher.getName())
@@ -114,7 +127,9 @@ public class SubpageService {
         		.status(group.getStatus())
         		.note(group.getGroupDetail())
         		.build();
-    	modelAndView.addObject("lessonList",lessonList);
+    	modelAndView.addObject("groupId",groupId);
+    	modelAndView.addObject("students",studentForAdding);
+    	modelAndView.addObject("lessonList",csList);
     	modelAndView.addObject("groupObject",groupDto);
     	modelAndView.addObject("studentList", studenList);
     	modelAndView.addObject("teacherList",teacherList);

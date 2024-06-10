@@ -250,7 +250,9 @@
 									  <tr>
 									      
 									      <td>${group.groupDetail}</td>
-                                           <td>${group.course.courseName}</td>
+                                           <td><a href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${group.course.courseId}">
+                                           	${group.course.courseName}
+                                           	</a></td>
                                            <td>${group.mainTeacher.name}</td>
                                            <td>${student_no}</td>
                                            <td>${group.startDate}</td>

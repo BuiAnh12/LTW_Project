@@ -1,7 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
-
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.service.SubpageService;
@@ -27,6 +30,22 @@ public class SubpageController {
 	public ModelAndView getAddCoursePageAndView(HttpServletRequest request, Model model) {
 		return subpageService.getAddCoursePage(request, model);
 	}
+	
+	@PostMapping("/addToGroup")
+    public String addToGroup(@RequestParam List<Long> selectedStudentIds, 
+    		@RequestParam Long groupId,
+    		@RequestHeader(value = "referer", required = false) String referer) {
+		
+        // Handle the selected student IDs
+        for (Long studentId : selectedStudentIds) {
+            // Add student to group based on the ID
+            System.out.println("Adding student with ID: " + studentId + " to the group " + groupId);
+            subpageService.addStudentToCourse(studentId, groupId);
+        }
+
+        	
+        return referer != null ? "redirect:" + referer : "redirect:/defaultPage";
+    }
 	
 	@RequestMapping(value = "/details-course", method = RequestMethod.GET)
 	public ModelAndView getDetailsPage(HttpServletRequest request, HttpServletResponse response) throws IOException {

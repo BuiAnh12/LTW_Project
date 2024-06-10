@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class studentRegistrationDto {
+	Long studentId;
 	String fullname;
 	Integer age;
 	String username;

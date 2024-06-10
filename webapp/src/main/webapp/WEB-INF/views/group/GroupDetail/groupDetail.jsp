@@ -167,67 +167,66 @@
 
                     <!-- The Modal -->
                     <div id="myModal" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <span class="close" onclick="closeModal()">&times;</span>
-                            <div class="modal-main-content">
-                                <h2>Select a Student</h2>
-                                <div class="divider" style="height: 20px;"></div>
-                                <div class="d-flex justify-content-end">
-                                    <button class="btn btn-primary" onclick="submitSelection()">Submit</button>
-                                </div>
-                                <table class="table bg-white rounded shadow-sm table-hover">
-                                    <thead>
-                                        <tr>
+    <!-- Modal content -->
+				    <div class="modal-content">
+				        <span class="close" onclick="closeModal()">&times;</span>
+				        <div class="modal-main-content">
+				            <h2>Select a Student</h2>
+				            <div class="divider" style="height: 20px;"></div>
+				            <form id="studentSelectionForm" method="post" action="${pageContext.request.contextPath}/subpage/addToGroup">
+				                <input type="hidden" name="groupId" id="groupId" value="${groupId}">
+				                <div class="d-flex justify-content-end">
+				                    <button type="button" class="btn btn-primary" onclick="submitSelection()">Submit</button>
+				                </div>
+				                <table class="table bg-white rounded shadow-sm table-hover">
+				                    <thead>
+				                        <tr>
+				                            <th scope="col">First Name</th>
+				                            <th scope="col-1">Age</th>
+				                            <th scope="col-1"></th>
+				                        </tr>
+				                        <tr>
+				                            <th scope="col">
+				                                <input type="text" class="form-control" placeholder="" aria-label="first-name" aria-describedby="basic-addon1" style="height: 30px;" />
+				                            </th>
+				                            <th scope="col">
+				                                <input type="text" class="form-control" placeholder="" aria-label="age" aria-describedby="basic-addon1" style="height: 30px;" />
+				                            </th>
+				                            <th scope="col">
+				                                <!-- Leave this empty as it's just the header for the selection column -->
+				                            </th>
+				                        </tr>
+				                    </thead>
+				                    <tbody>
+				                        <c:forEach var="student" items="${students}">
+										    <c:set var="isExisted" value="false" />
+										    <c:forEach var="existed_student" items="${studentList}">
+										        <c:if test="${student.id == existed_student.studentId}">
+										            <c:set var="isExisted" value="true" />
+										        </c:if>
+										    </c:forEach>
+										    <c:if test="${not isExisted}">
+										        <tr data-link="link_to_redirect">
+										            <td>
+										                <a href="${pageContext.request.contextPath}/student/detail/${student.id}" style="text-decoration: none; color: rgb(25, 0, 255)">
+										                    ${student.lastname} ${student.firstname}
+										                </a>
+										            </td>
+										            <td>${student.age}</td>
+										            <td class="text-center">
+										                <!-- Selection column with checkbox -->
+										                <input type="checkbox" class="center-checkbox" name="selectedStudentIds" value="${student.id}">
+										            </td>
+										        </tr>
+										    </c:if>
+										</c:forEach>
+				                    </tbody>
+				                </table>
+				            </form>
+				        </div>
+				    </div>
+				</div>
 
-                                            <th scope="col">First Name</th>
-                                            <th scope="col-1">Age</th>
-                                            <th scope="col-1"></th>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">
-                                                <input type="text" class="form-control" placeholder=""
-                                                    aria-label="first-name" aria-describedby="basic-addon1"
-                                                    style="height: 30px;" />
-                                            </th>
-                                            <th scope="col">
-                                                <input type="text" class="form-control" placeholder="" aria-label="age"
-                                                    aria-describedby="basic-addon1" style="height: 30px;" />
-                                            </th>
-                                            <th scope="col">
-                                                <!-- Leave this empty as it's just the header for the selection column -->
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr data-link="link_to_redirect">
-
-                                            <td>
-                                                <a href="#" style="text-decoration: none; color: rgb(25, 0, 255)">Tom
-                                                    Bui</a>
-                                            </td>
-                                            <td>10</td>
-                                            <td class="text-center"> <!-- Selection column with checkbox -->
-                                                <input type="checkbox" class="center-checkbox">
-                                            </td>
-                                        </tr>
-                                        <tr data-link="link_to_redirect">
-
-                                            <td>
-                                                <a href="#" style="text-decoration: none; color: rgb(25, 0, 255)">Tom
-                                                    Bui</a>
-                                            </td>
-                                            <td>10</td>
-                                            <td class="text-center"> <!-- Selection column with checkbox -->
-                                                <input type="checkbox" class="center-checkbox">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-12">
@@ -249,7 +248,7 @@
 													<tbody>
 														<c:forEach var="student" items="${studentList}">
 															<tr data-link="link_to_redirect">
-																<td class="align-middle"><small><a href="#"
+																<td class="align-middle"><small><a href="${pageContext.request.contextPath}/student/detail/${student.studentId}"
 																		style="text-decoration: none; color: rgb(0, 191, 255)">
 																			${student.fullname} </a></small></td>
 																<td class="align-middle"><small>${student.age}</small></td>
@@ -269,12 +268,11 @@
 																			</button>
 																		</div>
 																		<div class="input-group-append">
-																			<button class="btn-danger delete-btn"
-																				style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
-																				type="button">
-																				<i class="far fa-trash-alt"></i>
-																			</button>
-																		</div>
+																			<button class="btn-danger delete-btn" style="height: 30px; width: 30px; 
+																			display: flex; align-items: center; justify-content: center;" 
+																			type="button" onclick="deleteStudent(${student.studentId})">
+														                        <i class="far fa-trash-alt"></i>
+														                    </button>
 																	</div>
 																</td>
 															</tr>
@@ -309,37 +307,50 @@
                                                     </tr>
                                                 </thead>
 													<tbody>
-														<c:forEach var="lesson" items="${lessonList}"
-															varStatus="loop">
-															<tr data-link="link_to_redirect">
-																<td class="align-middle"><small><a href="#"
-																		style="text-decoration: none; color: rgb(0, 191, 255)">${lesson.detail}</a></small>
-																</td>
-																<td class="align-middle"><input type="date"
-																	value="2023-12-12"></td>
-																<td class="align-middle"><select id="main-teacher"
-																	class="form-control">
-																		<option value="" disabled>Select Main Teacher</option>
-																		<option value="${groupObject.teacher}" selected>${groupObject.teacher}</option>
-																		<c:forEach var="teacher" items="${teacherList}">
-																			<option value="${teacher.id}">${teacher.name}</option>
-																		</c:forEach>
-																</select></td>
-
-																<td class="align-middle">
-																	<div class="form-group">
-																		<select class="form-control-sm"
-																			id="status${loop.index}"
-																			onchange="updateBackgroundColor('status${loop.index}')">
-																			<option value="open"
-																				style="background-color: rgb(84, 190, 84); color: white;">Open</option>
-																			<option value="closed"
-																				style="background-color: rgb(193, 85, 85); color: white;">Closed</option>
-																		</select>
-																	</div>
-																</td>
-															</tr>
+														<c:forEach var="lesson" items="${lessonList}" varStatus="loop">
+														    <input type="hidden" id="lessonId${loop.index}" value="${lesson.id}">
+														    <tr data-link="link_to_redirect">
+														        <td class="align-middle">
+														            <small>
+														                <a href="#" style="text-decoration: none; color: rgb(0, 191, 255)">
+														                    ${lesson.lesson.detail}
+														                </a>
+														            </small>
+														        </td>
+														        <td class="align-middle">
+														            <input type="date" value="${lesson.occurDate}" id="date${loop.index}" onchange="handleLessonChange(${loop.index})">
+														        </td>
+														        <td class="align-middle">
+														            <select class="form-control" id="main-teacher${loop.index}" onchange="handleLessonChange(${loop.index})" >
+														                <option value="" disabled>Select Main Teacher</option>
+														                <option value="${lesson.teacher.id}" selected>${lesson.teacher.name}</option>
+														                <c:forEach var="teacher" items="${teacherList}">
+														                    <c:if test="${lesson.teacher.name != teacher.name}">
+														                        <option value="${teacher.id}">${teacher.name}</option>
+														                    </c:if>
+														                </c:forEach>
+														            </select>
+														        </td>
+														        <td class="align-middle">
+														            <div class="form-group">
+														                <select class="form-control-sm status-select" id="status${loop.index}" onchange="handleLessonChange(${loop.index}) ; updateBackgroundColor('status${loop.index}')" >
+														                    <c:choose>
+														                        <c:when test="${lesson.status}">
+														                            <option value="open" selected style="background-color: rgb(84, 190, 84); color: white;">Open</option>
+														                            <option value="closed" style="background-color: rgb(193, 85, 85); color: white;">Closed</option>
+														                        </c:when>
+														                        <c:otherwise>
+														                            <option value="open" style="background-color: rgb(84, 190, 84); color: white;">Open</option>
+														                            <option value="closed" selected style="background-color: rgb(193, 85, 85); color: white;">Closed</option>
+														                        </c:otherwise>
+														                    </c:choose>
+														                </select>
+														            </div>
+														        </td>
+														    </tr>
 														</c:forEach>
+
+
 													</tbody>
 												</table>
                                         </div>
@@ -364,12 +375,57 @@
             select.style.color = selectedOption.style.color;
             //Gọi controller
         }
-
-        // Initialize background color on page load
-        updateBackgroundColor('status1');
-        updateBackgroundColor('status2');
+        <c:forEach var="lesson" items="${lessonList}"
+			varStatus="loop">
+        updateBackgroundColor('status${loop.index}');
+        </c:forEach>
     </script>
-
+    <script>
+    function submitSelection() {
+        var form = document.getElementById('studentSelectionForm');
+        form.submit();
+    }
+	</script>
+	<script type="text/javascript">
+	    function handleLessonChange(rowIndex) {
+	        // Get the lessonId from the hidden input field
+	        var lessonId = document.getElementById("lessonId" + rowIndex).value;
+	        
+	        // Get the date value from the input field
+	        var date = document.getElementById("date" + rowIndex).value;
+	        
+	        // Get the selected teacherId from the select dropdown
+	        var teacherId = document.getElementById("main-teacher" + rowIndex).value;
+	        
+	        // Get the selected status value from the select dropdown
+	        var status = document.getElementById("status" + rowIndex).value;
+	        
+	        // Log the extracted data (you can perform any processing here)
+	        console.log("Lesson ID:", lessonId);
+	        console.log("Date:", date);
+	        console.log("Teacher ID:", teacherId);
+	        console.log("Status:", status);
+	        
+	        // Example: Send the data to a server-side endpoint using AJAX
+	        // You can replace this with your actual AJAX call
+	        $.ajax({
+	            url: 'group/edit-lesson',
+	            type: 'GET',
+	            data: {
+	                lessonId: lessonId,
+	                date: date,
+	                teacherId: teacherId,
+	                status: status
+	            },
+	            success: function(response) {
+	                // Handle success response
+	            },
+	            error: function(xhr, status, error) {
+	                // Handle error response
+	            }
+	        });
+    }
+</script>
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -440,6 +496,13 @@
             el.classList.toggle("toggled");
         };
     </script>
+    <script>
+	    function deleteStudent(studentId) {
+	        if (confirm("Are you sure you want to delete this student?")) {
+	            window.location.href = '${pageContext.request.contextPath}/group/delete-student?studentId=' + studentId;
+	        }
+	    }
+	</script>
 </body>
 
 </html>

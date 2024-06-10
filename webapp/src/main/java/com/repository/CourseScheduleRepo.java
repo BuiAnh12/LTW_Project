@@ -17,4 +17,10 @@ public interface CourseScheduleRepo extends JpaRepository<CourseSchedule, Long> 
 	
 	@Query("SELECT cs FROM CourseSchedule cs")
 	List<CourseSchedule> getAll();
+	
+	@Query("SELECT cs FROM CourseSchedule cs WHERE cs.group.id = ?1")
+	List<CourseSchedule> getByGroupId(Integer groupId);
+	
+	
+	
 }

@@ -19,5 +19,8 @@ public interface UserRepo extends JpaRepository<User, Long> {
     
     @Query("SELECT DISTINCT u FROM User u INNER JOIN u.account a INNER JOIN a.roles r WHERE r.code = 'ADMIN'")
     List<User> findAllSupervisor();
+    
+    @Query("SELECT u from User u WHERE u.id = ?1")
+	User findById(Long teacherId);
 }
 
