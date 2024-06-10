@@ -156,4 +156,9 @@ public class CategoryController {
     public ModelAndView getCoursePage(HttpServletRequest request, Model model) {	
         return categoryService.getCourseListPage(request, model);
     }
+    
+    @RequestMapping(value ="/user", method =RequestMethod.GET)
+    public ModelAndView getUserPage(HttpServletRequest request, Model model) {
+    	return categoryService.getUserListPage(request, model);
+    }
 }

@@ -13,14 +13,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.config.StaticUtilMethods;
 import com.dto.AddCourseDto;
 import com.dto.LessonDto;
+import com.repository.AccountRepository;
 import com.repository.CourseRepository;
 import com.repository.LessonRepository;
+import com.repository.RoleRepository;
+import com.repository.UserRepo;
 
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.var;
 
+import com.entity.Account;
 import com.entity.Course;
+import com.entity.Role;
+import com.entity.User;
 import com.dto.ResCourseDetails;
+import com.dto.accountDTO;
+import com.dto.userDetailDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +38,13 @@ public class SubpageService {
 	private final CourseRepository courseRepository;
 	@Autowired
 	private final LessonRepository lessonRepository;
+	@Autowired
+	private final UserRepo userRepo;
+	@Autowired
+	private final AccountRepository accountRepository;
+	@Autowired
+	private final RoleRepository roleRepository;
+	
 	public ModelAndView getAddCoursePage(HttpServletRequest request, Model model) {
 		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "/course/addCourse/addCourse");
 		AddCourseDto courseObject = (AddCourseDto) model.asMap().get("courseObject");
@@ -73,5 +87,64 @@ public class SubpageService {
 	        throw new RuntimeException("Error retrieving course details", e);
 	    }
 	    return modelAndView;
+	}
+	
+	public ModelAndView getAddUserPage(HttpServletRequest request, Model model) {
+		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(),
+				"user/subView/addNewUser"); 
+		userDetailDTO userdetail = (userDetailDTO) model.asMap().get("userObject");
+
+		if (userdetail != null) {
+			modelAndView.addObject(userdetail);
+		}
+		return modelAndView;
+	}
+	public ModelAndView getUserDetailPage(HttpServletRequest request) {
+		final String userIdString=request.getParameter("userid");
+		ModelAndView modelAndView = new ModelAndView("user/subView/userDetail");
+		if(userIdString==null) {
+			  throw new IllegalArgumentException("userId is null");
+		}
+		try {
+			//write code here
+			Long userId=Long.parseLong(userIdString);
+			User user = userRepo.findOne(userId);
+			
+			if(user ==null) {
+				  throw new IllegalArgumentException("User not found for id: " + userId);
+			}
+			
+			try {
+				
+			    Account account = accountRepository.findOne(user.getAccount().getId());
+			    accountDTO tmp=accountDTO.builder()
+			    		.accountId(account.getId())
+			    		.accountPassword(account.getPassword())
+			    		.accountUsername(account.getUserName())
+			    		.accountStatus(account.getStatus())
+			    		.build();
+			    Long roleId = roleRepository.findRoleIdByAccountId(account.getId());
+			    Role role = roleRepository.findOne(roleId);
+			    
+			    userDetailDTO userDetail=userDetailDTO.builder()
+						.userName(user.getName())
+						.userId(user.getId())
+						.userEmail(user.getEmail())
+						.userPhone(user.getPhone())
+						.accountDto(tmp)
+						.userRoleName(role.getName())
+						.userRoleId(roleId)
+						.userStatus(user.getStatus())
+						.build();
+			    modelAndView.addObject("userObject",userDetail);
+			} catch (Exception e) {
+			    e.printStackTrace(); // or log the exception
+			}		
+		}catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Invalid userId: " + userIdString, e);
+		}catch (Exception e) {
+			throw new RuntimeException("Error retrieving User details", e);
+		}
+		return modelAndView;
 	}
 }
