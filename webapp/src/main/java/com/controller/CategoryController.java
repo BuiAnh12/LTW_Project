@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 
-
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -30,6 +32,7 @@ import com.service.DashboardService;
 
 import lombok.RequiredArgsConstructor;
 
+import com.config.StaticUtilMethods;
 import com.dto.ScheduleDTO;
 import com.dto.StudentDTO;
 import com.entity.Group;
@@ -50,7 +53,10 @@ public class CategoryController {
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 	
 	@Autowired
-    private StudentService studentService = new StudentService();
+    private final StaticUtilMethods staticUtilMethods;
+	
+	@Autowired
+    private StudentService studentService;
 	
 	@Autowired
     private ScheduleService scheduleService;
@@ -75,26 +81,37 @@ public class CategoryController {
 	}
 	
 	@GetMapping("/student")
-	public ModelAndView getStudentPage( @RequestParam(required = false) String firstName,
+	public ModelAndView getStudentPage(HttpServletRequest request, Model model,
+			@RequestParam(required = false) String firstName,
 			@RequestParam(required = false) String age,
 			@RequestParam(required = false) String groupTitle,
 			@RequestParam(required = false) String description,
 			@RequestParam(required = false) String teacherName,
 			@RequestParam(required = false) String courseName) {
-		List<StudentTable> studentsList = null;
-		if (firstName == null && age == null && groupTitle == null 
-				&& description == null && teacherName == null && courseName == null) {
-			studentsList = studentService.getStudentTables(null, null, null, null, null, null);
-			ModelAndView mav = new ModelAndView("student/student");
-	        mav.addObject("students", studentsList);
-	        return mav;
-		}
-		else {
-			studentsList = studentService.getStudentTables(firstName, age, groupTitle, description, teacherName, courseName);
-			ModelAndView mav = new ModelAndView("student/StudentTable");
-	        mav.addObject("students", studentsList);
-	        return mav;
-		}
+		Pageable pageable = staticUtilMethods.createPageable(request);
+	    Page<StudentTable> studentsList = null;
+	    if (firstName == null && age == null && groupTitle == null && description == null && teacherName == null && courseName == null) {
+	    	studentsList = studentService.getStudentTables(null, null, null, null, null, null, pageable);
+	    	ModelAndView mav = new ModelAndView("student/student");
+		    mav.addObject("students", studentsList.getContent());
+		    mav.addObject("currentPage", studentsList.getNumber() + 1);
+		    mav.addObject("totalPages", studentsList.getTotalPages());
+		    mav.addObject("totalItems", studentsList.getTotalElements());
+		    mav.addObject("pageSize", studentsList.getSize());
+		    return mav;
+	    } else {
+	    	studentsList = studentService.getStudentTables(firstName, age, groupTitle, description, teacherName, courseName, pageable);
+	    	ModelAndView mav = new ModelAndView("student/StudentTable");
+		    mav.addObject("students", studentsList.getContent());
+		    mav.addObject("currentPage", studentsList.getNumber() + 1);
+		    mav.addObject("totalPages", studentsList.getTotalPages());
+		    mav.addObject("totalItems", studentsList.getTotalElements());
+		    mav.addObject("pageSize", studentsList.getSize());
+
+		    return mav;
+	    }
+
+	    
 	} 
 	
     
@@ -153,7 +170,8 @@ public class CategoryController {
     
     
     @RequestMapping(value = "/course", method = RequestMethod.GET)
-    public ModelAndView getCoursePage(HttpServletRequest request, Model model) {	
-        return categoryService.getCourseListPage(request, model);
+    public ModelAndView getCoursePage(HttpServletRequest request, Model model, 
+    		@RequestParam(required = false) String courseName, @RequestParam(required = false) String status) {	
+        return categoryService.getCourseListPage(request, model,courseName, status);
     }
 }
