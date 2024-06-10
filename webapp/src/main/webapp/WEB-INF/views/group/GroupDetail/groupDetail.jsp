@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,96 +60,104 @@
                 <div class="detail_container">
                     <div class="row">
                         <div class="col-12">
-                            <div class="full-floating-block">
-                                <div class="wrapper">
-                                    <div class="col">
-                                        <div class="divider" style="height: 20px;"></div>
-                                        <div class="col">
-                                            <div class="row selected_class">
-                                                <div class="col-12">
-                                                    <div class="row form-container">
-                                                        <div class="col-12 form-group">
-                                                            <input type="text" id="title" class="form-control"
-                                                                value="NVH_GD65_MON_OFF">
-                                                        </div>
-                                                        <div class="col-12 form-group">
-                                                            <input type="text" id="note" class="form-control"
-                                                                value="2:00 - 3:30">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+							<div class="full-floating-block">
+								<form:form action="yourActionURL" method="POST">
+									<div class="wrapper">
+										<div class="col">
+											<div class="divider" style="height: 20px;"></div>
+											<div class="col">
+												<div class="row selected_class">
+													<div class="col-12">
+														<div class="row form-container">
+															<div class="col-12 form-group">
+																<input type="text" id="title" class="form-control"
+																	value="${groupObject.title}">
+															</div>
+															<div class="col-12 form-group">
+																<input type="text" id="note" class="form-control"
+																	value="${groupObject.note}">
+															</div>
+														</div>
+													</div>
+												</div>
 
-                                            <div class="row form-container">
-                                                <div class="col-md-4 form-group">
-                                                    <label for="start-date">Start Date:</label>
-                                                    <input type="date" id="start-date" class="form-control"
-                                                        value="2023-12-12">
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="main-teacher">Main Teacher:</label>
-                                                    <select id="main-teacher" class="form-control">
-                                                        <option value="" selected disabled>Select Main Teacher</option>
-                                                        <option value="teacher1" selected>Teacher 1</option>
-                                                        <option value="teacher2">Teacher 2</option>
-                                                        <option value="teacher3">Teacher 3</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="course">Course:</label>
-                                                    <select id="course" class="form-control">
-                                                        <option value="" selected disabled>Select Course</option>
-                                                        <option value="course1" selected>Course 1</option>
-                                                        <option value="course2">Course 2</option>
-                                                        <option value="course3">Course 3</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="end-date">End Date:</label>
-                                                    <input type="date" id="end-date" class="form-control"
-                                                        value="2023-12-12">
-                                                </div>
+												<div class="row form-container">
+													<div class="col-md-4 form-group">
+														<label for="start-date">Start Date:</label> <input
+															type="date" id="start-date" class="form-control"
+															value="${groupObject.startDate}">
+													</div>
+													<div class="col-md-4 form-group">
+														<label for="main-teacher">Main Teacher:</label> <select
+															id="main-teacher" class="form-control">
+															<option value="" disabled>Select Main Teacher</option>
+															<option value="${groupObject.teacher}" selected>${groupObject.teacher}</option>
+															<c:forEach var="teacher" items="${teacherList}">
+																<option value="${teacher.id}">${teacher.name}</option>
+															</c:forEach>
+														</select>
+													</div>
 
-                                                <div class="col-md-4 form-group">
-                                                    <label for="supervisor">Supervisor:</label>
-                                                    <select id="supervisor" class="form-control">
-                                                        <option value="" selected disabled>Select Supervisor</option>
-                                                        <option value="supervisor1" selected>Supervisor 1</option>
-                                                        <option value="supervisor2">Supervisor 2</option>
-                                                        <option value="supervisor3">Supervisor 3</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="supervisor">Status:</label>
-                                                    <select id="supervisor" class="form-control">
-                                                        <option value="" selected disabled>Status</option>
-                                                        <option value="supervisor2" selected>Incomming</option>
-                                                        <option value="supervisor1">Started</option>
-                                                        <option value="supervisor2">Done</option>
+													<div class="col-md-4 form-group">
+														<label for="course">Course:</label> <select id="course"
+															class="form-control">
+															<option value="" selected disabled>Select Course</option>
+															<option value="${groupObject.course}" selected>${groupObject.course}</option>
+															<option value="course2">Course 2</option>
+															<option value="course3">Course 3</option>
+														</select>
+													</div>
+													<div class="col-md-4 form-group">
+														<label for="end-date">End Date:</label> <input type="date"
+															id="end-date" class="form-control" value="${groupObject.endDate}">
+													</div>
 
+													<div class="col-md-4 form-group">
+														<label for="supervisor">Supervisor:</label> <select
+															id="supervisor" class="form-control">
+															<option value="" selected disabled>Select
+																Supervisor</option>
+															<option value="${groupObject.supervisor}" selected>${groupObject.supervisor}
+																</option>
+															<c:forEach var="supervisor" items="${supervisorList}">
+																<option value="${supervisor.id}">${supervisor.name}</option>
+															</c:forEach>
+														</select>
+													</div>
+													<div class="col-md-4 form-group">
+														<label for="status">Status:</label> <select id="status"
+															class="form-control">
+															<option value="" disabled>Status</option>
+															<option value="1"
+																${groupObject.status == 1 ? 'selected' : ''}>Incoming</option>
+															<option value="2"
+																${groupObject.status == 2 ? 'selected' : ''}>Started</option>
+															<option value="3"
+																${groupObject.status == 3 ? 'selected' : ''}>Done</option>
+														</select>
+													</div>
 
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4 form-group">
-                                                    <label for="supervisor"></label>
-                                                    <div class="row">
-                                                        <div class="col-3">
-                                                            <input type="button" class="btn-delete" value="Delete">
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <input type="button" class="btn-update" value="Update">
-                                                        </div>
-                                                        <div class="col-6"></div>
-                                                    </div>
-                                                </div>
+													<div class="col-md-4 form-group">
+														<label for="supervisor"></label>
+														<div class="row">
+															<div class="col-3">
+																<input type="button" class="btn-delete" value="Delete">
+															</div>
+															<div class="col-3">
+																<input type="button" class="btn-update" value="Update">
+															</div>
+															<div class="col-6"></div>
+														</div>
+													</div>
 
-                                            </div>
+												</div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+											</div>
+										</div>
+									</div>
+								</form:form>
+							</div>
+						</div>
                     </div>
                     <div class="divider" style="height: 20px;"></div>
                     <div class="d-flex justify-content-end">
@@ -222,6 +232,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="full-floating-block">
+                                <form:form action="yourActionURL" method="POST">
                                 <div class="wrapper">
                                     <div class="col">
                                         <div class="divider" style="height: 20px;"></div>
@@ -235,76 +246,46 @@
                                                         <th scope="col">Password</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr data-link="link_to_redirect">
-                                                        <td class="align-middle">
-                                                            <small><a href="#"
-                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Tom
-                                                                    Bui</a></small>
-                                                        </td>
-                                                        <td class="align-middle"><small>10</small></td>
-                                                        <td class="align-middle"><small>Username</small></td>
-                                                        <td class="align-middle">
-                                                            <div class="input-group" style="align-items: center;">
-                                                                <input type="password"
-                                                                    class="form-control password-field"
-                                                                    style="height: 30px; margin-right: 5px;"
-                                                                    aria-label="Password" disabled value="default">
-                                                                <div class="input-group-append">
-                                                                    <button class="btn toggle-password"
-                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
-                                                                        type="button">
-                                                                        <i class="far fa-eye"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="input-group-append">
-                                                                    <button class="btn-danger delete-btn"
-                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
-                                                                        type="button">
-                                                                        <i class="far fa-trash-alt"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr data-link="link_to_redirect">
-                                                        <td class="align-middle">
-                                                            <small><a href="#"
-                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Nicky
-                                                                    Tran</a></small>
-                                                        </td>
-                                                        <td class="align-middle"><small>10</small></td>
-                                                        <td class="align-middle"><small>Username</small></td>
-                                                        <td class="align-middle">
-                                                            <div class="input-group" style="align-items: center;">
-                                                                <input type="password"
-                                                                    class="form-control password-field"
-                                                                    style="height: 30px; margin-right: 5px;"
-                                                                    aria-label="Password" disabled value="default">
-                                                                <div class="input-group-append">
-                                                                    <button class="btn toggle-password"
-                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
-                                                                        type="button">
-                                                                        <i class="far fa-eye"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="input-group-append">
-                                                                    <button class="btn-danger delete-btn"
-                                                                        style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
-                                                                        type="button">
-                                                                        <i class="far fa-trash-alt"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+													<tbody>
+														<c:forEach var="student" items="${studentList}">
+															<tr data-link="link_to_redirect">
+																<td class="align-middle"><small><a href="#"
+																		style="text-decoration: none; color: rgb(0, 191, 255)">
+																			${student.fullname} </a></small></td>
+																<td class="align-middle"><small>${student.age}</small></td>
+																<td class="align-middle"><small>${student.username}</small></td>
+																<td class="align-middle">
+																	<div class="input-group" style="align-items: center;">
+																		<input type="password"
+																			class="form-control password-field"
+																			style="height: 30px; margin-right: 5px;"
+																			aria-label="Password" disabled
+																			value="${student.password}">
+																		<div class="input-group-append">
+																			<button class="btn toggle-password"
+																				style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
+																				type="button">
+																				<i class="far fa-eye"></i>
+																			</button>
+																		</div>
+																		<div class="input-group-append">
+																			<button class="btn-danger delete-btn"
+																				style="height: 30px; width: 30px; display: flex; align-items: center; justify-content: center;"
+																				type="button">
+																				<i class="far fa-trash-alt"></i>
+																			</button>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+														</c:forEach>		
+													</tbody>
+												</table>
 
                                         </div>
                                     </div>
                                 </div>
+                                </form:form>
                             </div>
                         </div>
                         <div class="divider" style="height: 50px;"></div>
@@ -313,6 +294,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="full-floating-block">
+                             <form:form action="yourActionURL" method="POST">
                                 <div class="wrapper">
                                     <div class="row selected_menu">
                                         <div class="divider" style="height: 20px;"></div>
@@ -326,63 +308,44 @@
                                                         <th scope="col">Status</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr data-link="link_to_redirect">
-                                                        <td class="align-middle">
-                                                            <small><a href="#"
-                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Lesson
-                                                                    1</a></small>
-                                                        </td>
-                                                        <td class="align-middle">
-                                                            <input type="date" value="2023-12-12">
-                                                        </td>
-                                                        <td class="align-middle"><small>John Doe</small></td>
-                                                        <td class="align-middle">
-                                                            <div class="form-group">
-                                                                <select class="form-control-sm" id="status1"
-                                                                    onchange="updateBackgroundColor('status1')">
-                                                                    <option value="open"
-                                                                        style="background-color: rgb(84, 190, 84); color: white;">
-                                                                        Open</option>
-                                                                    <option value="closed"
-                                                                        style="background-color: rgb(193, 85, 85); color: white;">
-                                                                        Closed</option>
-                                                                </select>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+													<tbody>
+														<c:forEach var="lesson" items="${lessonList}"
+															varStatus="loop">
+															<tr data-link="link_to_redirect">
+																<td class="align-middle"><small><a href="#"
+																		style="text-decoration: none; color: rgb(0, 191, 255)">${lesson.detail}</a></small>
+																</td>
+																<td class="align-middle"><input type="date"
+																	value="2023-12-12"></td>
+																<td class="align-middle"><select id="main-teacher"
+																	class="form-control">
+																		<option value="" disabled>Select Main Teacher</option>
+																		<option value="${groupObject.teacher}" selected>${groupObject.teacher}</option>
+																		<c:forEach var="teacher" items="${teacherList}">
+																			<option value="${teacher.id}">${teacher.name}</option>
+																		</c:forEach>
+																</select></td>
 
-                                                    <tr data-link="link_to_redirect">
-                                                        <td class="align-middle">
-                                                            <small><a href="#"
-                                                                    style="text-decoration: none; color: rgb(0, 191, 255)">Lesson
-                                                                    2</a></small>
-                                                        </td>
-                                                        <td class="align-middle">
-                                                            <input type="date" value="2023-12-12">
-                                                        </td>
-                                                        <td class="align-middle"><small>Jane Smith</small></td>
-                                                        <td class="align-middle">
-                                                            <div class="form-group">
-                                                                <select class="form-control-sm" id="2"
-                                                                    onchange="updateBackgroundColor('status2')">
-                                                                    <option value="open"
-                                                                        style="background-color: rgb(84, 190, 84); color: white;">
-                                                                        Open</option>
-                                                                    <option value="closed"
-                                                                        style="background-color: rgb(193, 85, 85); color: white;">
-                                                                        Closed</option>
-                                                                </select>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-
+																<td class="align-middle">
+																	<div class="form-group">
+																		<select class="form-control-sm"
+																			id="status${loop.index}"
+																			onchange="updateBackgroundColor('status${loop.index}')">
+																			<option value="open"
+																				style="background-color: rgb(84, 190, 84); color: white;">Open</option>
+																			<option value="closed"
+																				style="background-color: rgb(193, 85, 85); color: white;">Closed</option>
+																		</select>
+																	</div>
+																</td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
                                         </div>
                                     </div>
                                 </div>
+                                </form:form>
                             </div>
                         </div>
                     </div>

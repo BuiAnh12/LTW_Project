@@ -24,4 +24,17 @@ public class User {
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
+    
+    @Override
+    public String toString() {
+        return "User(" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ')';
+    }
+
 }
+
+

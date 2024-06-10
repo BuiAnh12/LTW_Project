@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,68 +36,7 @@
                     <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
                     <button class="btn-sm btn-success" onclick="openModal()">Add Group</button>
                 </div>
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
-                        <div class="divider" style="height: 20px;"></div>
-                        <h2>Add student</h2>
-                        <div class="modal-main-content">
-                            <div class="col">
-                                <div class="row form-container">
-                                    <div class="col-md-12 form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <label for="start-date">Title:</label>
-                                        <input type="text" id="title" class="form-control" value="NVH_GD65_MON_OFF">
-                                    </div>
-
-                                    <div class="col-md-12 form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <label for="start-date">Note:</label>
-                                        <input type="text" id="note" class="form-control" value="2:00 - 3:30">
-                                    </div>
-                                    <div class="col-md-12 form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <label for="start-date">Start Date:</label>
-                                        <input type="date" id="start-date" class="form-control" value="2023-12-12">
-                                    </div>
-                                    <div class="col-md-12 form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <label for="main-teacher">Main Teacher:</label>
-                                        <select id="main-teacher" class="form-control">
-                                            <option value="" selected disabled>Select Main Teacher</option>
-                                            <option value="teacher1" selected>Teacher 1</option>
-                                            <option value="teacher2">Teacher 2</option>
-                                            <option value="teacher3">Teacher 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12 form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <label for="course">Course:</label>
-                                        <select id="course" class="form-control">
-                                            <option value="" selected disabled>Select Course</option>
-                                            <option value="course1" selected>Course 1</option>
-                                            <option value="course2">Course 2</option>
-                                            <option value="course3">Course 3</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12 form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <label for="end-date">End Date:</label>
-                                        <input type="date" id="end-date" class="form-control" value="2023-12-12">
-                                    </div>
-
-                                    <div class="col-md-12 form-group" style="padding-top: 10px; padding-bottom: 10px;">
-                                        <label for="supervisor">Supervisor:</label>
-                                        <select id="supervisor" class="form-control">
-                                            <option value="" selected disabled>Select Supervisor</option>
-                                            <option value="supervisor1" selected>Supervisor 1</option>
-                                            <option value="supervisor2">Supervisor 2</option>
-                                            <option value="supervisor3">Supervisor 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="divider" style="height: 10px;"></div>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-primary" onclick="submitSelection()">Submit</button>
-                        </div>
-                    </div>
-                </div>
+                <%@include file="/WEB-INF/views/group/addGroupModal.jsp" %>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -129,7 +69,7 @@
 
                     </div>
                 </div>
-
+                <form action="#" method="POST">
                 <!-- table content -->
                 <div class="row my-2 ">
                     <!-- <h3 class="fs-4 mb-3">Schedue</h3> -->
@@ -160,27 +100,33 @@
                                             aria-label="Username" aria-describedby="basic-addon1"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+								<tbody>
+									<c:forEach items="${groupList}" var="group">
+										<tr>
+											<td><a href="${pageContext.servletContext.contextPath}/subpage/group-detail?groupId=${group.id}"><small class="small-text">${group.title}</small></a></td>
+											<td><small class="small-text">${group.numOfStudent}</small></td>
+											<td><small class="small-text">${group.teacher}</small></td>
+											<td><small class="small-text">${group.supervisor}</small></td>
+											<td><small class="small-text">${group.course}</small></td>
+											<td><small class="btn-sm btn-primary"
+												aria-disabled="true"> <c:choose>
+														<c:when test="${group.format == 'offline'}">Offline</c:when>
+														<c:otherwise>Online</c:otherwise>
+													</c:choose>
+											</small></td>
+										</tr>
+									</c:forEach>
 
-                                    <td><small class="small-text">NVH_GD65_MON_OFF 3:00 PM - 4:30 PMPreferred Language:
-                                            ENG</small></td>
-                                    <td><small class="small-text">4</small></td>
-                                    <td><small class="small-text">Tom</small></td>
-                                    <td><small class="small-text">Nicky</small></td>
-                                    <td><small class="small-text">Game Development</small></td>
-                                    <td><small class="btn-sm btn-primary" aria-disabled="true">Offline</small></td>
-                                </tr>
-                            </tbody>
-                        </table>
+								</tbody>
+							</table>
                     </div>
                 </div>
+                </form>
             </div>
 
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-    </div>
+
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
@@ -189,23 +135,23 @@
             el.classList.toggle("toggled");
         };
     </script>
-    <script>
-        function openModal() {
-            document.getElementById("myModal").style.display = "block";
-        }
+	<script>
+		function openModal() {
+			document.getElementById("myModal").style.display = "block";
+		}
 
-        function closeModal() {
-            document.getElementById("myModal").style.display = "none";
-        }
+		function closeModal() {
+			document.getElementById("myModal").style.display = "none";
+		}
 
-        window.onclick = function (event) {
-            if (event.target == document.getElementById("myModal")) {
-                closeModal();
-            }
-        }
-    </script>
+		window.onclick = function(event) {
+			if (event.target == document.getElementById("myModal")) {
+				closeModal();
+			}
+		}
+	</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");

@@ -9,9 +9,5 @@ import lombok.Data;
 @Controller
 @Data
 public class GroupController {
-	@RequestMapping(value = "/group", method = RequestMethod.GET)
-	   public ModelAndView group() {
-	      ModelAndView mav = new ModelAndView("group/group");
-	      return mav;
-	   }
+	
 }

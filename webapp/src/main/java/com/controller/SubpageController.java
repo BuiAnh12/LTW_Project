@@ -47,4 +47,22 @@ public class SubpageController {
 		return null;	
 	}
 	
+	@RequestMapping(value = "/group-detail", method = RequestMethod.GET)
+	public ModelAndView getDetailGroup(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		final String redirectedUrl = "/category/group";	
+        try {
+        	ModelAndView modelAndView = subpageService.getDetailGroup(request);
+			return modelAndView;
+		} catch (NullPointerException ignored) {
+            response.sendRedirect(redirectedUrl);
+        } catch (NoSuchElementException ignored) {
+            request.getSession().setAttribute("errorCode", "error_entity_01");
+            response.sendRedirect(redirectedUrl);
+        } catch (Exception ignored) {
+            request.getSession().setAttribute("errorCode", "error_systemApplication_01");
+            response.sendRedirect(redirectedUrl);
+        }
+		return null;	
+	}
+	
 }

@@ -26,4 +26,13 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private List<Account> accounts ;
+    
+    @Override
+    public String toString() {
+        return "Role(" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ')';
+    }
 }
