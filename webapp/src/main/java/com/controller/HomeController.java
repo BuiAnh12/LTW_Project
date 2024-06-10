@@ -1,8 +1,11 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -11,10 +14,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.entity.Group;
+import com.model.DashboardModel;
+import com.service.CategoryService;
+import com.service.DashboardService;
+import com.service.ScheduleService;
+import com.service.StudentService;
+
 import lombok.Data;
 @Data
 @Controller
 public class HomeController {
+	@Autowired
+    private StudentService studentService;
+	
+	@Autowired
+    private ScheduleService scheduleService;
+	
+	@Autowired
+	private CategoryService categoryService;
+	
+	@Autowired
+	private DashboardService dashboardService;
 	
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	   public ModelAndView homePage() {
@@ -29,9 +50,15 @@ public class HomeController {
 	   }
 	  
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-		public ModelAndView dashboardPage() {
+			public ModelAndView dashboardPage() {
+			DashboardModel model = dashboardService.getModel();
+			List<Group> recentGroup = dashboardService.getGroup();
+			List<Integer> numberOfstudent = dashboardService.getNoStudent(recentGroup);
 		    ModelAndView mav = new ModelAndView("dashboard/dashboard");
-		      return mav;
+		    mav.addObject("infoModel",model);
+		    mav.addObject("recentGroup", recentGroup);
+		    mav.addObject("student_no", numberOfstudent);
+		    return mav;
 		   }
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView indexPage() {

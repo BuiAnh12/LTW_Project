@@ -15,8 +15,11 @@ import com.dto.AddCourseDto;
 import com.dto.LessonDto;
 import com.repository.AccountRepository;
 import com.repository.CourseRepository;
+import com.repository.GroupRepo;
 import com.repository.LessonRepository;
 import com.repository.RoleRepository;
+import com.repository.RegistrationRepository;
+import com.repository.StudentRepo;
 import com.repository.UserRepo;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +32,14 @@ import com.dto.ResCourseDetails;
 import com.dto.accountDTO;
 import com.dto.userDetailDTO;
 
+import com.entity.Group;
+import com.entity.Student;
+import com.dto.ResCourseDetails;
+import com.dto.ResGroupDetailDto;
+import com.dto.ResGroupDto;
+import com.dto.courseScheduleDTO;
+import com.dto.studentRegistrationDto;
+import com.entity.Registration;
 @Service
 @RequiredArgsConstructor
 public class SubpageService {
@@ -39,11 +50,18 @@ public class SubpageService {
 	@Autowired
 	private final LessonRepository lessonRepository;
 	@Autowired
-	private final UserRepo userRepo;
-	@Autowired
 	private final AccountRepository accountRepository;
 	@Autowired
 	private final RoleRepository roleRepository;
+	private final GroupRepo groupRepo;
+	@Autowired
+	private final UserRepo userRepo;
+	@Autowired
+	private final RegistrationRepository registrationRepository;
+	@Autowired
+	private final StudentRepo studentRepo;
+	@Autowired
+	private final GroupService groupService;
 	
 	public ModelAndView getAddCoursePage(HttpServletRequest request, Model model) {
 		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "/course/addCourse/addCourse");
@@ -51,6 +69,10 @@ public class SubpageService {
 		if(courseObject != null)
 			modelAndView.addObject(courseObject);
 		return modelAndView;
+	}
+	
+	public void addStudentToCourse(Long studentId, Long groupId) {
+		registrationRepository.addStudentInGroup(groupId, studentId);
 	}
 	 
 	public ModelAndView getDetailsPage(HttpServletRequest request) {
@@ -146,5 +168,41 @@ public class SubpageService {
 			throw new RuntimeException("Error retrieving User details", e);
 		}
 		return modelAndView;
+	public ModelAndView getDetailGroup(HttpServletRequest request) {
+		
+		final String groupIdStr = request.getParameter("groupId");
+		Integer groupId = Integer.parseInt(groupIdStr);
+		Group group = groupRepo.findOne(groupId);		
+	    ModelAndView modelAndView = new ModelAndView("/group/GroupDetail/groupDetail");
+    	User teacher = userRepo.findOne(group.getMainTeacher().getId());
+    	User supervisor = userRepo.findOne(group.getSupervisor().getId());
+    	List<User> teacherList = userRepo.findAllTeacher();
+    	List<User> supervisorList = userRepo.findAllSupervisor();
+    	List<Course> courseList = courseRepository.findAll();
+    	Course course = courseRepository.findOne(group.getCourse().getCourseId());
+    	List<studentRegistrationDto> studenList = registrationRepository.findAllByGroupId(groupId);
+//    	List<LessonDto> lessonList = lessonRepository.findAllLessonByCourseId(course.getCourseId());
+    	List<Student> studentForAdding = studentRepo.findAll();
+    	List<courseScheduleDTO> csList = groupService.getCSList(groupId);
+    	ResGroupDetailDto groupDto = ResGroupDetailDto.builder()
+        		.title(group.getTitle())
+        		.teacher(teacher.getName())
+        		.supervisor(supervisor.getName())
+        		.course(course.getCourseName())
+        		.startDate(group.getStartDate())
+        		.endDate(group.getEndDate())
+        		.status(group.getStatus())
+        		.note(group.getGroupDetail())
+        		.build();
+    	modelAndView.addObject("groupId",groupId);
+    	modelAndView.addObject("students",studentForAdding);
+    	modelAndView.addObject("lessonList",csList);
+    	modelAndView.addObject("groupObject",groupDto);
+    	modelAndView.addObject("studentList", studenList);
+    	modelAndView.addObject("teacherList",teacherList);
+    	modelAndView.addObject("supervisorList",supervisorList);
+    	modelAndView.addObject("courseList", courseList);
+    	
+	    return modelAndView;
 	}
 }

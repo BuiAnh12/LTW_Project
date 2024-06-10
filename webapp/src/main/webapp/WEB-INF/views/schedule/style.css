@@ -120,4 +120,7 @@
   background-color: #007bff;
   color: white;
 }
+a {
+  text-decoration: none;
+}
 }

@@ -26,5 +26,13 @@ public interface UserRepo extends JpaRepository<User, Long> {
 	
 	@Query(value = "SELECT account_id FROM user WHERE id = :userId", nativeQuery = true)
     Long findAccountIdByUserId(@Param("userId") Long userId);
+    @Query("SELECT u FROM User u WHERE u.account.id = :accountId")
+    User findOneByUserAccountId(@Param("accountId") Long accountId);
+    
+    @Query("SELECT DISTINCT u FROM User u INNER JOIN u.account a INNER JOIN a.roles r WHERE r.code = 'ADMIN'")
+    List<User> findAllSupervisor();
+    
+    @Query("SELECT u from User u WHERE u.id = ?1")
+	User findById(Long teacherId);
 }
 

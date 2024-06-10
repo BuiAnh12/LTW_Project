@@ -27,4 +27,16 @@ public class User {
     private Account account;
     
     private Boolean status;
+    @Override
+    public String toString() {
+        return "User(" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ')';
+    }
+
 }
+
+

@@ -36,4 +36,15 @@ public class Account {
     
     @Column(name = "status")
     private Integer status;
+    
+    @Override
+    public String toString() {
+        return "Account(" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", status=" + status +
+                ')';
+    }
 }

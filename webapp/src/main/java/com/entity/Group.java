@@ -41,12 +41,16 @@ public class Group {
     @ManyToOne
     @JoinColumn(name = "supervisor_id")
     private User supervisor;
-   
+    
+    @Column(name = "format", nullable = false, columnDefinition = "BIT DEFAULT 1")
     private Boolean format;
     
     @Column(name = "status", nullable = false, columnDefinition = "BIT DEFAULT 1")
-    private boolean status;
+    private Integer status;
     
     @Column(name = "title")
     private String title; 
+    
+    @Column(name = "group_detail")
+    private String groupDetail;
 }
