@@ -19,7 +19,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.config.StaticUtilMethods;
+
+import com.dto.AddGroupDto;
+
 import com.dto.showMainViewUserDTO;
+
 import com.dto.ResGroupDto;
 import com.entity.Course;
 import com.entity.Group;
@@ -125,8 +129,7 @@ public class CategoryService {
         	String formatDescription = group.getFormat() ? "online" : "offline";
         	User teacher = userRepo.findOne(group.getMainTeacher().getId());
         	User supervisor = userRepo.findOne(group.getSupervisor().getId());
-        	Course course = courseRepository.findOne(group.getCourse().getCourseId());
-        	
+        	Course course = courseRepository.findOne(group.getCourse().getCourseId());     	
         	Long numOfStudent = registrationRepository.countByGroupId(group.getId());
         	ResGroupDto groupDto = ResGroupDto.builder()
         			.id(group.getId())

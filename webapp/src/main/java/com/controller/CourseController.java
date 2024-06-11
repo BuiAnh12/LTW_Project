@@ -30,10 +30,6 @@ public class CourseController {
 	@Autowired
 	private final CourseService courseService;
 	
-//	@Autowired
-//	private final Validator hibernateValidator;
-	
-	
 	@RequestMapping(value = "/manager/add-course", method = RequestMethod.POST)
     public String addCourse(
         @ModelAttribute("courseObject") AddCourseDto courseObject,
@@ -42,12 +38,6 @@ public class CourseController {
     ) {
 		final String redirectedUrl = "/category/course";
 		System.out.println("THIS SHIT RUNNING");
-//        Set<ConstraintViolation<AddCourseDto>> violations = hibernateValidator.validate(courseObject);
-//        if (!violations.isEmpty()) {
-//            redirectAttributes.addFlashAttribute("errorCode", violations.iterator().next().getMessage());
-//            return "redirect:" + standingUrl;
-//        }
-
         try {
             courseService.addCourse(courseObject);
             redirectAttributes.addFlashAttribute("succeedCode", "succeed_add_01");

@@ -15,7 +15,6 @@ import com.entity.Registration;
 @Repository
 public interface RegistrationRepository extends JpaRepository<Registration, Integer>{
     Long countByGroupId(Integer groupId);
-
     @Query("SELECT new com.dto.studentRegistrationDto(r.student.id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname), s.age, s.login, s.password) " +
     	       "FROM Registration r JOIN r.student s WHERE r.group.id = :groupId AND s.id = r.student.id")
     	List<studentRegistrationDto> findAllByGroupId(@Param("groupId") Integer groupId);

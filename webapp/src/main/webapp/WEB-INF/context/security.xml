@@ -8,9 +8,8 @@
             http://www.springframework.org/schema/security/spring-security-3.2.xsd">
             
     <http auto-config="false" use-expressions="true" disable-url-rewriting="true">
-    
-    	<intercept-url pattern="/dashboard" access="hasAnyRole('ADMIN')" />
-    	
+    	<intercept-url pattern="/dang-nhap" access="permitAll" /> 
+    	<intercept-url pattern="/**" access="isAuthenticated()"></intercept-url>
     	<access-denied-handler error-page="/accessDenied" />
         <form-login  login-page="/dang-nhap"
                      username-parameter="j_username"

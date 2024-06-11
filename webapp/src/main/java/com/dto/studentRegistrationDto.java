@@ -15,4 +15,5 @@ public class studentRegistrationDto {
 	Integer age;
 	String username;
 	String password;
+	Long id;
 }
