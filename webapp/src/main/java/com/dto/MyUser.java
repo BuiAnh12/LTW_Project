@@ -1,9 +1,13 @@
 package com.dto;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+
+import com.entity.Role;
+
 import lombok.*;
 
 @Getter
@@ -16,4 +20,6 @@ public class MyUser extends User{
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
 	private String fullName;
+	//1 admin 2 teacher
+	private List<Role> preveledge;
 }
