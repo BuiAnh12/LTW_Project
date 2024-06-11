@@ -63,7 +63,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">TeacherSchedule</h2>
+                    <h2 class="fs-2 m-0">Teacher's schedule</h2>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
@@ -87,6 +87,7 @@
                     </ul>
                 </div>
             </nav>
+            <div class="divider" style="margin: 0;padding: 0"></div>
             <div class="container">
 					
 
@@ -94,7 +95,7 @@
                     <div class="row my-2 "> 
                         <!-- <h3 class="fs-4 mb-3">Schedue</h3> --> 
                         <div class="col" id="scheduleTable">
-                            <table class="table bg-white rounded shadow-sm  table-hover">
+                            <table class="table-custom bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
                                       
@@ -194,7 +195,8 @@
                     </div>
                     
                 </div>
-                
+                <div class="footer" style="m-0">
+				<%@include file="/WEB-INF/views/footer.jsp"%></div>
             </div>
             
         </div>

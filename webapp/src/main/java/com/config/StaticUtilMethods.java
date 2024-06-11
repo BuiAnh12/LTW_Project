@@ -49,7 +49,7 @@ public class StaticUtilMethods {
     
     public Pageable createPageable(HttpServletRequest request) {
         int page = 0;
-        int size = 7;
+        int size = 5;
 
         if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
             try {

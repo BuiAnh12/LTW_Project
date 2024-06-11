@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-DI/U+B20M5d4fD2UG+P8BGO35nqYjT9tlxG6t2vIY2CH6azYH2i4MIZhf4oAVvrj" crossorigin="anonymous">
-    <style><%@include file="/WEB-INF/views/course/style.css"%></style>
+    <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
     <base href="${pageContext.servletContext.contextPath}/">
     <title>Courses</title>
 </head>
@@ -32,7 +32,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">TeacherCourses</h2>
+                    <h2 class="fs-2 m-0">Teacher's courses</h2>
                 </div>
                 
                <%--  <div>
@@ -61,6 +61,8 @@
                     </ul>
                 </div>
             </nav>
+            <div class="divider" style="margin: 0;padding: 0"></div>
+            <div class="divider" style="margin: 0;padding: 0"></div>
             <div class="container">
                 <!-- button area -->
                 
@@ -71,7 +73,7 @@
                         <div class="row py-2">
                         </div>
 						<form action="/manager/course-list-active-btn" method="POST" id="content_table">
-							<table class="table">
+							<table class="table-custom">
 								<thead>
 									<tr>
 										<th scope="col">Name Course</th>
@@ -151,7 +153,8 @@
 					</div>
                 </div>
             </div>
-            
+            <div class="footer" style="m-0">
+				<%@include file="/WEB-INF/views/footer.jsp"%></div>
         </div>
     </div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style><%@include file="/WEB-INF/views/course/style.css"%></style>
+    <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
     <title>User</title>
 </head>
 
@@ -60,6 +60,7 @@
                     </ul>
                 </div>
             </nav>
+            <div class="divider" style="margin: 0;padding: 0"></div>
             <div class="container">
                 <!-- button area -->
               
@@ -71,7 +72,7 @@
                         <div class="row py-2">
                         </div>
 					<div class="col" id ="userTable">
-                        <table class="table bg-white rounded shadow-sm  table-hover">
+                        <table class="table-custom bg-white rounded shadow-sm  table-hover">
                             <thead>
                                 <tr>
                                    
@@ -185,7 +186,8 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="footer" style="m-0">
+				<%@include file="/WEB-INF/views/footer.jsp"%></div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style><%@include file="/WEB-INF/views/employees/style.css"%></style>
+    <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
     <base href="${pageContext.servletContext.contextPath}/">
     <title>Employees</title>
 </head>
@@ -52,6 +52,7 @@
                     </ul>
                 </div>
             </nav>
+            <div class="divider" style="margin: 0;padding: 0"></div>
             <div class="container">
                 <!-- button area -->
               
@@ -79,7 +80,7 @@
                             </div>
                         </div>
 
-                        <table class="table bg-white rounded shadow-sm  table-hover">
+                        <table class="table-custom">
                             <thead>
                                 <tr>
                                    
@@ -115,7 +116,8 @@
                 </div>
             </div>
             
-            
+            <div class="footer" style="m-0">
+				<%@include file="/WEB-INF/views/footer.jsp"%></div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->

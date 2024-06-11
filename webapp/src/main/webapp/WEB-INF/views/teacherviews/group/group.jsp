@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <style><%@include file="/WEB-INF/views/group/style.css"%></style>
+  <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-DI/U+B20M5d4fD2UG+P8BGO35nqYjT9tlxG6t2vIY2CH6azYH2i4MIZhf4oAVvrj" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -34,7 +34,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">TeacherGroups</h2>
+                    <h2 class="fs-2 m-0">Teacher's groups</h2>
                 </div>
 				<%@include file="/WEB-INF/views/group/addGroupModal.jsp" %>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -61,7 +61,7 @@
                     </ul>
                 </div>
             </nav>
-
+			<div class="divider" style="margin: 0;padding: 0"></div>
             <div class="container">
                 <!-- button area -->
                 <div class="row">
@@ -74,7 +74,7 @@
                 <div class="row my-2 ">
                     <!-- <h3 class="fs-4 mb-3">Schedue</h3> -->
                     <div class="col"  id="groupTable">
-                        <table class="table bg-white rounded shadow-sm  table-hover">
+                        <table class="table-custom bg-white rounded shadow-sm  table-hover">
                             <thead>
                                 <tr>
 
@@ -177,7 +177,8 @@
                 </div>
                 </form>
             </div>
-
+	<div class="footer" style="m-0">
+				<%@include file="/WEB-INF/views/footer.jsp"%></div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
