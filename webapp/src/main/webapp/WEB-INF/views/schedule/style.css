@@ -1,9 +1,55 @@
 :root {
   --main-bg-color: #f4f2f5;
   --main-text-color: #090111;
-  --second-text-color: rgb(192, 192, 192);
-  --second-bg-color: rgb(0, 0, 0);
+  --second-text-color: #77bbe9cb;
+  --second-bg-color: #fefcff;
 }
+.divider {
+        background-color: #757575; /* Đặt màu đen cho thanh */
+        height: 1px; /* Thiết lập độ cao của thanh */
+        margin: 20px 0; /* Thiết lập margin cho thanh */
+        
+    }
+
+.sidebar-custom{
+    background-color: rgb(192, 192, 192);
+    flex-direction: row;
+    font-family: 'Muli', sans-serif;
+    color: var(--black);
+    font-weight: 400;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+    background-color: #EEEEEE;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-custom .text-secondary {
+    color: var(--secondary) ;
+}
+
+.table-custom {
+	width: calc(100% - 2*20px);
+    margin: 20px;
+    background-color: #ffffff;
+    border: 1px;
+    border-radius: 10px; /* Bo tròn góc của border */
+    box-shadow: 5px 0.2rem 10px rgba(0, 0, 0) !important;
+}
+
+.table-custom th,
+.table-custom td {
+    padding: 1rem; /* Điều chỉnh khoảng cách bên trong các ô */
+    text-align: center; /* Căn giữa nội dung */
+}
+
+.table-custom thead {
+    background-color: #DDDDDD; /* Màu xám nhạt cho header */
+}
+
+.table-custom tbody tr:hover {
+    background-color: #f1f1f1; /* Màu nền khi hover */
+}
+
 
 .interact-page-btn a, .index-btn a, a {
 	color: rgb(0, 128, 255);
@@ -31,7 +77,7 @@
 
 #wrapper {
   overflow-x: hidden;
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(255, 255, 255);
 }
 
 #sidebar-wrapper {

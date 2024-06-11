@@ -4,10 +4,16 @@
   --second-text-color: #77bbe9cb;
   --second-bg-color: #fefcff;
 }
+
+
 /* Định dạng cho link */
 .table tbody tr td {
     color: #000000; /* Màu chữ cho link */
     text-decoration: none; /* Loại bỏ gạch chân */
+}
+
+.table-custom{
+	box-shadow: 0 1.125rem 1.25rem rgb(0, 0, 0) !important;
 }
 
 .interact-page-btn a, .index-btn a, a {

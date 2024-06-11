@@ -103,18 +103,11 @@ public class GroupService {
 		        User mainTeacher = userRepo.findOne(Long.parseLong(getGroupDetailToUpdateDTO.getTeacher()));
 		        System.out.println("Main teacher da duoc tim thay: "+mainTeacher.getName());
 		        System.out.println("mainTeacherud:" +mainTeacher.getId());
-		        
-//		        Long supervisorId = userRepo.findIdByName(getGroupDetailToUpdateDTO.getSupervisor());
-//		        User supervisorUser = userRepo.findOne(supervisorId);
 		        User supervisorUser = userRepo.findOne(Long.parseLong(getGroupDetailToUpdateDTO.getSupervisor()));
 		        System.out.println("Main supervisor da duoc tim thay: "+supervisorUser.getName());
 		        
-		        System.out.println("supervisorId:" +supervisorUser.getId());
-		        
-//		        Long courseId = courseRepository.findIdByCourseName(getGroupDetailToUpdateDTO.getCourse());
-//		        Course course = courseRepository.findOne(courseId);  
+		        System.out.println("supervisorId:" +supervisorUser.getId()); 
 		        Course course = courseRepository.findOne(Long.parseLong(getGroupDetailToUpdateDTO.getCourse()));  
-//		        User supervisorUser = userRepo.findOne(Long.parseLong(getGroupDetailToUpdateDTO.getCourse()));
 		        System.out.println("Course da duoc tim thay: "+course.getCourseName());
 		        System.out.println("Cousre :"+course.getCourseName());
 		        
@@ -124,24 +117,6 @@ public class GroupService {
 		        System.out.println("Group id da duoc tim thay la: "+group.getId());
 		        System.out.println("Status dc select:"+getGroupDetailToUpdateDTO.getStatus());
 		        Integer statusInteger=getGroupDetailToUpdateDTO.getStatus();
-//		        Integer statuInteger=getGroupDetailToUpdateDTO.getStatus();
-//		        
-//		        String titleString=getGroupDetailToUpdateDTO.getTitle();
-////		        
-////		        Date enDate=getGroupDetailToUpdateDTO.getEndDate());
-//		        
-//		        java.util.Date staDate = getGroupDetailToUpdateDTO.getStartDate();	
-//		        java.util.Date enDate = getGroupDetailToUpdateDTO.getEndDate();	
-//		        try {
-//		        	  java.sql.Date sqlstDate = new java.sql.Date(staDate.getTime());
-//				        java.sql.Date sqlenDate = new java.sql.Date(enDate.getTime());
-//				} catch (Exception e) {
-//					// TODO: handle exception
-//				}
-//		        String title=getGroupDetailToUpdateDTO.getTitle();
-//		        String note=getGroupDetailToUpdateDTO.getNote();
-//		        groupRepo.updateGroupById(Integer.parseInt(groupId), course, mainTeacher, enDate, enDate, supervisorUser, titleString, statuInteger, title, groupId);
-//		        
 		        group.setTitle(getGroupDetailToUpdateDTO.getTitle());
 		        System.out.println("Da chay xong tittle");
 		        group.setGroupDetail(getGroupDetailToUpdateDTO.getNote());
@@ -158,7 +133,7 @@ public class GroupService {
 		        System.out.println("da chay xong course");
 		        group.setStatus(statusInteger);
 		        System.out.println(group.getCourse());
-				groupRepo.save(group);
+				groupRepo.save(group);								
 				System.out.println(group.getCourse());
 				System.out.println("im here");
 	}

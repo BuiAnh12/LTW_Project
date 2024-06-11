@@ -263,7 +263,6 @@ public class CategoryController {
 			@RequestParam(required = false) String course,
 			@RequestParam(required = false) String format) {
 		Pageable pageable = staticUtilMethods.createPageable(request);
-		List<Role> roleList = securityUtil.getPrincipal().getPreveledge();
 		List<User> teacherList = userRepo.findAllTeacher();
 		List<User> supervisorList = userRepo.findAllSupervisor();
 		List<Course> courseList = courseRepository.findAll();
@@ -278,7 +277,6 @@ public class CategoryController {
 			mav.addObject("totalPages", groupList.getTotalPages());
 			mav.addObject("totalItems", groupList.getTotalElements());
 			mav.addObject("pageSize", groupList.getSize());
-			mav.addObject("roleList", roleList);
 			mav.addObject("courseList",courseList);
 			mav.addObject("teacherList",teacherList);
 			mav.addObject("supervisorList",supervisorList);
