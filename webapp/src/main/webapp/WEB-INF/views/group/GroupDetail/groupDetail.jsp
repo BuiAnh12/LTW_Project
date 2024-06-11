@@ -395,46 +395,6 @@
         form.submit();
     }
 	</script>
-	<script type="text/javascript">
-	    function handleLessonChange(rowIndex) {
-	        // Get the lessonId from the hidden input field
-	        var lessonId = document.getElementById("lessonId" + rowIndex).value;
-	        
-	        // Get the date value from the input field
-	        var date = document.getElementById("date" + rowIndex).value;
-	        
-	        // Get the selected teacherId from the select dropdown
-	        var teacherId = document.getElementById("main-teacher" + rowIndex).value;
-	        
-	        // Get the selected status value from the select dropdown
-	        var status = document.getElementById("status" + rowIndex).value;
-	        
-	        // Log the extracted data (you can perform any processing here)
-	        console.log("Lesson ID:", lessonId);
-	        console.log("Date:", date);
-	        console.log("Teacher ID:", teacherId);
-	        console.log("Status:", status);
-	        
-	        // Example: Send the data to a server-side endpoint using AJAX
-	        // You can replace this with your actual AJAX call
-	        $.ajax({
-	            url: 'group/edit-lesson',
-	            type: 'GET',
-	            data: {
-	                lessonId: lessonId,
-	                date: date,
-	                teacherId: teacherId,
-	                status: status
-	            },
-	            success: function(response) {
-	                // Handle success response
-	            },
-	            error: function(xhr, status, error) {
-	                // Handle error response
-	            }
-	        });
-    }
-</script>
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");

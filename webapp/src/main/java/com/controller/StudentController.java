@@ -25,7 +25,7 @@ public class StudentController {
     private StudentService studentService;
 	
 	
-	@GetMapping("/student/insert")
+	@GetMapping("student/insert")
 	public String getStudentPage(ModelMap model) {
 		StudentDTO student = new StudentDTO();
 
@@ -33,7 +33,7 @@ public class StudentController {
 	    return "student/insert/insertStudent";
 	}
 	
-	@RequestMapping(value = "/student/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "student/insert", method = RequestMethod.POST)
     public String saveStudent(@ModelAttribute("student") StudentDTO student, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             System.out.println("Received error");

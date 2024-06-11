@@ -1,6 +1,8 @@
 package com.service;
 
 import com.dto.*;
+import java.time.LocalDate;
+import java.sql.Date;
 import com.entity.*;
 
 import java.util.ArrayList;
@@ -45,6 +47,8 @@ public class GroupService {
 	private  CourseRepository courseRepository;
 	@Autowired
 	private RegistrationRepository registrationRepository;
+	@Autowired
+	private LessonRepository lessonRepository;
   
   	@Transactional(rollbackOn = {Exception.class})
 	public void addGroup(AddGroupDto groupObject) {
@@ -62,7 +66,18 @@ public class GroupService {
 				.format(true)
 				.status(1)
 				.build();
-		groupRepo.save(group);	
+		groupRepo.save(group);
+		List<Lesson> lessons = lessonRepository.findAllLessonByCourseIdVer2(course.getCourseId());
+		for (Lesson lesson : lessons) {
+			CourseSchedule courseSchedule = CourseSchedule.builder()
+					.occurDate(Date.valueOf(LocalDate.now()))
+					.status(true)
+					.group(group)
+					.lesson(lesson)
+					.teacher(teacher)
+					.build();
+			courseScheduleRepo.save(courseSchedule);
+		}
 	}
 	
 	List<courseScheduleDTO> getCSList(Integer groupId){
@@ -125,7 +140,5 @@ public class GroupService {
 	    } catch (Exception e) {
 	        e.printStackTrace();;
 	    }
-		
 	}
-	
 }

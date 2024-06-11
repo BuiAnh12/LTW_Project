@@ -1,8 +1,6 @@
 package com.entity;
 import javax.persistence.*;
 
-import com.dto.LessonDto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "`Group`")
+@Table(name ="`group`")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

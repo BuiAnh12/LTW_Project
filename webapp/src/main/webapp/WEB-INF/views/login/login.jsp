@@ -21,7 +21,7 @@
 				</c:if>
 				<c:if test="${param.accessDenied != null}">
 					<div class="alert alert-danger">	
-							you Not authorize
+							Chỉ có admin mới được phép truy cập!
 					</div>
 				</c:if>
 				<form action="j_spring_security_check" id="formLogin" method="post">

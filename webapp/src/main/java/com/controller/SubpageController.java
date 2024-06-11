@@ -66,7 +66,7 @@ public class SubpageController {
 		return null;	
 	}
 	/* USER */
-	@RequestMapping(value = "/addUser",method =RequestMethod.GET)
+	@RequestMapping(value = "addUser",method =RequestMethod.GET)
 	public ModelAndView getAddUserPageandView(HttpServletRequest request,Model model) {
 		return subpageService.getAddUserPage(request, model);
 	}

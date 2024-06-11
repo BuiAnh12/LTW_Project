@@ -1,5 +1,4 @@
 <%@page import="com.utils.securityUtil"%>
-<%@ page import = "com.utils.securityUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -46,14 +45,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                            <span class="nav-link dropdown-toggle second-text fw-bold"  id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i> <%=securityUtil.getPrincipal().getFullName()%>
-                            </a>
+                                <i class="fas fa-user me-2"></i><%=securityUtil.getPrincipal().getFullName()%>
+                            </span>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="subpage/userdetail?userid=<%=securityUtil.getPrincipal().getUserId()%>">Profile</a></li>
+                                <li><a class="dropdown-item" href="<c:url value='thoat'/>">Logout</a></li>
                             </ul>
                         </li>
                     </ul>

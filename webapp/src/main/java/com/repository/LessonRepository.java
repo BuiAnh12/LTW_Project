@@ -17,6 +17,9 @@ public interface LessonRepository extends JpaRepository<Lesson, Long> {
 
 	@Query("SELECT new com.dto.LessonDto(l.detail, l.lessonId, l.status) FROM Lesson l WHERE l.course.id = :courseId")
 	List<LessonDto> findAllLessonByCourseId(@Param("courseId") Long courseId);
+	
+	@Query("SELECT l FROM Lesson l WHERE l.course.id = :courseId")
+	List<Lesson> findAllLessonByCourseIdVer2(@Param("courseId") Long courseId);
     
     @Modifying
     @Transactional

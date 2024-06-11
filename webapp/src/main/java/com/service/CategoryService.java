@@ -27,12 +27,14 @@ import com.dto.showMainViewUserDTO;
 import com.dto.ResGroupDto;
 import com.entity.Course;
 import com.entity.Group;
+import com.entity.Role;
 import com.entity.Student;
 import com.entity.User;
 import com.model.StudentTable;
 import lombok.RequiredArgsConstructor;
 import com.repository.CourseRepository;
 import com.repository.UserRepo;
+import com.utils.securityUtil;
 import com.repository.GroupRepo;
 import com.repository.RegistrationRepository;
 import com.repository.StudentRepo;
@@ -123,7 +125,7 @@ public class CategoryService {
         List<User> teacherList = userRepo.findAllTeacher();
         List<User> supervisorList = userRepo.findAllSupervisor();
         List<Course> courseList = courseRepository.findAll();
-        
+        List<Role> roleList = securityUtil.getPrincipal().getPreveledge();
         
         for (Group group : groupList) {
         	String formatDescription = group.getFormat() ? "online" : "offline";
@@ -146,6 +148,7 @@ public class CategoryService {
         modelAndView.addObject("courseList",courseList);
         modelAndView.addObject("teacherList",teacherList);
         modelAndView.addObject("supervisorList",supervisorList);
+        modelAndView.addObject("roleList",roleList);
         
         return modelAndView;
     }

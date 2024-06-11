@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@include file="/WEB-INF/views/header.jsp" %>
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
@@ -20,10 +19,15 @@
     <base href="${pageContext.servletContext.contextPath}/">
     <title>Courses</title>
 </head>
+
 <body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <%@include file="/WEB-INF/views/panel.jsp"%>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <!-- Top nav Content -->
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
@@ -42,7 +46,20 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                       <li class="nav-item dropdown">
+                            <span class="nav-link dropdown-toggle second-text fw-bold"  id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i><%=securityUtil.getPrincipal().getFullName()%>
+                            </span>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="subpage/userdetail?userid=<%=securityUtil.getPrincipal().getUserId()%>">Profile</a></li>
+                                <li><a class="dropdown-item" href="<c:url value='thoat'/>">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </nav>
             <div class="container">
                 <!-- button area -->
@@ -52,7 +69,24 @@
                     <!-- <h3 class="fs-4 mb-3">Schedue</h3> --> 
                     <div class="col">
                         <div class="row py-2">
-						<form action="/manager/course-list-active-btn" method="POST"  id="content_table">
+                            <div class="col-9" style="text-align: left;">
+                                <span>Showing....</span>
+                            </div>
+                            <div class="col-3" style="text-align: right;">
+                                <span>Records on Page</span>
+                                <div class="btn-group">
+                                  <button type="button" disabled class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    20
+                                  </button>
+                                  <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Option 1</a>
+                                    <a class="dropdown-item" href="#">Option 2</a>
+                                    <a class="dropdown-item" href="#">Option 3</a>
+                                  </div>
+                                </div> 
+                            </div>
+                        </div>
+						<form action="/manager/course-list-active-btn" method="POST">
 							<table class="table">
 								<thead>
 									<tr>
@@ -62,14 +96,14 @@
 									</tr>
 									<tr>
 										<th scope="col"><input type="text" class="form-control"
-											placeholder="" aria-label="Username" id = "coursename"
+											placeholder="" aria-label="Username"
 											aria-describedby="basic-addon1"></th>
 										<th scope="col"><input type="text"
 											class="form-control bg-transparent border-0" placeholder=""
 											aria-label="Username" aria-describedby="basic-addon1"
 											disabled></th>
 										<th scope="col"><input type="text" class="form-control"
-											placeholder="" aria-label="Username" id = "status"
+											placeholder="" aria-label="Username"
 											aria-describedby="basic-addon1"></th>
 									</tr>
 								</thead>
@@ -80,71 +114,46 @@
 												href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${course.courseId}">
 													${course.courseName} </a></td>
 											<td>${course.description}</td>
-											<td>
-											  <c:choose>
-											    <c:when test="${course.status}">
-											      Enable
-											    </c:when>
-											    <c:otherwise>
-											      Disable
-											    </c:otherwise>
-											  </c:choose>
-											</td>
+											<td>${course.status}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 
 							<div class="table-footer">
-                    <c:set var="prefixUrl" value="${pageContext.servletContext.contextPath}/category/course?page=" scope="page" />
-						<div class="d-flex justify-content-center align-items-center w-100">
-						    <span class="interact-page-btn">
-						        <c:choose>
-						            <c:when test="${currentPage > 1}">
-						                <a href="${prefixUrl}${currentPage - 1}">
-						                    <i class="fa-solid fa-angle-left"></i>
-						                </a>
-						            </c:when>
-						            <c:otherwise>
-						                <a>
-						                    <i class="fa-solid fa-angle-left"></i>
-						                </a>
-						            </c:otherwise>
-						        </c:choose>
-						    </span>
-						    <div id="pages-content" class="d-flex">
-						        <c:if test="${currentPage > 1}">
-						            <span class="index-btn">
-						                <a href="${prefixUrl}${currentPage - 1}">${currentPage - 1}</a>
-						            </span>
-						        </c:if>
-						        <span class="index-btn">
-						            <a href="${prefixUrl}${currentPage}">${currentPage}</a>
-						        </span>
-						        <c:if test="${currentPage < totalPages}">
-						            <span class="index-btn">
-						                <a href="${prefixUrl}${currentPage + 1}">${currentPage + 1}</a>
-						            </span>
-						        </c:if>
-						    </div>
-						    <span class="interact-page-btn">
-						        <c:choose>
-						            <c:when test="${currentPage < totalPages}">
-						                <a href="${prefixUrl}${currentPage + 1}">
-						                    <i class="fa-solid fa-angle-right"></i>
-						                </a>
-						            </c:when>
-						            <c:otherwise>
-						                <a>
-						                    <i class="fa-solid fa-angle-right"></i>
-						                </a>
-						            </c:otherwise>
-						        </c:choose>
-						    </span>
-						</div>
-					</div>
-				</div>
-						</form>	
+								<c:set var="prefixUrl"
+									value="${pageContext.servletContext.contextPath}/category/course?page="
+									scope="page" />
+								<div
+									class="d-flex justify-content-center align-items-center w-100">
+									<span class="interact-page-btn"> <a
+										href="${prefixUrl}${(currentPage == 1) ? currentPage : (currentPage - 1)}">
+											<i class="fa-solid fa-angle-left"></i>
+									</a>
+									</span>
+									<div id="pages-content" class="d-flex">
+										<c:if test="${currentPage > 1}">
+											<span class="index-btn"> <a
+												href="${prefixUrl}${currentPage - 1}">${currentPage - 1}</a>
+											</span>
+										</c:if>
+										<span class="index-btn"> <a
+											href="${prefixUrl}${currentPage}">${currentPage}</a>
+										</span>
+										<c:if test="${currentPage < totalPages}">
+											<span class="index-btn"> <a
+												href="${prefixUrl}${currentPage + 1}">${currentPage + 1}</a>
+											</span>
+										</c:if>
+									</div>
+									<span class="interact-page-btn"> <a
+										href="${prefixUrl}${(currentPage == totalPages) ? currentPage : (currentPage + 1)}">
+											<i class="fa-solid fa-angle-right"></i>
+									</a>
+									</span>
+								</div>
+							</div>
+						</form>
 
 					</div>
                 </div>
@@ -152,8 +161,6 @@
             
         </div>
     </div>
-    <%@include file="/WEB-INF/views/footer.jsp" %>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 		var el = document.getElementById("wrapper");
 		var toggleButton = document.getElementById("menu-toggle");
@@ -162,34 +169,6 @@
 			el.classList.toggle("toggled");
 		};
 	</script>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript">
-        function search() {
-            $.ajax({
-                url: '${pageContext.servletContext.contextPath}/category/course.htm',
-                type: 'GET',
-                data: {
-                    courseName: $('#coursename').val(),
-                    status: $('#status').val()
-                },
-                success: function(response) {
-                    $('#content_table').html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.log('Error:', error);
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            $('#coursename, #status').keypress(function(event) {
-                if (event.which === 13) { // Enter key pressed
-                    event.preventDefault(); // Prevent the default form submission
-                    search();
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

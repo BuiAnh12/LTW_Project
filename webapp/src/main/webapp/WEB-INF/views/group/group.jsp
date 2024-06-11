@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.utils.securityUtil"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,12 +32,17 @@
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
                     <h2 class="fs-2 m-0">Groups</h2>
                 </div>
-
-                <div>
-                    <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
-                    <button class="btn-sm btn-success" onclick="openModal()">Add Group</button>
-                </div>
-                <%@include file="/WEB-INF/views/group/addGroupModal.jsp" %>
+				<c:forEach var="role" items="${roleList}">
+					<c:if test="${role.code == 'TEACHER'}">
+						<div>
+							<button class="btn-sm" disabled
+								style="color: transparent; border: none;"></button>
+							<button class="btn-sm btn-success" onclick="openModal()">Add
+								Group</button>
+						</div>
+					</c:if>
+				</c:forEach>
+				<%@include file="/WEB-INF/views/group/addGroupModal.jsp" %>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -48,14 +54,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                            <span class="nav-link dropdown-toggle second-text fw-bold"  id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>John Doe
-                            </a>
+                                <i class="fas fa-user me-2"></i><%=securityUtil.getPrincipal().getFullName()%>
+                            </span>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                                <li><a class="dropdown-item" href="subpage/userdetail?userid=<%=securityUtil.getPrincipal().getUserId()%>">Profile</a></li>
+                                <li><a class="dropdown-item" href="<c:url value='thoat'/>">Logout</a></li>
+                                <li><a class="dropdown-item" href="<c:url value='thoat'/>"><%=securityUtil.getPrincipal().getPreveledge() %></a></li>
                             </ul>
                         </li>
                     </ul>

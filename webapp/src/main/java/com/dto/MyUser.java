@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.User;
 import com.entity.Role;
 
 import lombok.*;
-
 @Getter
 @Setter
 
@@ -20,6 +19,6 @@ public class MyUser extends User{
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
 	private String fullName;
-	//1 admin 2 teacher
+	private Long userId;
 	private List<Role> preveledge;
 }
