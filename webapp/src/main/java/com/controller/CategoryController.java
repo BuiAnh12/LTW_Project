@@ -38,14 +38,20 @@ import com.dto.ResGroupDto;
 import com.dto.ScheduleDTO;
 import com.dto.StudentDTO;
 import com.dto.showMainViewUserDTO;
+import com.entity.Course;
 import com.entity.Group;
 import com.entity.Role;
 import com.entity.Student;
+import com.entity.User;
 import com.model.DashboardModel;
 import com.model.SearchForm;
 import com.model.StudentTable;
+import com.repository.CourseRepository;
+import com.repository.StudentRepo;
+import com.repository.UserRepo;
 import com.service.ScheduleService;
 import com.service.StudentService;
+import com.utils.securityUtil;
 
 import javassist.expr.NewArray;
 
@@ -70,6 +76,12 @@ public class CategoryController {
 
 	@Autowired
 	private DashboardService dashboardService;
+	
+	@Autowired
+	private final UserRepo userRepo;
+	
+	@Autowired
+	private final CourseRepository courseRepository;
 
 	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public ModelAndView dashboardPage() {
@@ -252,6 +264,9 @@ public class CategoryController {
 			@RequestParam(required = false) String format) {
 		Pageable pageable = staticUtilMethods.createPageable(request);
 		List<Role> roleList = securityUtil.getPrincipal().getPreveledge();
+		List<User> teacherList = userRepo.findAllTeacher();
+		List<User> supervisorList = userRepo.findAllSupervisor();
+		List<Course> courseList = courseRepository.findAll();
 		Page<ResGroupDto> groupList = null;
 		if (title == null && student == null && teacher == null && supervisor == null && course == null
 				&& format == null) {
@@ -264,6 +279,9 @@ public class CategoryController {
 			mav.addObject("totalItems", groupList.getTotalElements());
 			mav.addObject("pageSize", groupList.getSize());
 			mav.addObject("roleList", roleList);
+			mav.addObject("courseList",courseList);
+			mav.addObject("teacherList",teacherList);
+			mav.addObject("supervisorList",supervisorList);
 			return mav;
 		} else {
 			groupList = categoryService.getGroupListPage(request, model, title, student, teacher, supervisor, course,

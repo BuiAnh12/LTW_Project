@@ -125,13 +125,11 @@ public class CategoryService {
 			String Stitle, String Sstudent, String Steacher,
 			String Ssupervisor, String Scourse, String Sformat,
 			Pageable pageable) {
-		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "group/group");
+		//ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "group/group");
 		Page<ResGroupDto> result = null;
 		List<ResGroupDto> groupDtoList = new ArrayList<>();
 		List<Group> groupList = groupRepo.findAll();
-		List<User> teacherList = userRepo.findAllTeacher();
-		List<User> supervisorList = userRepo.findAllSupervisor();
-		List<Course> courseList = courseRepository.findAll();
+		
 
 		for (Group group : groupList) {
 			if (!isNullOrEmpty(Stitle) && !group.getTitle().toLowerCase().contains(Stitle.toLowerCase())) {
@@ -182,11 +180,7 @@ public class CategoryService {
 			groupDtoList.add(groupDto);
 		}
 
-		// modelAndView.addObject("groupList",groupDtoList);
-		// modelAndView.addObject("courseList",courseList);
-		// modelAndView.addObject("teacherList",teacherList);
-		// modelAndView.addObject("supervisorList",supervisorList);
-		// modelAndView.addObject("roleList",roleList);
+		 //modelAndView.addObject("roleList",roleList);
 
 		// return modelAndView;
 
