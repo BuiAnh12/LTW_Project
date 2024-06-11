@@ -61,7 +61,8 @@
                     <div class="row">
                         <div class="col-12">
 							<div class="full-floating-block">
-								<form:form action="yourActionURL" method="POST">
+								<!-- FORM GROUP DETAIL -->
+								<form:form action="updateGroupdetail?groupId=${groupId}" method="POST" modelAttribute="groupObject">
 									<div class="wrapper">
 										<div class="col">
 											<div class="divider" style="height: 20px;"></div>
@@ -69,13 +70,15 @@
 												<div class="row selected_class">
 													<div class="col-12">
 														<div class="row form-container">
+															<span>GROUP TITLE</span>
 															<div class="col-12 form-group">
 																<input type="text" id="title" class="form-control"
-																	value="${groupObject.title}">
+																name="title" value="${groupObject.title}">
 															</div>
+															<span>GROUP NOTE</span>
 															<div class="col-12 form-group">
 																<input type="text" id="note" class="form-control"
-																	value="${groupObject.note}">
+																name="note"	value="${groupObject.note}">
 															</div>
 														</div>
 													</div>
@@ -85,21 +88,22 @@
 													<div class="col-md-4 form-group">
 														<label for="start-date">Start Date:</label> <input
 															type="date" id="start-date" class="form-control"
+															name="startDate"
 															value="${groupObject.startDate}">
 													</div>
 													<div class="col-md-4 form-group">
 														<label for="main-teacher">Main Teacher:</label> <select
-															id="main-teacher" class="form-control">
+															id="main-teacher" class="form-control" name="teacher" data="${groupObject.teacher}"> 
 															<option value="" disabled>Select Main Teacher</option>
-															<option value="${groupObject.teacher}" selected>${groupObject.teacher}</option>
+															<%-- <option value="${groupObject.teacher}" selected>${groupObject.teacher} </option> --%>
 															<c:forEach var="teacher" items="${teacherList}">
-																<option value="${teacher.id}">${teacher.name}</option>
+																<option value="${teacher.name}" ${teacher.name == groupObject.course ? 'selected' : ''}>${teacher.name}</option>
 															</c:forEach>
 														</select>
 													</div>
 
 													<div class="col-md-4 form-group">
-														<label for="course">Course:</label> <select id="course"
+														<label for="course">Course:</label> <select id="course" name=course
 															class="form-control">
 															<option value="" selected disabled>Select Course</option>
 															<option value="${groupObject.course}" selected>${groupObject.course}</option>
@@ -108,13 +112,13 @@
 														</select>
 													</div>
 													<div class="col-md-4 form-group">
-														<label for="end-date">End Date:</label> <input type="date"
+														<label for="end-date">End Date:</label> <input type="date" name="endDate"
 															id="end-date" class="form-control" value="${groupObject.endDate}">
 													</div>
 
 													<div class="col-md-4 form-group">
 														<label for="supervisor">Supervisor:</label> <select
-															id="supervisor" class="form-control">
+															id="supervisor" class="form-control" name="supervisor"> 
 															<option value="" selected disabled>Select
 																Supervisor</option>
 															<option value="${groupObject.supervisor}" selected>${groupObject.supervisor}
@@ -125,7 +129,7 @@
 														</select>
 													</div>
 													<div class="col-md-4 form-group">
-														<label for="status">Status:</label> <select id="status"
+														<label for="status">Status:</label> <select id="status" name="status"
 															class="form-control">
 															<option value="" disabled>Status</option>
 															<option value="1"
@@ -141,10 +145,11 @@
 														<label for="supervisor"></label>
 														<div class="row">
 															<div class="col-3">
-																<input type="button" class="btn-delete" value="Delete">
+																<button type="button" onclick="handleDelete('${groupId}')" >Delete</button>
+																<%-- <input type="button" class="btn-delete" onclick="handleDelete('${groupId}') value="Delete"> --%>
 															</div>
 															<div class="col-3">
-																<input type="button" class="btn-update" value="Update">
+																<input type="submit" class="btn-update" value="Update">
 															</div>
 															<div class="col-6"></div>
 														</div>
@@ -156,6 +161,8 @@
 										</div>
 									</div>
 								</form:form>
+								
+						<!-- 		END FORM GROUP DETAIL -->
 							</div>
 						</div>
                     </div>
@@ -503,6 +510,35 @@
 	        }
 	    }
 	</script>
+	
+    <script>
+    function handleDelete(groupId) {
+        var confirmation = confirm("Are you sure you want to delete this Group?");
+        if (confirmation) {
+            // Create a POST request
+            var url = "deleteGroup";
+            var params = "groupId=" + groupId; // Use the userId parameter
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Redirect to the user page after successful deletion
+                        window.location.href = "category/group";
+                    } else {
+                        // Handle errors or display appropriate messages
+                        console.error("Failed to delete user");
+                    }
+                }
+            };
+            xhr.send(params);
+        }
+    }
+    
+    </script>
 </body>
 
 </html>

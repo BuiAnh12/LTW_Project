@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,6 +41,7 @@ import com.dto.ResGroupDto;
 import com.dto.courseScheduleDTO;
 import com.dto.studentRegistrationDto;
 import com.entity.Registration;
+
 @Service
 @RequiredArgsConstructor
 public class SubpageService {
@@ -168,6 +170,7 @@ public class SubpageService {
 			throw new RuntimeException("Error retrieving User details", e);
 		}
 		return modelAndView;
+	}
 	public ModelAndView getDetailGroup(HttpServletRequest request) {
 		
 		final String groupIdStr = request.getParameter("groupId");

@@ -4,19 +4,31 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dto.ResGroupDetailDto;
+import com.dto.GetGroupDetailToUpdateDTO;
+import com.dto.userDetailDTO;
 import com.entity.CourseSchedule;
 import com.entity.Registration;
 import com.entity.User;
@@ -25,7 +37,9 @@ import com.repository.CourseScheduleRepo;
 import com.repository.GroupRepo;
 import com.repository.RegistrationRepository;
 import com.repository.UserRepo;
+import com.service.GroupService;
 import com.service.StudentService;
+import com.service.UserService;
 
 import lombok.Data;
 
@@ -40,6 +54,8 @@ public class GroupController {
 	
 	@Autowired
 	private UserRepo userRepo;
+	@Autowired 
+	private final GroupService groupService;
 
     @GetMapping("/group/delete-student")
     public String deleteStudent(@RequestParam Long studentId,
@@ -90,4 +106,31 @@ public class GroupController {
         }
         return "redirect:";
     }
+    
+    @RequestMapping(value = "/updateGroupdetail" ,method = RequestMethod.POST)
+    public String updateGroupDetail(@ModelAttribute("groupObject")  GetGroupDetailToUpdateDTO resGroupDetailDto, HttpServletRequest request,
+			RedirectAttributes redirectAttributes) {
+    	String groupId=request.getParameter("groupId");
+    	final String redirectedUrl = "/category/group"; 	
+    	try {
+			groupService.updateGroupDetai(request, resGroupDetailDto);
+			System.out.println("Da thuc hien xong update");
+			redirectAttributes.addFlashAttribute("succeedCode", "succeed_add_01");
+		} catch (DuplicateKeyException e) {
+			redirectAttributes.addFlashAttribute("courseObject", resGroupDetailDto);
+			redirectAttributes.addFlashAttribute("errorCode", e.getMessage());
+		} catch (Exception ignored) {
+			redirectAttributes.addFlashAttribute("courseObject", resGroupDetailDto);
+			redirectAttributes.addFlashAttribute("errorCode", "error_systemApplication_01");
+		}	
+    	return "redirect:" + redirectedUrl;
+    }
+    
+    @RequestMapping(value = "/deleteGroup",method = RequestMethod.POST)
+	@Transactional(rollbackOn = { Exception.class })
+	public void deleteGroup(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		 System.out.println("i'm svc");
+	     groupService.deleteGroupDetail(request);
+	}
+    
 }
