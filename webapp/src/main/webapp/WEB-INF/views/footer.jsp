@@ -13,7 +13,7 @@
         }
 
         .wrapper {
-            min-height: 100%;
+            min-height: 80%;
             position: relative;
         }
 
@@ -21,7 +21,7 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            height: 20%; /* Set chiều cao của footer là 20% của chiều cao màn hình */
+            height: 13%; /* Set chiều cao của footer là 20% của chiều cao màn hình */
             background-color: #003300;
             box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
         }
@@ -33,15 +33,13 @@
         <div class="row " >
             <div class="col-6 ">
                 <h5>Về chúng tôi</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla posuere quam at nisl eleifend, at
-                    pretium elit aliquam. Integer laoreet, magna ut finibus bibendum, turpis ipsum fermentum lorem.</p>
+                <p>Join With Us.</p>
             </div>
             <div class="col-6">
                 <h5>Thông tin liên hệ</h5>
                 <ul class="list-unstyled">
-                    <li>Địa chỉ: 123 Đường, Thành phố, Quốc gia</li>
-                    <li>Điện thoại: +1234567890</li>
-                    <li>Email: info@example.com</li>
+                    <li>Địa chỉ: 123 Đường, Thành phố, Quốc gia.Điện thoại: +1234567890</li>
+           
                 </ul>
             </div>
         </div>

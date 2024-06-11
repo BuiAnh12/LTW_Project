@@ -30,7 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
-    <style><%@include file="/WEB-INF/views/student/style.css"%></style>
+    <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
     <base href="${pageContext.servletContext.contextPath}/">
     <title>Admin Dashboard</title>
 </head>
@@ -76,6 +76,7 @@
                     </ul>
                 </div>
             </nav>
+            <div class="divider" style="margin: 0;padding: 0"></div>
             <div class="container">
                 <!-- table content  -->
                 <div class="row my-2">
@@ -90,7 +91,7 @@
                 </div>
 
                 <div class="col" id = "studentTable">
-                    <table class="table bg-white rounded shadow-sm table-hover">
+                    <table class="table-custom bg-white rounded shadow-sm table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">First Name</th>
@@ -184,6 +185,8 @@
 					</div>
 				</div>
 			</div>
+			<div class="footer" style="m-0">
+				<%@include file="/WEB-INF/views/footer.jsp"%></div>
 		</div>
 </div>
 
