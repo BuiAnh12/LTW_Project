@@ -19,9 +19,15 @@ public interface RegistrationRepository extends JpaRepository<Registration, Inte
     @Query("SELECT new com.dto.studentRegistrationDto(r.student.id, CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname), s.age, s.login, s.password) " +
     	       "FROM Registration r JOIN r.student s WHERE r.group.id = :groupId AND s.id = r.student.id")
     	List<studentRegistrationDto> findAllByGroupId(@Param("groupId") Integer groupId);
+    	
 	@Modifying
     @Transactional
     @Query(value = "INSERT INTO registration (group_id, student_id) VALUES (:groupId, :studentId)", nativeQuery = true)
     void addStudentInGroup(@Param("groupId") Long groupId, @Param("studentId") Long studentId);
+
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Registration r WHERE r.group.id = :groupId")
+	void deleteByGroupId(@Param("groupId") Integer groupId);
 }
 

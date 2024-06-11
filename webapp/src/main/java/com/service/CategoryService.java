@@ -120,6 +120,7 @@ public class CategoryService {
         List<User> supervisorList = userRepo.findAllSupervisor();
         List<Course> courseList = courseRepository.findAll();
         
+        
         for (Group group : groupList) {
         	String formatDescription = group.getFormat() ? "online" : "offline";
         	User teacher = userRepo.findOne(group.getMainTeacher().getId());
