@@ -4,6 +4,11 @@
   --second-text-color: #77bbe9cb;
   --second-bg-color: #fefcff;
 }
+/* Định dạng cho link */
+.table tbody tr td a {
+    color: #000000; /* Màu chữ cho link */
+    text-decoration: none; /* Loại bỏ gạch chân */
+}
 
 .primary-text {
   color: var(--main-text-color);

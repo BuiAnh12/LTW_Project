@@ -103,8 +103,9 @@
 															class="form-control">
 															<option value="" selected disabled>Select Course</option>
 															<option value="${groupObject.course}" selected>${groupObject.course}</option>
-															<option value="course2">Course 2</option>
-															<option value="course3">Course 3</option>
+															<c:forEach var="course" items="${courseList}">
+																<option value="${course.courseId}">${course.courseName}</option>
+															</c:forEach>
 														</select>
 													</div>
 													<div class="col-md-4 form-group">
@@ -199,31 +200,21 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr data-link="link_to_redirect">
-
-                                            <td>
-                                                <a href="#" style="text-decoration: none; color: rgb(25, 0, 255)">Tom
-                                                    Bui</a>
-                                            </td>
-                                            <td>10</td>
-                                            <td class="text-center"> <!-- Selection column with checkbox -->
-                                                <input type="checkbox" class="center-checkbox">
-                                            </td>
-                                        </tr>
-                                        <tr data-link="link_to_redirect">
-
-                                            <td>
-                                                <a href="#" style="text-decoration: none; color: rgb(25, 0, 255)">Tom
-                                                    Bui</a>
-                                            </td>
-                                            <td>10</td>
-                                            <td class="text-center"> <!-- Selection column with checkbox -->
-                                                <input type="checkbox" class="center-checkbox">
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+									<tbody>
+										<c:forEach var="student" items="${allStudent}">
+											<tr data-link="link_to_redirect">
+												<td><a href="#"
+													style="text-decoration: none; color: rgb(25, 0, 255)">${student.firstname}</a>
+												</td>
+												<td>${student.age}</td>
+												<td class="text-center">
+													<!-- Selection column with checkbox --> <input
+													type="checkbox" class="center-checkbox">
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 
                             </div>
                         </div>

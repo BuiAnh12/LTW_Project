@@ -18,96 +18,106 @@
 </head>
 
 <body>
-    <div class="d-flex" id="wrapper">
-        <div class="bg-white" id="sidebar-wrapper">
+	<div class="d-flex" id="wrapper">
+		<div class="bg-white" id="sidebar-wrapper">
 
-            <%@include file="/WEB-INF/views/panel.jsp"%>
-        </div>
+			<%@include file="/WEB-INF/views/panel.jsp"%>
+		</div>
 
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Add course</h2>
-                </div>
+		<div id="page-content-wrapper">
+			<nav
+				class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+				<div class="d-flex align-items-center">
+					<i class="fas fa-align-left primary-text fs-4 me-3"
+						id="menu-toggle"></i>
+					<h2 class="fs-2 m-0">Add course</h2>
+				</div>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label=
-                    "Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>John Doe
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="container">
-                <!-- COURSE -->
-                <div class="table bg-white rounded">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="row">
-                                <Span class=" text-center fw-bold" style="font-size: large;">COURSE</Span>
-                            </div>
-                            <!-- Form thêm khóa học và bài học -->
-			<form:form method="POST" action="/webapp/manager/add-course.htm" modelAttribute="courseObject">
-			    <div class="row mb-3">
-			        <div class="col-6">
-			            <span class="fw-bold">Name</span>
-			            <input name="courseName" type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1" value="${courseObject.courseName}"required>
-			        </div>
-			        <div class="col-6">
-			            <span class="fw-bold">Description</span>
-			            <input name="description" type="text" class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1" value="${courseObject.description}"required>
-			        </div>
-			    </div>
-			
-			    <div class="container mt-5">
-			        <h2>Thêm bài học</h2>
-			        <div class="mb-3">
-			            <label for="lessonName" class="form-label">Tên bài học</label>
-			            <input type="text" class="form-control" id="lessonName">
-			        </div>
-			        <button type="button" class="btn-sm btn-outline-primary fw-bold" id="addLessonBtn">Tạo</button>
-			
-			        <h2 class="mt-5">Danh sách bài học</h2>
-			        <table class="table table-bordered" id="lessonsTable">
-			            <thead>
-			                <tr>
-			                    <th>Tên bài học</th>
-			                    <th>Hành động</th>
-			                </tr>
-			            </thead>
-			            <tbody>
-			            </tbody>
-			        </table>
-			    </div>
-			
-			    <div class="row mx-2 justify-content-center">
-			        <button type="submit" class="custom-button submit-button">Submit</button>
-					<a href="/category/course" class="custom-button return-button">Return</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle second-text fw-bold" href="#"
+							id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false"> <i class="fas fa-user me-2"></i>John
+								Doe
+						</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Profile</a></li>
+								<li><a class="dropdown-item" href="#">Settings</a></li>
+								<li><a class="dropdown-item" href="#">Logout</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="container">
+				<!-- COURSE -->
+				<div class="table bg-white rounded">
+					<div class="row">
+						<div class="col-12">
+							<div class="row">
+								<Span class=" text-center fw-bold" style="font-size: large;">COURSE</Span>
+							</div>
+							<!-- Form thêm khóa học và bài học -->
+							<form:form method="POST" action="/webapp/manager/add-course.htm"
+								modelAttribute="courseObject">
+								<div class="row mb-3">
+									<div class="col-6">
+										<span class="fw-bold">Name</span> <input name="courseName"
+											type="text" class="form-control" placeholder="Name"
+											aria-label="Username" aria-describedby="basic-addon1"
+											value="${courseObject.courseName}" required>
+									</div>
+									<div class="col-6">
+										<span class="fw-bold">Description</span> <input
+											name="description" type="text" class="form-control"
+											placeholder="Description" aria-label="Username"
+											aria-describedby="basic-addon1"
+											value="${courseObject.description}" required>
+									</div>
+								</div>
 
-			    </div>
-			    <!-- Input ẩn để lưu danh sách bài học -->
-			    <div id="lessonsHiddenInputs"></div>
-			</form:form>
+								<div class="container mt-5">
+									<h2>Thêm bài học</h2>
+									<div class="mb-3">
+										<label for="lessonName" class="form-label">Tên bài học</label>
+										<input type="text" class="form-control" id="lessonName">
+									</div>
+									<button type="button"
+										class="btn-sm btn-outline-primary fw-bold" id="addLessonBtn">Tạo</button>
+
+									<h2 class="mt-5">Danh sách bài học</h2>
+									<table class="table table-bordered" id="lessonsTable">
+										<thead>
+											<tr>
+												<th>Tên bài học</th>
+												<th>Hành động</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+
+								<div class="row mx-2 justify-content-center">
+									<button type="submit" class="custom-button submit-button">Submit</button>
+									<a href="/category/course" class="custom-button return-button">Return</a>
+
+								</div>
+								<!-- Input ẩn để lưu danh sách bài học -->
+								<div id="lessonsHiddenInputs"></div>
+							</form:form>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+							<script
+								src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+							<script>
 	document.addEventListener("DOMContentLoaded", function () {
 	    const addLessonBtn = document.getElementById('addLessonBtn');
 	    const lessonsTable = document.getElementById('lessonsTable').getElementsByTagName('tbody')[0];
@@ -150,7 +160,7 @@
 </script>
 
 
-	<script>
+							<script>
         var el = document.getElementById("wrapper");
         var toggleButton = document.getElementById("menu-toggle");
 

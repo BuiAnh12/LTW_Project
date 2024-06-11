@@ -13,7 +13,7 @@ import com.entity.Registration;
 public interface RegistrationRepository extends JpaRepository<Registration, Integer>{
     Long countByGroupId(Integer groupId);
 
-    @Query("SELECT new com.dto.studentRegistrationDto(CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname), s.age, s.login, s.password) " +
+    @Query("SELECT new com.dto.studentRegistrationDto(CONCAT(s.firstname, ' ', s.middlename, ' ', s.lastname), s.age, s.login, s.password, s.id) " +
     	       "FROM Registration r JOIN r.student s WHERE r.group.id = :groupId AND s.id = r.student.id")
     	List<studentRegistrationDto> findAllByGroupId(@Param("groupId") Integer groupId);
 }
