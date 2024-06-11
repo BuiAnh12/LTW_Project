@@ -28,5 +28,10 @@ public interface RegistrationRepository extends JpaRepository<Registration, Inte
 	@Modifying
 	@Query("DELETE FROM Registration r WHERE r.group.id = :groupId")
 	void deleteByGroupId(@Param("groupId") Integer groupId);
+	
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Registration r WHERE r.student.id = :studentId")
+	void deleteByStudentId(@Param("studentId") Long studentid);
 }
 

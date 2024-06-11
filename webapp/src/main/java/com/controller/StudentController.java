@@ -179,6 +179,7 @@ public class StudentController {
 	@PostMapping("/student/delete")
 	public String deleteStudent(@RequestParam("id") Long id, ModelMap model) {
 	    try {
+	    	registrationRepository.deleteByStudentId(id);
 	        studentService.deleteStudentById(id);
 	    } catch (Exception e) {
 	        model.addAttribute("errorMessage", "Error deleting student: " + e.getMessage());
