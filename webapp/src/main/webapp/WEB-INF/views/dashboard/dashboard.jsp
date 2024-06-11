@@ -245,31 +245,40 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="student_no" items="${student_no}">
-                                    <c:forEach var="group" items="${recentGroup}">
-									  <tr>
-									      
-									      <td>${group.groupDetail}</td>
-                                           <td><a href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${group.course.courseId}">
-                                           	${group.course.courseName}
-                                           	</a></td>
-                                           <td>${group.mainTeacher.name}</td>
-                                           <td>${student_no}</td>
-                                           <td>${group.startDate}</td>
-                                           <td>${group.endDate}</td>
-                                           <td>
-										  <c:choose>
-										    <c:when test="${group.format}">
-										      Online
-										    </c:when>
-										    <c:otherwise>
-										      Offline
-										    </c:otherwise>
-										  </c:choose>
-										</td>
-									  </tr>
-									</c:forEach>
-									</c:forEach>
+                                    <c:forEach var="student_no" items="${student_no}" varStatus="status">
+								    <c:set var="index" value="${status.index}" />
+								    <c:if test="${index < fn:length(recentGroup)}">
+								        <c:set var="group" value="${recentGroup[index]}" />
+								        <tr>
+								            <td>
+								                <a href="${pageContext.servletContext.contextPath}/subpage/group-detail?groupId=${group.id}">
+								                    ${group.title}
+								                    <br>
+								                    <small>${group.groupDetail}</small>
+								                </a>
+								            </td>
+								            <td>
+								                <a href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${group.course.courseId}">
+								                    ${group.course.courseName}
+								                </a>
+								            </td>
+								            <td>${group.mainTeacher.name}</td>
+								            <td>${student_no}</td>
+								            <td>${group.startDate}</td>
+								            <td>${group.endDate}</td>
+								            <td>
+								                <c:choose>
+								                    <c:when test="${group.format}">
+								                        Online
+								                    </c:when>
+								                    <c:otherwise>
+								                        Offline
+								                    </c:otherwise>
+								                </c:choose>
+								            </td>
+								        </tr>
+								    </c:if>
+								</c:forEach>
 
 
                                     </tbody>

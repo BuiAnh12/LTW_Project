@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.awt.print.Printable;
 import java.io.IOException;
 import java.io.PrintWriter;
 //import java.sql.Date;
@@ -99,11 +100,13 @@ public class GroupController {
   
     @GetMapping("/group/delete-student")
     public String deleteStudent(@RequestParam Long studentId,
+    		@RequestParam  Integer groupId,
     		@RequestHeader(value = "referer", required = false) String referer) {
         // Add logic to delete the student by ID
+    	System.out.println("GROUPID: " + groupId);
     	List<Registration> registrations = registrationRepository.findAll();
     	for (Registration registration : registrations) {
-    		if (registration.getStudent().getId() == studentId) {
+    		if (registration.getStudent().getId() == studentId && registration.getGroup().getId() == groupId) {
     			registrationRepository.delete(registration);
     			break;
     		}

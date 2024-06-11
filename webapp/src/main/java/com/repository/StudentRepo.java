@@ -28,7 +28,12 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
 	        "LEFT JOIN user u ON u.id = g.main_teacher_id ", nativeQuery = true)
 	List<Object[]> getStudentDetails();
 	
+	@Query("select re.group.id from Registration re where re.student.id = ?1")
+	Long findRegistration(Long StudentId);
 	
+	@Query(value = "SELECT * FROM student s LEFT JOIN registration r ON s.id = r.student_id WHERE r.student_id IS NULL", nativeQuery = true)
+	List<Student> getForAddingGroup();
+
 }
 
 

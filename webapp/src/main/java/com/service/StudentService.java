@@ -40,10 +40,12 @@ public class StudentService {
 
     
     @Transactional
-    public void insertStudent(StudentDTO student) {
+    public Student insertStudent(StudentDTO student) {
     	Student result = new Student(); 
     	result.convert(student);
-        studentRepository.save(result);
+        Student reStudent = studentRepository.save(result);
+        System.out.println("Save studentID" + reStudent.getId());
+        return reStudent;
     }
     
     @Transactional
@@ -68,6 +70,11 @@ public class StudentService {
         	existingStudent.convert(updatedStudent);
             studentRepository.save(existingStudent);
         }
+    }
+    
+    public Long getRegistrationGroup(Long studentId) {
+    	Long groupId = studentRepository.findRegistration(studentId);
+    	return groupId;
     }
     
     public Page<StudentTable> getStudentTables(String firstName, String age, String groupTitle, String description,
