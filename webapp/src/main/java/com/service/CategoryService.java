@@ -178,15 +178,56 @@ public class CategoryService {
 //        
 //        return modelAndView;
     }
-    public ModelAndView getUserListPage(HttpServletRequest request, Model model) {
-		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "user/user");
-		List<showMainViewUserDTO> user = userRepo.findAllUserAccountDetails();
-		if (user.isEmpty()) {
-			modelAndView.addObject("message", "No users found.");
-		} else {
-			modelAndView.addObject("userList", user);
+    public Page<showMainViewUserDTO> getUserListPage(HttpServletRequest request, Model model,
+    		String id,
+    		String name,
+    		String phone,
+    		String email,
+    		String role,
+    		String account,
+    		String status,
+    		Pageable pageable) {
+		List<showMainViewUserDTO> users = userRepo.findAllUserAccountDetails();
+		List<showMainViewUserDTO> result = new ArrayList<>();
+		for (showMainViewUserDTO user : users) {
+        	if (!isNullOrEmpty(id) && Long.valueOf(id) != user.getUserId()) {
+                continue;
+            }
+        	if (!isNullOrEmpty(name) && !user.getUserName().toLowerCase().contains(name.toLowerCase())) {
+                continue;
+            }
+        	if (!isNullOrEmpty(phone) && !user.getUserPhone().toString().toLowerCase().contains(phone.toLowerCase())) {
+                continue;
+            }
+        	if (!isNullOrEmpty(email) && !user.getUserEmail().toLowerCase().contains(email.toLowerCase())) {
+                continue;
+            }
+        	if (!isNullOrEmpty(role) && !user.getUserRoleName().toLowerCase().contains(role.toLowerCase())) {
+                continue;
+            }
+        	if (!isNullOrEmpty(account) && !user.getAccountUserName().toLowerCase().contains(account.toLowerCase())) {
+                continue;
+            }
+        	if (!isNullOrEmpty(status)) {
+            	String stas = "";
+            	if (user.getUserStatus()) {
+					stas = "active";
+				}
+            	else {
+            		stas = "inactive";
+            	}
+            	if (!stas.toLowerCase().contains(status.toLowerCase())) {
+            		continue;
+				}
+            }
+        	result.add(user);
 		}
-		return modelAndView;
+		int start = (int) pageable.getOffset();
+		int end = Math.min((start + pageable.getPageSize()), result.size());
+		List<showMainViewUserDTO> pagedResult = result.subList(start, end);
+		Page<showMainViewUserDTO> res = new PageImpl<>(pagedResult, pageable, result.size());
+        return res;
+		
 	}
 
     private boolean isNullOrEmpty(String str) {
