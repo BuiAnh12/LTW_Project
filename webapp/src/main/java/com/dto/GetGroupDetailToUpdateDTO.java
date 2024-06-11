@@ -16,14 +16,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class GetGroupDetailToUpdateDTO {
-	String title;
-	String note;
+	private String title;
+	private String note;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date startDate;
-	String teacher;
-	String course;
+	private Date startDate;
+	
+	private String teacher;
+	private String course;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	Date endDate;
-	String supervisor;
-	Integer status;
+	private Date endDate;
+	
+	private String supervisor;
+	
+	private Integer status;
 }

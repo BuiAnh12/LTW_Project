@@ -39,7 +39,7 @@
 
                 <div>
                     <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
-                    <a href="#"><button class="btn-sm btn-success">Add</button></a>
+               <!--      <a href="#"><button class="btn-sm btn-success">Add</button></a> -->
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-6">
                                     <Span class="fw-bold">Offices</Span>
-                                    <input type="text" class="form-control" placeholder="Them cho co" aria-label="Username" aria-describedby="basic-addon1" disabled="disabled"> 
+                                    <input type="text" class="form-control" placeholder="Main Center" aria-label="Username" aria-describedby="basic-addon1" disabled="disabled"> 
                                 </div>     
                             </div>
                         </div>
@@ -144,10 +144,10 @@
                                 <div class="col-6">
                                     <span></span>
                                     <a href="#">
-                                        <button type="submit" class="btn-sm mx-2 btn-outline-success fw-bold" style="color: black;"  >Submit</button>
+                                        <button type="submit" class="btn btn-success mx-2 fw-bold" style="color: white; border-color: black"  >Submit</button>
                                     </a>
                                     <a href="#">
-                                        <button type="" class="btn-sm btn-outline-danger fw-bold" style="color: black;">Cancel</button>
+                                        <button type="" class="btn btn-danger fw-bold" style="color: white;">Cancel</button>
                                     </a>
                                 </div>
                             </div>

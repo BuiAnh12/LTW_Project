@@ -31,7 +31,7 @@
 
                 <div>
                     <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
-                    <a href="${pageContext.servletContext.contextPath}/subpage/addUser" ><button class="btn-sm btn-success">Add</button></a>
+                    <a href="${pageContext.servletContext.contextPath}/subpage/addUser" ><button class="btn-sm btn-success " style="font-weight: bold;">Add User</button></a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

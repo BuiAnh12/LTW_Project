@@ -93,22 +93,23 @@
 													</div>
 													<div class="col-md-4 form-group">
 														<label for="main-teacher">Main Teacher:</label> <select
-															id="main-teacher" class="form-control" name="teacher" data="${groupObject.teacher}"> 
-															<option value="" disabled>Select Main Teacher</option>
-															<%-- <option value="${groupObject.teacher}" selected>${groupObject.teacher} </option> --%>
+															id="main-teacher" class="form-control" name="teacher"> 
+															<!-- <option value="" disabled>Select Main Teacher</option> -->
+															<option value="" selected disabled>Select Main Teacher</option>
+															<option value="" selected>${groupObject.teacher} </option>
 															<c:forEach var="teacher" items="${teacherList}">
-																<option value="${teacher.name}" ${teacher.name == groupObject.course ? 'selected' : ''}>${teacher.name}</option>
+																<option value="${teacher.id}">${teacher.name}</option>
 															</c:forEach>
 														</select>
 													</div>
 
 													<div class="col-md-4 form-group">
-														<label for="course">Course:</label> <select id="course" name=course
-															class="form-control">
-															<option value="" selected disabled>Select Course</option>
-															<option value="${groupObject.course}" selected>${groupObject.course}</option>
+														<label for="course">Course:</label> 
+														<select id="course" class="form-control" value ="${groupObject.course}" name=course >
+														 <option   selected disabled>Select Course</option>
+															<option value="" disable hidden selected>${groupObject.course}</option>
 															<c:forEach var="course" items="${courseList}">
-																<option value="${course.courseId}">${course.courseName}</option>
+																<option value="${course.courseId}" >${course.courseName}</option>
 															</c:forEach>
 														</select>
 													</div>
@@ -120,19 +121,21 @@
 													<div class="col-md-4 form-group">
 														<label for="supervisor">Supervisor:</label> <select
 															id="supervisor" class="form-control" name="supervisor"> 
-															<option value="" selected disabled>Select
-																Supervisor</option>
-															<option value="${groupObject.supervisor}" selected>${groupObject.supervisor}
+															<!-- <option value="" selected disabled>Select
+																Supervisor</option> -->
+																<option value="" selected disabled>Select Supervisor</option>
+															<option value="" selected>${groupObject.supervisor}
 																</option>
 															<c:forEach var="supervisor" items="${supervisorList}">
-																<option value="${supervisor.id}">${supervisor.name}</option>
+																<option value="${supervisor.id}"  >${supervisor.name}</option>
 															</c:forEach>
 														</select>
 													</div>
 													<div class="col-md-4 form-group">
 														<label for="status">Status:</label> <select id="status" name="status"
-															class="form-control">
-															<option value="" disabled>Status</option>
+															class="form-control" >
+															
+															<option value="" selected disabled>Select Status</option>
 															<option value="1"
 																${groupObject.status == 1 ? 'selected' : ''}>Incoming</option>
 															<option value="2"
@@ -146,11 +149,12 @@
 														<label for="supervisor"></label>
 														<div class="row">
 															<div class="col-3">
-																<button type="button" onclick="handleDelete('${groupId}')" >Delete</button>
+																<button type="button" class="btn btn-danger " style="font-weight: bold;" onclick="handleDelete('${groupId}')" >Delete</button>
 																<%-- <input type="button" class="btn-delete" onclick="handleDelete('${groupId}') value="Delete"> --%>
 															</div>
 															<div class="col-3">
-																<input type="submit" class="btn-update" value="Update">
+																
+																<input type="submit" class="btn btn-primary" style="font-weight: bold;" value="Update">
 															</div>
 															<div class="col-6"></div>
 														</div>
@@ -541,6 +545,39 @@
     }
     
     </script>
+     <script>
+        function setSelectedStatus() {
+            var statusId = "${groupObject.status}"; // Lấy giá trị status từ JSP
+
+            // Lấy phần tử select bằng ID
+            var statusSelect = document.getElementById('status');
+
+            // Lặp qua từng tùy chọn trong phần tử select
+            for (var i = 0; i < statusSelect.options.length; i++) {
+                var option = statusSelect.options[i];
+                // Kiểm tra nếu giá trị của tùy chọn khớp với statusId
+                if (option.value === statusId) {
+                    // Đặt thuộc tính selected cho tùy chọn khớp
+                    option.selected = true;
+                    // Dừng vòng lặp vì đã tìm thấy tùy chọn khớp
+                    break;
+                }
+            }
+        }
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var courseId = "${groupObject.course}"; // assuming groupObject.course holds the courseId
+        var select = document.getElementById("course");
+        for (var i = 0; i < select.options.length; i++) {
+            if (select.options[i].value === courseId) {
+                select.options[i].selected = true;
+                break;
+            }
+        }
+    });
+</script>
+    
 </body>
 
 </html>

@@ -43,7 +43,7 @@
 				<div>
 					<button class="btn-sm " disabled
 						style="color: transparent; border: none;"></button>
-					<a href="#"><button class="btn-sm btn-success">Add</button></a>
+					<!-- <a href="#"><button class="btn-sm btn-success">Add</button></a> -->
 				</div>
 
 				<button class="navbar-toggler" type="button"
@@ -166,9 +166,9 @@
 								</div> --%>
 								<div class="row">
 									<div class="col text-center">
-										<button type="submit" class="custom-button submit-button ">
+										<button type="submit" class="btn btn-success  ">
 										<strong>Submit</strong></button>
-										<button type="button" class="custom-button delete-button" onclick="handleDelete(${userObject.userId})"><strong>Delete</strong></button>
+										<button type="button" class="btn btn-danger" onclick="handleDelete(${userObject.userId})"><strong>Delete</strong></button>
 										<!-- <a class="btn btn-primary" id="returnButton">Return</a> -->
 									</div>
 								</div>
