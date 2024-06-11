@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(basePackages = {"com.repository"})
 @EnableTransactionManagement
 
+
 public class JPAConfig {
 	
 	@Bean
@@ -50,9 +51,10 @@ public class JPAConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/institutionmanagement");
-		dataSource.setUsername("admin");
-		dataSource.setPassword("KjsKlaoS4QPXd2qU");
+		dataSource.setUsername("duybao");
+		dataSource.setPassword("123");
 		return dataSource;
+		
 	}
 	
 	Properties additionalProperties() {
@@ -60,11 +62,11 @@ public class JPAConfig {
 
 		//properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 //		properties.setProperty("hibernate.hbm2ddl.auto", "create");
-		//properties.setProperty("hibernate.hbm2ddl.auto", "none");
+//		properties.setProperty("hibernate.hbm2ddl.auto", "none");
 //		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 
-		properties.setProperty("hibernate.hbm2ddl.auto", "none");
 //		properties.setProperty("hibernate.hbm2ddl.auto", "none");
+		properties.setProperty("hibernate.hbm2ddl.auto", "none");
 		properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 
 		return properties;

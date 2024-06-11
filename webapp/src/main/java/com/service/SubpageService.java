@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,24 +14,38 @@ import org.springframework.web.servlet.ModelAndView;
 import com.config.StaticUtilMethods;
 import com.dto.AddCourseDto;
 import com.dto.LessonDto;
+import com.repository.AccountRepository;
 import com.repository.CourseRepository;
 import com.repository.GroupRepo;
 import com.repository.LessonRepository;
+import com.repository.RoleRepository;
 import com.repository.RegistrationRepository;
 import com.repository.StudentRepo;
 import com.repository.UserRepo;
 
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.var;
 
+import com.entity.Account;
 import com.entity.Course;
+
 import com.entity.Group;
 import com.entity.Student;
+
+import com.entity.Role;
+
 import com.entity.User;
+import com.dto.ResCourseDetails;
+import com.dto.accountDTO;
+import com.dto.userDetailDTO;
+
+import com.entity.Group;
+import com.entity.Student;
 import com.dto.ResCourseDetails;
 import com.dto.ResGroupDetailDto;
 import com.dto.ResGroupDto;
+import com.dto.courseScheduleDTO;
 import com.dto.studentRegistrationDto;
+import com.entity.Registration;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +57,9 @@ public class SubpageService {
 	@Autowired
 	private final LessonRepository lessonRepository;
 	@Autowired
+	private final AccountRepository accountRepository;
+	@Autowired
+	private final RoleRepository roleRepository;
 	private final GroupRepo groupRepo;
 	@Autowired
 	private final UserRepo userRepo;
@@ -49,6 +67,9 @@ public class SubpageService {
 	private final RegistrationRepository registrationRepository;
 	@Autowired
 	private final StudentRepo studentRepo;
+	@Autowired
+	private final GroupService groupService;
+
 	
 	public ModelAndView getAddCoursePage(HttpServletRequest request, Model model) {
 		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(), "/course/addCourse/addCourse");
@@ -56,6 +77,10 @@ public class SubpageService {
 		if(courseObject != null)
 			modelAndView.addObject(courseObject);
 		return modelAndView;
+	}
+	
+	public void addStudentToCourse(Long studentId, Long groupId) {
+		registrationRepository.addStudentInGroup(groupId, studentId);
 	}
 	 
 	public ModelAndView getDetailsPage(HttpServletRequest request) {
@@ -94,6 +119,64 @@ public class SubpageService {
 	    return modelAndView;
 	}
 	
+	public ModelAndView getAddUserPage(HttpServletRequest request, Model model) {
+		ModelAndView modelAndView = staticUtilMethods.customResponseModelView(request, model.asMap(),
+				"user/subView/addNewUser"); 
+		userDetailDTO userdetail = (userDetailDTO) model.asMap().get("userObject");
+
+		if (userdetail != null) {
+			modelAndView.addObject(userdetail);
+		}
+		return modelAndView;
+	}
+	public ModelAndView getUserDetailPage(HttpServletRequest request) {
+		final String userIdString=request.getParameter("userid");
+		ModelAndView modelAndView = new ModelAndView("user/subView/userDetail");
+		if(userIdString==null) {
+			  throw new IllegalArgumentException("userId is null");
+		}
+		try {
+			//write code here
+			Long userId=Long.parseLong(userIdString);
+			User user = userRepo.findOne(userId);
+			
+			if(user ==null) {
+				  throw new IllegalArgumentException("User not found for id: " + userId);
+			}
+			
+			try {
+				
+			    Account account = accountRepository.findOne(user.getAccount().getId());
+			    accountDTO tmp=accountDTO.builder()
+			    		.accountId(account.getId())
+			    		.accountPassword(account.getPassword())
+			    		.accountUsername(account.getUserName())
+			    		.accountStatus(account.getStatus())
+			    		.build();
+			    Long roleId = roleRepository.findRoleIdByAccountId(account.getId());
+			    Role role = roleRepository.findOne(roleId);
+			    
+			    userDetailDTO userDetail=userDetailDTO.builder()
+						.userName(user.getName())
+						.userId(user.getId())
+						.userEmail(user.getEmail())
+						.userPhone(user.getPhone())
+						.accountDto(tmp)
+						.userRoleName(role.getName())
+						.userRoleId(roleId)
+						.userStatus(user.getStatus())
+						.build();
+			    modelAndView.addObject("userObject",userDetail);
+			} catch (Exception e) {
+			    e.printStackTrace(); // or log the exception
+			}		
+		}catch (NumberFormatException e) {
+			throw new IllegalArgumentException("Invalid userId: " + userIdString, e);
+		}catch (Exception e) {
+			throw new RuntimeException("Error retrieving User details", e);
+		}
+		return modelAndView;
+	}
 	public ModelAndView getDetailGroup(HttpServletRequest request) {
 		
 		final String groupIdStr = request.getParameter("groupId");
@@ -107,7 +190,9 @@ public class SubpageService {
     	List<Course> courseList = courseRepository.findAll();
     	Course course = courseRepository.findOne(group.getCourse().getCourseId());
     	List<studentRegistrationDto> studenList = registrationRepository.findAllByGroupId(groupId);
-    	List<LessonDto> lessonList = lessonRepository.findAllLessonByCourseId(course.getCourseId());
+//    	List<LessonDto> lessonList = lessonRepository.findAllLessonByCourseId(course.getCourseId());
+    	List<Student> studentForAdding = studentRepo.findAll();
+    	List<courseScheduleDTO> csList = groupService.getCSList(groupId);
     	ResGroupDetailDto groupDto = ResGroupDetailDto.builder()
         		.title(group.getTitle())
         		.teacher(teacher.getName())
@@ -118,7 +203,9 @@ public class SubpageService {
         		.status(group.getStatus())
         		.note(group.getGroupDetail())
         		.build();
-    	modelAndView.addObject("lessonList",lessonList);
+    	modelAndView.addObject("groupId",groupId);
+    	modelAndView.addObject("students",studentForAdding);
+    	modelAndView.addObject("lessonList",csList);
     	modelAndView.addObject("groupObject",groupDto);
     	modelAndView.addObject("studentList", studenList);
     	modelAndView.addObject("teacherList",teacherList);

@@ -20,11 +20,13 @@ public class User {
     private String name;
     private Integer phone;
     private String email;
+    
 
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
     
+    private Boolean status;
     @Override
     public String toString() {
         return "User(" +

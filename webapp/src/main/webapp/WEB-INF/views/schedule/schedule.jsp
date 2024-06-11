@@ -35,6 +35,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-DI/U+B20M5d4fD2UG+P8BGO35nqYjT9tlxG6t2vIY2CH6azYH2i4MIZhf4oAVvrj" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .small-text {
             font-size: 80%; /* Adjust the percentage to your desired size */
@@ -89,7 +93,7 @@
                    <!-- tableContent -->
                     <div class="row my-2 "> 
                         <!-- <h3 class="fs-4 mb-3">Schedue</h3> --> 
-                        <div class="col">
+                        <div class="col" id="scheduleTable">
                             <table class="table bg-white rounded shadow-sm  table-hover">
                                 <thead>
                                     <tr>
@@ -126,15 +130,66 @@
 									<c:forEach var="schedule" items="${schedules}">
                                     <tr>
                                         <th><small class="small-text">${schedule.occurDate}</small></th>
-                                        <td><small class="small-text"><a href="lesson/lesson/${schedule.lessonId}.htm">${schedule.nextLesson}</small></td>
-                                        <td><small class="small-text"><a href="course/course/${schedule.courseId}.htm">${schedule.courseName}</small></td>
-                                        <td><small class="small-text"><a href="group/group/${schedule.groupId}.htm">${schedule.groupTitle}</small></td>
-                                        <td><small class="small-text"><a href="teacher/teacher/${schedule.teacherId}.htm">${schedule.teacherName}</small></td>
+                                        <td><small class="small-text">${schedule.nextLesson}</small></td>
+                                        <td><a href="course/course/${schedule.courseId}.htm">${schedule.courseName}</td>
+                                        <td><a href="group/group/${schedule.groupId}.htm">${schedule.groupTitle}
+                                        	<br>
+                                        	<small class="small-text">${schedule.groupDetail}</small>
+                                        </td>
+                                        <td><a href="teacher/teacher/${schedule.teacherId}.htm">${schedule.teacherName}</td>
                                         <td><small class="small-text">${schedule.format}</small></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
+                            <div class="table-footer">
+                    <c:set var="prefixUrl" value="${pageContext.servletContext.contextPath}/category/schedule?page=" scope="page" />
+						<div class="d-flex justify-content-center align-items-center w-100">
+						    <span class="interact-page-btn">
+						        <c:choose>
+						            <c:when test="${currentPage > 1}">
+						                <a href="${prefixUrl}${currentPage - 1}">
+						                    <i class="fa-solid fa-angle-left"></i>
+						                </a>
+						            </c:when>
+						            <c:otherwise>
+						                <a>
+						                    <i class="fa-solid fa-angle-left"></i>
+						                </a>
+						            </c:otherwise>
+						        </c:choose>
+						    </span>
+						    <div id="pages-content" class="d-flex">
+						        <c:if test="${currentPage > 1}">
+						            <span class="index-btn">
+						                <a href="${prefixUrl}${currentPage - 1}">${currentPage - 1}</a>
+						            </span>
+						        </c:if>
+						        <span class="index-btn">
+						            <a href="${prefixUrl}${currentPage}">${currentPage}</a>
+						        </span>
+						        <c:if test="${currentPage < totalPages}">
+						            <span class="index-btn">
+						                <a href="${prefixUrl}${currentPage + 1}">${currentPage + 1}</a>
+						            </span>
+						        </c:if>
+						    </div>
+						    <span class="interact-page-btn">
+						        <c:choose>
+						            <c:when test="${currentPage < totalPages}">
+						                <a href="${prefixUrl}${currentPage + 1}">
+						                    <i class="fa-solid fa-angle-right"></i>
+						                </a>
+						            </c:when>
+						            <c:otherwise>
+						                <a>
+						                    <i class="fa-solid fa-angle-right"></i>
+						                </a>
+						            </c:otherwise>
+						        </c:choose>
+						    </span>
+						</div>
+					</div>
                         </div>
                     </div>
                     
@@ -146,6 +201,7 @@
     </div>
     <!-- /#page-content-wrapper -->
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
