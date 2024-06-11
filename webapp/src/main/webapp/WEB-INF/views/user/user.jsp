@@ -69,22 +69,6 @@
                     <div class="col">
 
                         <div class="row py-2">
-                            <div class="col-9" style="text-align: left;">
-                                <span>Showing....</span>
-                            </div>
-                            <div class="col-3" style="text-align: right;">
-                                <span>Records on Page</span>
-                                <div class="btn-group">
-                                  <button type="button" disabled class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    20
-                                  </button>
-                                  <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Option 1</a>
-                                    <a class="dropdown-item" href="#">Option 2</a>
-                                    <a class="dropdown-item" href="#">Option 3</a>
-                                  </div>
-                                </div> 
-                            </div>
                         </div>
 					<div class="col" id ="userTable">
                         <table class="table bg-white rounded shadow-sm  table-hover">

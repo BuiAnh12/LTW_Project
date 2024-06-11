@@ -5,9 +5,15 @@
   --second-bg-color: #fefcff;
 }
 /* Định dạng cho link */
-.table tbody tr td a {
+.table tbody tr td {
     color: #000000; /* Màu chữ cho link */
     text-decoration: none; /* Loại bỏ gạch chân */
+}
+
+.interact-page-btn a, .index-btn a, a {
+	color: rgb(0, 128, 255);
+	margin: 0 5px;
+	text-decoration: none;
 }
 
 .primary-text {
@@ -138,3 +144,4 @@
             text-decoration: none;
             outline: none;
         }
+        

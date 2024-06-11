@@ -52,8 +52,8 @@ public class JPAConfig {
 		dataSource.setUrl("jdbc:mysql://localhost:3306/institutionmanagement");
 		// dataSource.setUsername("duybao");
 		// dataSource.setPassword("123");
-		dataSource.setUsername("");
-		dataSource.setPassword("123456");
+		dataSource.setUsername("admin");
+		dataSource.setPassword("KjsKlaoS4QPXd2qU");
 		return dataSource;
 
 	}

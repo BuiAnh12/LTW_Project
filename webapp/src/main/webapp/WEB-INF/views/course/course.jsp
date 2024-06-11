@@ -69,24 +69,8 @@
                     <!-- <h3 class="fs-4 mb-3">Schedue</h3> --> 
                     <div class="col">
                         <div class="row py-2">
-                            <div class="col-9" style="text-align: left;">
-                                <span>Showing....</span>
-                            </div>
-                            <div class="col-3" style="text-align: right;">
-                                <span>Records on Page</span>
-                                <div class="btn-group">
-                                  <button type="button" disabled class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    20
-                                  </button>
-                                  <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Option 1</a>
-                                    <a class="dropdown-item" href="#">Option 2</a>
-                                    <a class="dropdown-item" href="#">Option 3</a>
-                                  </div>
-                                </div> 
-                            </div>
                         </div>
-						<form action="/manager/course-list-active-btn" method="POST">
+						<form action="/manager/course-list-active-btn" method="POST" id="content_table">
 							<table class="table">
 								<thead>
 									<tr>
@@ -96,14 +80,14 @@
 									</tr>
 									<tr>
 										<th scope="col"><input type="text" class="form-control"
-											placeholder="" aria-label="Username"
+											placeholder="" aria-label="Username" id = "coursename"
 											aria-describedby="basic-addon1"></th>
 										<th scope="col"><input type="text"
 											class="form-control bg-transparent border-0" placeholder=""
 											aria-label="Username" aria-describedby="basic-addon1"
 											disabled></th>
 										<th scope="col"><input type="text" class="form-control"
-											placeholder="" aria-label="Username"
+											placeholder="" aria-label="Username" id = "status"
 											aria-describedby="basic-addon1"></th>
 									</tr>
 								</thead>
@@ -114,7 +98,16 @@
 												href="${pageContext.servletContext.contextPath}/subpage/details-course?courseId=${course.courseId}">
 													${course.courseName} </a></td>
 											<td>${course.description}</td>
-											<td>${course.status}</td>
+											<td>
+											  <c:choose>
+											    <c:when test="${course.status}">
+											      Enable
+											    </c:when>
+											    <c:otherwise>
+											      Disable
+											    </c:otherwise>
+											  </c:choose>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -161,6 +154,7 @@
             
         </div>
     </div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 	<script>
 		var el = document.getElementById("wrapper");
 		var toggleButton = document.getElementById("menu-toggle");
@@ -169,6 +163,34 @@
 			el.classList.toggle("toggled");
 		};
 	</script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+        function search() {
+            $.ajax({
+                url: '${pageContext.servletContext.contextPath}/category/course.htm',
+                type: 'GET',
+                data: {
+                    courseName: $('#coursename').val(),
+                    status: $('#status').val()
+                },
+                success: function(response) {
+                    $('#content_table').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error:', error);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('#coursename, #status').keypress(function(event) {
+                if (event.which === 13) { // Enter key pressed
+                    event.preventDefault(); // Prevent the default form submission
+                    search();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

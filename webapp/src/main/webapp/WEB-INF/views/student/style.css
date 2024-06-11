@@ -5,6 +5,12 @@
   --second-bg-color: #fefcff;
 }
 
+.interact-page-btn a, .index-btn a, a {
+	color: rgb(0, 128, 255);
+	margin: 0 5px;
+	text-decoration: none;
+}
+
 .primary-text {
   color: var(--main-text-color);
 }

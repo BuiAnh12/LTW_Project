@@ -119,7 +119,7 @@
 								<tbody>
 									<c:forEach items="${groupList}" var="group">
 										<tr>
-											<td><a href="${pageContext.servletContext.contextPath}/subpage/group-detail?groupId=${group.id}"><small class="small-text">${group.title}</small></a></td>
+											<td><a href="${pageContext.servletContext.contextPath}/subpage/group-detail?groupId=${group.id}">${group.title}<br><small class="small-text"></small></a></td>
 											<td><small class="small-text">${group.numOfStudent}</small></td>
 											<td><small class="small-text">${group.teacher}</small></td>
 											<td><small class="small-text">${group.supervisor}</small></td>

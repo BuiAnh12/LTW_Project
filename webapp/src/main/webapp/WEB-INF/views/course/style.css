@@ -52,7 +52,7 @@
 }
 
 .interact-page-btn a, .index-btn a {
-	color: #ff8000;
+	color: rgb(0, 128, 255);
 	margin: 0 5px;
 	text-decoration: none;
 }

@@ -18,7 +18,7 @@ public interface StudentRepo extends JpaRepository<Student, Long> {
 	@Query("select count(re.student.id) from Registration re where re.group.format = 0")
     int numberOffStudent();
 
-	@Query(value = "SELECT st.firstname as firstName, st.id as id, st.age as age, g.group_detail as groupTitle, g.id as groupId, " +
+	@Query(value = "SELECT st.firstname as firstName, st.id as id, st.age as age, g.title as groupTitle, g.id as groupId, " +
 	        "c.description as description, u.name as teacherName, u.id as teacherId, " +
 	        "c.course_name as courseName, c.course_id as courseId " +
 	        "FROM student st " +

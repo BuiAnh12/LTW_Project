@@ -48,8 +48,14 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">Students</h2>
+                    <h2 class="fs-2 m-0">Students </h2>
                 </div>
+                <div>
+                <button class="btn-sm " disabled style="color: transparent; border: none;"></button>
+                     <button class="btn-sm btn-sm btn-success" style="font-weight: bold;" onclick="window.location.href='student/insert.htm'">
+                         Add Student
+                     </button>
+                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -75,11 +81,7 @@
                 <div class="row my-2">
                     <div class="row my-2">
                         <div class="col-6" style="text-align: left">
-                            <div>
-                                <button class="btn-md btn-success btn-add" onclick="window.location.href='student/insert.htm'">
-                                    Add
-                                </button>
-                            </div>
+                            
                         </div>
                         <div class="col-6" style="text-align: right" id="name">
                             
@@ -122,7 +124,7 @@
                         <tbody >
                             <c:forEach var="student" items="${students}">
                                 <tr>
-                                    <td><small class="small-text"><a href="${pageContext.request.contextPath}/student/detail/${student.id}" style="text-decoration: none; color: rgb(25, 0, 255)">${student.firstName}</a></small></td>
+                                    <td><small class="small-text"><a href="${pageContext.request.contextPath}/student/detail/${student.id}">${student.firstName}</a></small></td>
                                     <td><small class="small-text">${student.age}</small></td>
                                     <td><small class="small-text"><a href="${pageContext.request.contextPath}/group/detail?id=${student.groupId}">${student.groupTitle}</a></small></td>
                                     <td><small class="small-text">${student.description}</small></td>
