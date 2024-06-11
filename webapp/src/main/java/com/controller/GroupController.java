@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.awt.print.Printable;
 import java.io.IOException;
+import java.io.PrintWriter;
 //import java.sql.Date;
 import java.util.List;
 import java.util.Date;
@@ -98,11 +100,13 @@ public class GroupController {
   
     @GetMapping("/group/delete-student")
     public String deleteStudent(@RequestParam Long studentId,
+    		@RequestParam  Integer groupId,
     		@RequestHeader(value = "referer", required = false) String referer) {
         // Add logic to delete the student by ID
+    	System.out.println("GROUPID: " + groupId);
     	List<Registration> registrations = registrationRepository.findAll();
     	for (Registration registration : registrations) {
-    		if (registration.getStudent().getId() == studentId) {
+    		if (registration.getStudent().getId() == studentId && registration.getGroup().getId() == groupId) {
     			registrationRepository.delete(registration);
     			break;
     		}
@@ -168,8 +172,17 @@ public class GroupController {
     @RequestMapping(value = "/deleteGroup",method = RequestMethod.POST)
 	@Transactional(rollbackOn = { Exception.class })
 	public void deleteGroup(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		 System.out.println("i'm svc");
-	     groupService.deleteGroupDetail(request);
+    	Integer groupId = Integer.parseInt(request.getParameter("groupId"));
+        if (!registrationRepository.findStudentsByGroupId(groupId).isEmpty()) {
+            // Display dialog
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('This Group was registrated by Student !Can't Delete ');");
+            out.println("</script>");
+        } else {
+            groupService.deleteGroupDetail(request);
+        }
 	}
     
 

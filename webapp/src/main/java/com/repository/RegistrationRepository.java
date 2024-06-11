@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dto.studentRegistrationDto;
 import com.entity.Registration;
+import com.entity.Student;
 @Repository
 public interface RegistrationRepository extends JpaRepository<Registration, Integer>{
     Long countByGroupId(Integer groupId);
@@ -28,5 +29,12 @@ public interface RegistrationRepository extends JpaRepository<Registration, Inte
 	@Modifying
 	@Query("DELETE FROM Registration r WHERE r.group.id = :groupId")
 	void deleteByGroupId(@Param("groupId") Integer groupId);
+	
+	@Query("SELECT r.student FROM Registration r WHERE r.group.id = :groupId")
+    List<Student> findStudentsByGroupId(@Param("groupId") Integer groupId);
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM Registration r WHERE r.student.id = :studentId")
+	void deleteByStudentId(@Param("studentId") Long studentid);
 }
 

@@ -191,7 +191,7 @@ public class SubpageService {
     	Course course = courseRepository.findOne(group.getCourse().getCourseId());
     	List<studentRegistrationDto> studenList = registrationRepository.findAllByGroupId(groupId);
 //    	List<LessonDto> lessonList = lessonRepository.findAllLessonByCourseId(course.getCourseId());
-    	List<Student> studentForAdding = studentRepo.findAll();
+    	List<Student> studentForAdding = studentRepo.getForAddingGroup();
     	List<courseScheduleDTO> csList = groupService.getCSList(groupId);
     	ResGroupDetailDto groupDto = ResGroupDetailDto.builder()
         		.title(group.getTitle())

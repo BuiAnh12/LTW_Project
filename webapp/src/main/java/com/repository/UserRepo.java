@@ -34,5 +34,11 @@ public interface UserRepo extends JpaRepository<User, Long> {
 	User findById(Long teacherId);
     @Query("SELECT u.id FROM User u WHERE u.name = :name")
     Long findIdByName(@Param("name") String name);
+    
+    @Query("SELECT  count(u) FROM User u JOIN u.account a JOIN a.roles r WHERE r.code = 'TEACHER'")
+    Long numberOfTeacher();
+    
+    @Query("SELECT  count(u) FROM User u INNER JOIN u.account a INNER JOIN a.roles r WHERE r.code = 'ADMIN'")
+    Long numberOfAdmin();
 }
 

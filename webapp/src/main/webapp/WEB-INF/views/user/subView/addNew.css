@@ -135,12 +135,32 @@
   padding: 10px 20px;
   margin: 5px;
   border: none;
-  background-color: #007bff;
   color: white;
   border-radius: 5px;
   cursor: pointer;
 }
+.btn-outline-success {
+        background-color: blue; /* Default background color */
+        color: black;
+        border-color: green; /* Border color when not hovered */
+    }
+.btn-outline-success:hover {
+        background-color: green; /* Background color on hover */
+        border-color: green; /* Border color on hover */
+        }
 
+
+.btn-outline-danger {
+        background-color: yellow; /* Default background color */
+        color: black;
+        border-color: red; /* Border color when not hovered */
+    }
+
+    .btn-outline-danger:hover {
+        background-color: red; /* Background color on hover */
+        border-color: red; /* Border color on hover */
+    }
+    
 .btn-add {
   padding: 10px 20px;
   margin: 5px;

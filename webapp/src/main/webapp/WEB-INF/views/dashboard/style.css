@@ -91,4 +91,7 @@
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -12rem;
   }
+  a{
+  text-decoration: none;
+  }
 }

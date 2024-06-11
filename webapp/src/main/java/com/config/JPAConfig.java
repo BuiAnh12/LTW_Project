@@ -17,12 +17,11 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {"com.repository"})
+@EnableJpaRepositories(basePackages = { "com.repository" })
 @EnableTransactionManagement
 
-
 public class JPAConfig {
-	
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -33,41 +32,41 @@ public class JPAConfig {
 		em.setJpaProperties(additionalProperties());
 		return em;
 	}
-	
+
 	@Bean
 	JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 		transactionManager.setEntityManagerFactory(entityManagerFactory);
 		return transactionManager;
 	}
-	
+
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
-	
+
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/institutionmanagement");
-//		dataSource.setUsername("duybao");
-//		dataSource.setPassword("123");
+		// dataSource.setUsername("duybao");
+		// dataSource.setPassword("123");
 		dataSource.setUsername("");
 		dataSource.setPassword("123456");
 		return dataSource;
-		
+
 	}
-	
+
 	Properties additionalProperties() {
 		Properties properties = new Properties();
 
-		//properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-//		properties.setProperty("hibernate.hbm2ddl.auto", "create");
-//		properties.setProperty("hibernate.hbm2ddl.auto", "none");
-//		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		// properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+		// properties.setProperty("hibernate.hbm2ddl.auto", "create");
+		// properties.setProperty("hibernate.hbm2ddl.auto", "none");
+		// properties.setProperty("hibernate.hbm2ddl.auto", "update");
 
-//		properties.setProperty("hibernate.hbm2ddl.auto", "none");
+		// properties.setProperty("hibernate.hbm2ddl.auto", "none");
 		properties.setProperty("hibernate.hbm2ddl.auto", "none");
 		properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 

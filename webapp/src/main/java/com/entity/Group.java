@@ -43,7 +43,7 @@ public class Group {
     @Column(name = "format", nullable = false, columnDefinition = "BIT DEFAULT 1")
     private Boolean format;
     
-    @Column(name = "status", nullable = false, columnDefinition = "BIT DEFAULT 1")
+    @Column(name = "status")
     private Integer status;
     
     @Column(name = "title")
