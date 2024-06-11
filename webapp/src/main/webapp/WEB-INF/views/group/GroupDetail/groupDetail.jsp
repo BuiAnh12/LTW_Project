@@ -279,7 +279,7 @@
 																		<div class="input-group-append">
 																			<button class="btn-danger delete-btn" style="height: 30px; width: 30px; 
 																			display: flex; align-items: center; justify-content: center;" 
-																			type="button" onclick="deleteStudent(${student.studentId})">
+																			type="button" onclick="deleteStudent(${student.studentId},${groupId})">
 														                        <i class="far fa-trash-alt"></i>
 														                    </button>
 																	</div>
@@ -506,9 +506,9 @@
         };
     </script>
     <script>
-	    function deleteStudent(studentId) {
+	    function deleteStudent(studentId,groupId) {
 	        if (confirm("Are you sure you want to delete this student?")) {
-	            window.location.href = '${pageContext.request.contextPath}/group/delete-student?studentId=' + studentId;
+	            window.location.href = '${pageContext.request.contextPath}/group/delete-student?studentId=' + studentId + '&&groupId=' + groupId;
 	        }
 	    }
 	</script>

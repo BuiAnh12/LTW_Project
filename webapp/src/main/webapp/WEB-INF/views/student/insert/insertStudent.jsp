@@ -24,40 +24,8 @@
                         <div class="d-flex" id="wrapper">
                             <!-- Sidebar -->
                             <div class="bg-white" id="sidebar-wrapper">
-                                <div
-                                    class="sidebar-heading text-center py-4 primary-text fs-5 fw-bold text-uppercase border-bottom">
-                                    <i class="fas fa-user-secret me-2"></i>CodeXpert
-                                </div>
-                                <div class="list-group list-group-flush my-3">
-                                    <a href="index.html"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                                    <a href="schedule.html"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-project-diagram me-2"></i>Schedue</a>
-                                    <a href="group.html"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-chart-line me-2"></i>Group</a>
-                                    <a href="student.html"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-paperclip me-2"></i>Student</a>
-                                    <a href="course.html"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-shopping-cart me-2"></i>Course</a>
-                                    <a href="employees.html"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-gift me-2"></i>Employees</a>
-                                    <a href="venues.html"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-map-marker-alt me-2"></i>Venues</a>
-                                    <a href="#"
-                                        class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-                                            class="fas fa-comment-dots me-2"></i>Extra</a>
-                                    <a href="#"
-                                        class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
-                                            class="fas fa-power-off me-2"></i>Logout</a>
-                                </div>
-                            </div>
+					            <%@include file="/WEB-INF/views/panel.jsp"%>
+					        </div>
                             <!-- /#sidebar-wrapper -->
 
                             <!-- Page Content -->
@@ -315,7 +283,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form:form>
+                                            
 
                                             <div class="divider" style="height: 30px;"></div>
                                             <div class="row">
@@ -333,12 +301,7 @@
                                                                                 <tr>
                                                                                     <th scope="col"
                                                                                         style="width: 250px;">Title</th>
-                                                                                    <th scope="col">Venue</th>
                                                                                     <th scope="col">Students</th>
-                                                                                    <th scope="col"
-                                                                                        style="width: 150px;">Lesson
-                                                                                        time</th>
-                                                                                    <th scope="col">Next lesson</th>
                                                                                     <th scope="col">Teacher</th>
                                                                                     <th scope="col">Supervisor</th>
                                                                                     <th scope="col">Course</th>
@@ -346,6 +309,24 @@
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody id="selected-class-table">
+                                                                            <c:forEach items="${groupList}" var="group">
+                                                                           	<c:if test="${group.id == registrationGroup}">
+																					<tr>
+																						<td><a href="${pageContext.servletContext.contextPath}/subpage/group-detail?groupId=${group.id}"><small class="small-text">${group.title}</small></a></td>
+																						<td><small class="small-text">${group.numOfStudent}</small></td>
+																						<td><small class="small-text">${group.teacher}</small></td>
+																						<td><small class="small-text">${group.supervisor}</small></td>
+																						<td><small class="small-text">${group.course}</small></td>
+																						<td><small class="btn-sm btn-primary"
+																							aria-disabled="true"> <c:choose>
+																									<c:when test="${group.format == 'offline'}">Offline</c:when>
+																									<c:otherwise>Online</c:otherwise>
+																								</c:choose>
+																						</small></td>
+																					</tr>
+																					</c:if>
+																					
+																				</c:forEach>
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -360,97 +341,48 @@
                                                                             selection</button>
                                                                     </div>
                                                                     <div class="col">
-                                                                        <table
-                                                                            class="table bg-white rounded shadow-sm  table-hover">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th scope="col"
-                                                                                        style="width: 50px;"></th>
-                                                                                    <!-- New column for selection -->
-                                                                                    <th scope="col"
-                                                                                        style="width: 250px;">Title</th>
-                                                                                    <th scope="col">Venue</th>
-                                                                                    <th scope="col">Students</th>
-                                                                                    <th scope="col"
-                                                                                        style="width: 150px;">Lesson
-                                                                                        time</th>
-                                                                                    <th scope="col">Next lesson</th>
-                                                                                    <th scope="col">Teacher</th>
-                                                                                    <th scope="col">Supervisor</th>
-                                                                                    <th scope="col">Course</th>
-                                                                                    <th scope="col">Format</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr class="selectable-row">
-                                                                                    <td><input type="radio"
-                                                                                            name="selectRow"></td>
-                                                                                    <!-- Selection box -->
-                                                                                    <td><small
-                                                                                            class="small-text">NVH_GD65_MON_OFF
-                                                                                            3:00 PM - 4:30 PMPreferred
-                                                                                            Language: ENG</small></td>
-                                                                                    <td><small
-                                                                                            class="small-text">Home</small>
-                                                                                    </td>
-                                                                                    <td><small
-                                                                                            class="small-text">4</small>
-                                                                                    </td>
-                                                                                    <td><small class="small-text">3:00
-                                                                                            PM - 4:30</small></td>
-                                                                                    <td><small
-                                                                                            class="small-text"></small>Adding
-                                                                                        riddles and puzzles to the quest
-                                                                                        ENG GD M2L4</td>
-                                                                                    <td><small
-                                                                                            class="small-text">Tom</small>
-                                                                                    </td>
-                                                                                    <td><small
-                                                                                            class="small-text">Finn</small>
-                                                                                    </td>
-                                                                                    <td><small class="small-text">Game
-                                                                                            Development</small></td>
-                                                                                    <td><small
-                                                                                            class="btn-sm btn-primary"
-                                                                                            aria-disabled="true">Offline</small>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr class="selectable-row">
-                                                                                    <td><input type="radio"
-                                                                                            name="selectRow"></td>
-                                                                                    <!-- Selection box -->
-                                                                                    <td><small
-                                                                                            class="small-text">NVH_GD66_MON_OFF
-                                                                                            3:00 PM - 4:30 PMPreferred
-                                                                                            Language: ENG</small></td>
-                                                                                    <td><small
-                                                                                            class="small-text">Home</small>
-                                                                                    </td>
-                                                                                    <td><small
-                                                                                            class="small-text">4</small>
-                                                                                    </td>
-                                                                                    <td><small class="small-text">3:00
-                                                                                            PM - 4:30</small></td>
-                                                                                    <td><small
-                                                                                            class="small-text"></small>Adding
-                                                                                        riddles and puzzles to the quest
-                                                                                        ENG GD M2L4</td>
-                                                                                    <td><small
-                                                                                            class="small-text">Tom</small>
-                                                                                    </td>
-                                                                                    <td><small
-                                                                                            class="small-text">Finn</small>
-                                                                                    </td>
-                                                                                    <td><small class="small-text">Game
-                                                                                            Development</small></td>
-                                                                                    <td><small
-                                                                                            class="btn-sm btn-primary"
-                                                                                            aria-disabled="true">Offline</small>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!-- Add more rows as needed -->
-                                                                            </tbody>
-                                                                        </table>
+                                                                        <table class="table bg-white rounded shadow-sm table-hover">
+																		    <thead>
+																		        <tr>
+																		            <th scope="col" style="width: 50px;"></th>
+																		            <th scope="col" style="width: 250px;">Title</th>
+																		            <th scope="col">Students</th>
+																		            <th scope="col">Teacher</th>
+																		            <th scope="col">Supervisor</th>
+																		            <th scope="col">Course</th>
+																		            <th scope="col">Format</th>
+																		        </tr>
+																		    </thead>
+																		    <tbody>
+																		        <c:forEach items="${groupList}" var="group">
+																		            <tr>
+																		                <td>
+																		                    <input type="radio" name="selectRow" value="${group.id}" <c:if test="${group.id == registrationGroup}">checked</c:if>>
+																		                </td>
+																		                <td>
+																		                    <a href="${pageContext.servletContext.contextPath}/subpage/group-detail?groupId=${group.id}">
+																		                        <small class="small-text">${group.title}</small>
+																		                    </a>
+																		                </td>
+																		                <td><small class="small-text">${group.numOfStudent}</small></td>
+																		                <td><small class="small-text">${group.teacher}</small></td>
+																		                <td><small class="small-text">${group.supervisor}</small></td>
+																		                <td><small class="small-text">${group.course}</small></td>
+																		                <td>
+																		                    <small class="btn-sm btn-primary" aria-disabled="true">
+																		                        <c:choose>
+																		                            <c:when test="${group.format == 'offline'}">Offline</c:when>
+																		                            <c:otherwise>Online</c:otherwise>
+																		                        </c:choose>
+																		                    </small>
+																		                </td>
+																		                <!-- Hidden input to pass the groupId in the form -->
+										
+																		            </tr>
+																		        </c:forEach>
+																		    </tbody>
+																		</table>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -460,14 +392,11 @@
                                             </div>
                                         </div>
 
-
+										</form:form>
 
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
-                        <!-- /#page-content-wrapper -->
                         </div>
                         <script
                             src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
@@ -480,41 +409,51 @@
                             };
                         </script>
                         <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                const radioButtons = document.querySelectorAll('input[name="selectRow"]');
-                                const selectedClassTable = document.getElementById('selected-class-table');
-                                const cancelSelectionBtn = document.getElementById('cancelSelectionBtn');
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const radioButtons = document.querySelectorAll('input[name="selectRow"]');
+                            const selectedClassTable = document.getElementById('selected-class-table');
+                            const cancelSelectionBtn = document.getElementById('cancelSelectionBtn');
 
-                                radioButtons.forEach(button => {
-                                    button.addEventListener('change', function () {
-                                        updateSelectedClassTable();
-                                    });
+                            radioButtons.forEach(button => {
+                                button.addEventListener('change', function () {
+                                    updateSelectedClassTable();
                                 });
-
-                                cancelSelectionBtn.addEventListener('click', function () {
-                                    // Clear the content of the upper table
-                                    selectedClassTable.innerHTML = '';
-                                });
-
-                                function updateSelectedClassTable() {
-                                    // Remove existing content from the upper table
-                                    selectedClassTable.innerHTML = '';
-
-                                    // Get the selected radio button
-                                    const selectedButton = document.querySelector('input[name="selectRow"]:checked');
-
-                                    // If a radio button is selected, clone the corresponding row and append it to the upper table
-                                    if (selectedButton) {
-                                        const selectedRow = selectedButton.closest('tr').cloneNode(true);
-                                        // Remove the checkbox and its parent td from the cloned row
-                                        selectedRow.removeChild(selectedRow.querySelector('td'));
-                                        selectedClassTable.appendChild(selectedRow);
-
-                                        // Check the corresponding radio button in the lower table
-                                        selectedButton.checked = true;
-                                    }
-                                }
                             });
+
+                            cancelSelectionBtn.addEventListener('click', function () {
+                                // Clear the content of the upper table
+                                selectedClassTable.innerHTML = '';
+                            });
+
+                            function updateSelectedClassTable() {
+                                // Remove existing content from the upper table
+                                selectedClassTable.innerHTML = '';
+
+                                // Get the selected radio button
+                                const selectedButton = document.querySelector('input[name="selectRow"]:checked');
+
+                                // If a radio button is selected, clone the corresponding row and append it to the upper table
+                                if (selectedButton) {
+                                    const selectedRow = selectedButton.closest('tr').cloneNode(true);
+                                    // Remove the checkbox and its parent td from the cloned row
+                                    selectedRow.removeChild(selectedRow.querySelector('td'));
+                                    
+                                    // Add the hidden input tag with the groupId of the selected row
+                                    const groupId = selectedButton.value;
+                                    const hiddenInput = document.createElement('input');
+                                    hiddenInput.type = 'hidden';
+                                    hiddenInput.name = 'groupId';
+                                    hiddenInput.value = groupId;
+                                    
+                                    selectedRow.appendChild(hiddenInput);
+                                    selectedClassTable.appendChild(selectedRow);
+
+                                    // Check the corresponding radio button in the lower table
+                                    selectedButton.checked = true;
+                                }
+                            }
+                        });
+
                         </script>
                         <script>
 						    document.getElementById('dob').addEventListener('change', function() {

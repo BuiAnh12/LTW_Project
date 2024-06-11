@@ -33,6 +33,7 @@ import com.service.DashboardService;
 import lombok.RequiredArgsConstructor;
 
 import com.config.StaticUtilMethods;
+import com.dto.ResGroupDto;
 import com.dto.ScheduleDTO;
 import com.dto.StudentDTO;
 import com.entity.Group;
@@ -202,7 +203,42 @@ public class CategoryController {
     }
     
     @RequestMapping(value = "/group", method = RequestMethod.GET)
-    public ModelAndView getGroupPage(HttpServletRequest request, Model model) {	
-        return categoryService.getGroupListPage(request, model);
+    public ModelAndView getGroupPage(HttpServletRequest request, Model model, 
+    		@RequestParam(required = false) String title, 
+            @RequestParam(required = false) String student,
+            @RequestParam(required = false) String teacher,
+            @RequestParam(required = false) String supervisor,
+            @RequestParam(required = false) String course,
+            @RequestParam(required = false) String format) {	
+    	Pageable pageable = staticUtilMethods.createPageable(request);
+	    Page<ResGroupDto> groupList = null;
+	    if (title == null && student == null && teacher == null && supervisor == null && course == null && format == null) {
+	    	groupList = categoryService.getGroupListPage(request, model,title,student,teacher,supervisor,course,format,pageable);
+	    	ModelAndView mav = new ModelAndView("group/group");
+	    	mav.addObject("groupList", groupList.getContent());
+		    mav.addObject("currentPage", groupList.getNumber() + 1);
+		    mav.addObject("totalPages", groupList.getTotalPages());
+		    mav.addObject("totalItems", groupList.getTotalElements());
+		    mav.addObject("pageSize", groupList.getSize());
+		    return mav;
+	    }
+	    else {
+	    	groupList = categoryService.getGroupListPage(request, model,title,student,teacher,supervisor,course,format,pageable);
+	    	ModelAndView mav = new ModelAndView("group/GroupTable");
+	    	mav.addObject("groupList", groupList.getContent());
+		    mav.addObject("currentPage", groupList.getNumber() + 1);
+		    mav.addObject("totalPages", groupList.getTotalPages());
+		    mav.addObject("totalItems", groupList.getTotalElements());
+		    mav.addObject("pageSize", groupList.getSize());
+		    
+		    mav.addObject("sTitle",title);
+		    mav.addObject("sStudent",student);
+		    mav.addObject("sTeacher",teacher);
+		    mav.addObject("sSupervisor",supervisor);
+		    mav.addObject("sCourse",course);
+		    mav.addObject("sFormat",format);
+		    return mav;
+	    	}
+        
 	   }
 }
