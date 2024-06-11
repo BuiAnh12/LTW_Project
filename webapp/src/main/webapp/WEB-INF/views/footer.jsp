@@ -22,7 +22,7 @@
             bottom: 0;
             width: 100%;
             height: 20%; /* Set chiều cao của footer là 20% của chiều cao màn hình */
-            background-color: #003300;
+            background-color: #333333;
             box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
         }
     </style>

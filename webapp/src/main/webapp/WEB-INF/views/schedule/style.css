@@ -4,6 +4,28 @@
   --second-text-color: #77bbe9cb;
   --second-bg-color: #fefcff;
 }
+
+
+.custom-card {
+        transition: transform 0.3s, background-color 0.3s; /* Thêm transition cho hiệu ứng scale và thay đổi màu nền */
+        background-color: #DDDDDD;
+    }
+
+    .custom-card:hover {
+        transform: scale(1.05); /* Scale thẻ khi hover */
+        background-color: #666666; 
+        color: #ffffff/* Thay đổi màu nền khi hover */
+    }
+.sidebar-custom .list-group-item {
+    transition: transform 0.3s ease-in-out; /* Thêm hiệu ứng transition cho thuộc tính transform */
+    display: inline-block; /* Cần thiết để sử dụng transform */
+}
+
+.sidebar-custom .list-group-item:hover {
+    transform: scale(1.1); /* Scale thẻ <a> lên 110% khi hover */
+}
+
+
 .divider {
         background-color: #757575; /* Đặt màu đen cho thanh */
         height: 1px; /* Thiết lập độ cao của thanh */

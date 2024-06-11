@@ -18,47 +18,48 @@
 </head>
 
 <body>
-    <div class="d-flex" id="wrapper">
-        <%@include file="/WEB-INF/views/teacherpanel.jsp"%>
+	<div class="d-flex" id="wrapper">
+		<div id="page-content-wrapper">
+			<nav
+				class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+				<div class="d-flex align-items-center">
+					<i class="fas fa-align-left primary-text fs-4 me-3"
+						id="menu-toggle"></i>
+					<h2 class="fs-2 m-0">TeacherDetail course</h2>
+				</div>
 
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
-                    <h2 class="fs-2 m-0">TeacherDetail course</h2>
-                </div>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i>John Doe
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="container">
-                <!-- COURSE -->
-                <div class="table bg-white rounded">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="row">
-                                <Span class=" text-center fw-bold" style="font-size: large;">COURSE</Span>
-                            </div>
-                            <!-- Form thêm khóa học và bài học -->
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle second-text fw-bold" href="#"
+							id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+							aria-expanded="false"> <i class="fas fa-user me-2"></i>John
+								Doe
+						</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Profile</a></li>
+								<li><a class="dropdown-item" href="#">Settings</a></li>
+								<li><a class="dropdown-item" href="#">Logout</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="container">
+				<!-- COURSE -->
+				<div class="table bg-white rounded">
+					<div class="row">
+						<div class="col-12">
+							<div class="row">
+								<Span class=" text-center fw-bold" style="font-size: large;">COURSE</Span>
+							</div>
+							<!-- Form thêm khóa học và bài học -->
 							<form:form method="POST"
 								action="${pageContext.servletContext.contextPath}/manager/update-course?courseId=${courseObject.courseId}"
 								modelAttribute="courseObject">
@@ -90,30 +91,30 @@
 									<h2 class="mt-5">Danh sách bài học</h2>
 									<table class="table table-bordered" id="lessonsTable">
 										<thead>
-								            <tr>
-								                <th>Tên bài học</th>
-								                <th class="hidden-column">Lesson ID</th>
-								                <th class="hidden-column">Status</th>
-								                <!-- <th>Hành động</th> -->
-								            </tr>
-								        </thead>
+											<tr>
+												<th>Tên bài học</th>
+												<th class="hidden-column">Lesson ID</th>
+												<th class="hidden-column">Status</th>
+												<!-- <th>Hành động</th> -->
+											</tr>
+										</thead>
 										<tbody>
 											<!-- Table rows will be populated by JavaScript -->
-											
-									            <c:forEach var="lesson" items="${courseObject.lessons}">
-												    <c:if test="${lesson.status == 'true'}">
-												        <tr class="lesson-row">
-												            <td>${lesson.detail}</td>
-												            <td class="hidden-column">${lesson.lessonId}</td>
-												            <%-- <td class="hidden-column">${lesson.status}</td> --%>
-												            <!-- <td>
+
+											<c:forEach var="lesson" items="${courseObject.lessons}">
+												<c:if test="${lesson.status == 'true'}">
+													<tr class="lesson-row">
+														<td>${lesson.detail}</td>
+														<td class="hidden-column">${lesson.lessonId}</td>
+														<%-- <td class="hidden-column">${lesson.status}</td> --%>
+														<!-- <td>
 												                <button type="button" class="btn btn-sm btn-danger">Xóa</button>
 												            </td> -->
-												        </tr>
-												    </c:if>
-												</c:forEach>
+													</tr>
+												</c:if>
+											</c:forEach>
 
-					
+
 										</tbody>
 									</table>
 								</div>
@@ -126,13 +127,14 @@
 								</div> -->
 
 								<!-- Input ẩn để lưu danh sách bài học -->
-								<div name= "lessons" id="lessonsHiddenInputs">
+								<div name="lessons" id="lessonsHiddenInputs">
 									<!-- Hidden inputs will be populated by JavaScript -->
 								</div>
 							</form:form>
 
 
-							<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+							<script
+								src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 							<script>
 						        document.addEventListener("DOMContentLoaded", function () {
 						            const addLessonBtn = document.getElementById('addLessonBtn');
@@ -234,7 +236,7 @@
         };
         
     </script>
-   <script>
+							<script>
     function handleDelete() {
         var confirmation = confirm("Bạn có chắc muốn xóa khóa học này không?");
         if (confirmation) {
@@ -251,12 +253,10 @@
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     window.location.href = "category/course";
                 }
-            };
-            
+            };          
             xhr.send(params);
         }
     }
 </script>
-
 </body>
 </html>

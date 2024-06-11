@@ -10,25 +10,52 @@
 
 <head>
     <meta charset="UTF-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
+    <base href="${pageContext.servletContext.contextPath}/">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style><%@include file="/WEB-INF/views/dashboard/style.css"%></style>
+    <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-DI/U+B20M5d4fD2UG+P8BGO35nqYjT9tlxG6t2vIY2CH6azYH2i4MIZhf4oAVvrj" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .small-text {
+            font-size: 80%; /* Adjust the percentage to your desired size */
+        }
+    </style>
+    <style><%@include file="/WEB-INF/views/schedule/style.css"%></style>
     <base href="${pageContext.servletContext.contextPath}/">
     <title>Admin Dashboard</title>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
-        <div>
-        <%@include file="/WEB-INF/views/panel.jsp"%>
-        </div>
-        <!-- /#sidebar-wrapper -->
+    <div>
+			<%@include file="/WEB-INF/views/panel.jsp"%>
+		</div>
 
-        <!-- Page Content -->
-        <!-- Top nav Content -->
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
@@ -60,7 +87,7 @@
 			<div class="container-fluid px-4">
                 <div class="row g-3 my-2">
                     <div class="col-md-2 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                        <div class="p-3  shadow-sm d-flex rounded custom-card">
                             <div class="row">
                                 <p class="fs-6">ACTIVE STUDENT</p>
                                 <div class="col-6">
@@ -88,7 +115,7 @@
                     </div>
 
                     <div class="col-md-2 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                        <div class="p-3  shadow-sm d-flex rounded custom-card">
                             <div class="row">
                                 <p class="fs-6">ACTIVE GROUP</p>
                                 <div class="col-6">
@@ -115,7 +142,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                        <div class="p-3  shadow-sm d-flex rounded custom-card">
                             <div class="row">
                                 <p class="fs-6">ACTIVE COURSE</p>
                                 <div class="col-6">
@@ -142,7 +169,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                        <div class="p-3  shadow-sm d-flex rounded custom-card">
                             <div class="row">
                                 <p class="fs-6">ACTIVE TEACHER</p>
                                 <div class="col-6">
@@ -169,7 +196,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                        <div class="p-3  shadow-sm d-flex rounded custom-card">
                             <div class="row">
                                 <p class="fs-6">ACTIVE USER</p>
                                 <div class="col-6">
@@ -197,7 +224,7 @@
                     </div>
 
                     <div class="col-md-2 col-sm-12">
-                        <div class="p-3 bg-white shadow-sm d-flex rounded">
+                        <div class="p-3  shadow-sm d-flex rounded custom-card">
                             <div class="row">
                                 <p class="fs-6">STUDENTS PER GROUP, AVG.</p>
                                 <div class="col-6">
@@ -230,7 +257,7 @@
                         <div class="row">
                             <div class="col-12" style="padding: 10px;">
                                 <h3 class="fs-4 mb-3"> Recent Registration Group</h3>
-                                <table class="table bg-white rounded shadow-sm  table-hover">
+                                <table class="table-custom">
                                     <thead>
                                         <tr>
                                             <th scope="col" class="col-3">Title</th>

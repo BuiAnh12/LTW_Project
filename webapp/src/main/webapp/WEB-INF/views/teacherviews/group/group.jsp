@@ -36,16 +36,6 @@
                     <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
                     <h2 class="fs-2 m-0">TeacherGroups</h2>
                 </div>
-				<c:forEach var="role" items="${roleList}">
-					<c:if test="${role.code == 'TEACHER'}">
-						<div>
-							<button class="btn-sm" disabled
-								style="color: transparent; border: none;"></button>
-							<button class="btn-sm btn-success" onclick="openModal()">Add
-								Group</button>
-						</div>
-					</c:if>
-				</c:forEach>
 				<%@include file="/WEB-INF/views/group/addGroupModal.jsp" %>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

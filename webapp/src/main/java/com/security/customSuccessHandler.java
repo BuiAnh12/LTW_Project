@@ -42,7 +42,7 @@ private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 		if (isAdmin(roles)) {
 			url = "/dashboard";
 		} else if (isTecher(roles)) {
-			url = "/category/schedule.html";
+			url = "/teacher/schedule.html";
 		}
 		return url;
 	}
